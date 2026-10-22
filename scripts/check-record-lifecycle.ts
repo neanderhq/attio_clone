@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { Client } from 'pg';
 import { POST as authPost, GET as authGet } from '../app/api/auth/route';
-import { POST as crmPost, GET as crmGet } from '../app/api/crm/route';
+import { POST as crmPost, GET as crmGet, PATCH as crmPatch } from '../app/api/crm/route';
 import { POST as listsPost, GET as listsGet, PATCH as listsPatch } from '../app/api/lists/route';
 import { POST as lifePost, GET as lifeGet, DELETE as lifeDelete } from '../app/api/records/lifecycle/route';
 import { GET as dealHistoryGet } from '../app/api/deals/history/route';
@@ -13,7 +13,7 @@ const stamp = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 const users: string[] = [], workspaces: string[] = [];
 type Account = { cookie: string; workspaceId: string; id: string; email: string };
 async function call(handler: (request: Request) => Promise<Response>, method: 'GET' | 'POST' | 'PATCH' | 'DELETE', account?: Account, body?: object, query = '') {
-  const path = handler === authPost || handler === authGet ? '/api/auth' : handler === crmPost || handler === crmGet ? '/api/crm' : handler === listsPost || handler === listsGet || handler === listsPatch ? '/api/lists' : handler === dealHistoryGet ? '/api/deals/history' : '/api/records/lifecycle';
+  const path = handler === authPost || handler === authGet ? '/api/auth' : handler === crmPost || handler === crmGet || handler === crmPatch ? '/api/crm' : handler === listsPost || handler === listsGet || handler === listsPatch ? '/api/lists' : handler === dealHistoryGet ? '/api/deals/history' : '/api/records/lifecycle';
   const response = await handler(new Request(`${origin}${path}${query}`, { method, headers: { ...(method !== 'GET' ? { origin, 'content-type': 'application/json' } : {}), ...(account ? { cookie: account.cookie, 'x-workspace-id': account.workspaceId } : {}) }, body: body ? JSON.stringify(body) : undefined }));
   return { status: response.status, data: await response.json() as Record<string, any> };
 }
@@ -83,6 +83,12 @@ async function main() {
     assert.equal((await call(listsPatch, 'PATCH', owner, { listId: shared.data.list.id, entryId: targetEntry.id, stage: 'Done', note: 'Updated after preview' })).status, 200);
     assert.equal((await call(lifePost, 'POST', owner, { action: 'merge', type: 'company', sourceId: source.id, targetId: target.id, snapshot: companyPreview.data.snapshot, resolutions: resolutions(companyPreview.data) })).status, 409);
     companyPreview = await call(lifePost, 'POST', owner, { action: 'previewMerge', type: 'company', sourceId: source.id, targetId: target.id }); assert.equal(companyPreview.status, 200);
+    const lateNote = await call(crmPost, 'POST', owner, { type: 'note', targetType: 'company', targetId: source.id, body: 'Added after preview' }); assert.equal(lateNote.status, 201);
+    assert.equal((await call(lifePost, 'POST', owner, { action: 'merge', type: 'company', sourceId: source.id, targetId: target.id, snapshot: companyPreview.data.snapshot, resolutions: resolutions(companyPreview.data) })).status, 409);
+    companyPreview = await call(lifePost, 'POST', owner, { action: 'previewMerge', type: 'company', sourceId: source.id, targetId: target.id }); assert.equal(companyPreview.status, 200);
+    const lateTask = await call(crmPost, 'POST', owner, { type: 'task', targetType: 'company', targetId: source.id, title: 'Added after preview' }); assert.equal(lateTask.status, 201);
+    assert.equal((await call(lifePost, 'POST', owner, { action: 'merge', type: 'company', sourceId: source.id, targetId: target.id, snapshot: companyPreview.data.snapshot, resolutions: resolutions(companyPreview.data) })).status, 409);
+    companyPreview = await call(lifePost, 'POST', owner, { action: 'previewMerge', type: 'company', sourceId: source.id, targetId: target.id }); assert.equal(companyPreview.status, 200);
     const companyMerge = await call(lifePost, 'POST', owner, { action: 'merge', type: 'company', sourceId: source.id, targetId: target.id, snapshot: companyPreview.data.snapshot, resolutions: resolutions(companyPreview.data, { [`list:${shared.data.list.id}`]: 'source' }) }); assert.equal(companyMerge.status, 200, JSON.stringify(companyMerge.data));
     const afterCompany = await call(crmGet, 'GET', owner);
     assert.ok(!afterCompany.data.companies.some((c: any) => c.id === source.id));
@@ -90,6 +96,8 @@ async function main() {
     assert.equal(afterCompany.data.deals.find((d: any) => d.id === sourceDeal.id).companyId, target.id);
     assert.equal(afterCompany.data.notes.find((n: any) => n.id === note.data.id).targetId, target.id);
     assert.equal(afterCompany.data.tasks.find((t: any) => t.id === task.data.id).targetId, target.id);
+    assert.equal(afterCompany.data.notes.find((n: any) => n.id === lateNote.data.id).targetId, target.id);
+    assert.equal(afterCompany.data.tasks.find((t: any) => t.id === lateTask.data.id).targetId, target.id);
     const mergedLink = await call(lifeGet, 'GET', owner, undefined, `?action=resolve&type=company&id=${source.id}`);
     assert.equal(mergedLink.data.id, target.id); assert.equal(mergedLink.data.redirected, true);
     assert.equal((await call(lifePost, 'POST', owner, { action: 'restore', type: 'company', id: source.id, version: source.version + 1 })).status, 404);
@@ -101,6 +109,14 @@ async function main() {
     const personPreview = await call(lifePost, 'POST', owner, { action: 'previewMerge', type: 'person', sourceId: sourcePerson.id, targetId: targetPerson.id }); assert.equal(personPreview.status, 200);
     assert.equal((await call(lifePost, 'POST', owner, { action: 'merge', type: 'person', sourceId: sourcePerson.id, targetId: targetPerson.id, snapshot: personPreview.data.snapshot, resolutions: resolutions(personPreview.data) })).status, 200);
     assert.equal((await call(crmGet, 'GET', owner)).data.deals.find((d: any) => d.id === sourceDeal.id).personId, targetPerson.id);
+    const otherCompany = await makeCompany(owner, 'Other Company');
+    const otherPerson = await makePerson(owner, 'Other Person', otherCompany.id);
+    const survivorDeal = await makeDeal(owner, 'Survivor Deal', target.id, targetPerson.id);
+    const unsafePreview = await call(lifePost, 'POST', owner, { action: 'previewMerge', type: 'person', sourceId: otherPerson.id, targetId: targetPerson.id }); assert.equal(unsafePreview.status, 200);
+    assert.equal((await call(lifePost, 'POST', owner, { action: 'merge', type: 'person', sourceId: otherPerson.id, targetId: targetPerson.id, snapshot: unsafePreview.data.snapshot, resolutions: resolutions(unsafePreview.data, { companyId: 'source' }) })).status, 409);
+    const afterRejectedMerge = await call(crmGet, 'GET', owner);
+    assert.equal(afterRejectedMerge.data.deals.find((d: any) => d.id === survivorDeal.id).companyId, target.id);
+    assert.equal(afterRejectedMerge.data.people.find((p: any) => p.id === targetPerson.id).companyId, target.id);
     const dealPreview = await call(lifePost, 'POST', owner, { action: 'previewMerge', type: 'deal', sourceId: sourceDeal.id, targetId: targetDeal.id }); assert.equal(dealPreview.status, 200);
     assert.equal((await call(lifePost, 'POST', owner, { action: 'merge', type: 'deal', sourceId: sourceDeal.id, targetId: targetDeal.id, snapshot: dealPreview.data.snapshot, resolutions: resolutions(dealPreview.data) })).status, 200);
     assert.equal((await call(lifeGet, 'GET', owner, undefined, `?action=resolve&type=deal&id=${sourceDeal.id}`)).data.id, targetDeal.id);
@@ -144,9 +160,28 @@ async function main() {
     assert.equal((await call(lifePost, 'POST', owner, { action: 'restore', type: 'company', id: expired.id, version: expired.version + 1 })).status, 410);
     assert.ok(!(await call(lifeGet, 'GET', owner, undefined, '?action=trash')).data.records.some((r: any) => r.id === expired.id && r.type === 'company'));
     assert.equal((await call(lifeDelete, 'DELETE', owner, { type: 'company', id: target.id, version: target.version + 1 })).status, 409); // linked active people and deals
+    for (const mode of ['create', 'reassign'] as const) {
+      const deleting = await makeCompany(owner, `Race target ${mode}`);
+      const stable = mode === 'reassign' ? await makeCompany(owner, 'Race stable company') : null;
+      const moving = stable ? await makePerson(owner, 'Moving person', stable.id) : null;
+      await client.query('BEGIN');
+      await client.query('SELECT pg_advisory_xact_lock(hashtext($1), 73921)', [owner.workspaceId]);
+      const deletion = call(lifeDelete, 'DELETE', owner, { type: 'company', id: deleting.id, version: deleting.version });
+      const personWrite = mode === 'create'
+        ? call(crmPost, 'POST', owner, { type: 'person', name: 'Racing person', companyId: deleting.id })
+        : call(crmPatch, 'PATCH', owner, { type: 'person', id: moving!.id, version: moving!.version, companyId: deleting.id });
+      await new Promise(resolve => setTimeout(resolve, 50));
+      await client.query('COMMIT');
+      const [deleted, written] = await Promise.all([deletion, personWrite]);
+      assert.ok([200, 409].includes(deleted.status), JSON.stringify(deleted));
+      assert.ok([200, 201, 404, 409].includes(written.status), JSON.stringify(written));
+      assert.ok(deleted.status === 409 || [404, 409].includes(written.status), `Both deletion and ${mode} succeeded`);
+      const orphan = await client.query('SELECT p.id FROM people p JOIN companies c ON c.id = p.company_id WHERE p.workspace_id = $1 AND p.deleted_at IS NULL AND c.deleted_at IS NOT NULL', [owner.workspaceId]);
+      assert.equal(orphan.rowCount, 0, `Active person under deleted company after ${mode} race`);
+    }
     const events = await client.query('SELECT action FROM crm_record_lifecycle_events WHERE workspace_id = $1', [owner.workspaceId]);
     assert.ok(events.rows.some(row => row.action === 'merge')); assert.ok(events.rows.some(row => row.action === 'restore'));
-    console.log('Record lifecycle checks passed: Company/Person/Deal merges, linked notes/tasks and lists, private-list access, viewer/foreign denial, stale previews, soft delete, 30-day restore and identity collisions, audit, stage history and redirects.');
+    console.log('Record lifecycle checks passed: merges, survivor-deal protection, late note/task previews, concurrent Company deletion and Person writes, lists, access, restore, audit, stage history and redirects.');
   } finally {
     await client.query('DELETE FROM crm_record_lifecycle_events WHERE workspace_id = ANY($1::uuid[])', [workspaces]);
     await client.query('DELETE FROM crm_custom_values WHERE workspace_id = ANY($1::uuid[])', [workspaces]);
