@@ -68,6 +68,8 @@ export async function previewMerge(tx: Tx, workspaceId: string, userId: string, 
   const entries = await listEntries(tx, workspaceId, userId, type, sourceId, targetId);
   const values = await fieldValues(tx, workspaceId, type, sourceId, targetId);
   const dependencies = await dependentCounts(tx, workspaceId, type, sourceId);
+  const linkedNotes = await tx.select().from(notes).where(and(eq(notes.workspaceId, workspaceId), eq(notes.targetType, type), eq(notes.targetId, sourceId))).orderBy(notes.id);
+  const linkedTasks = await tx.select().from(tasks).where(and(eq(tasks.workspaceId, workspaceId), eq(tasks.targetType, type), eq(tasks.targetId, sourceId))).orderBy(tasks.id);
   const conflicts: { key: string; label: string; source: unknown; target: unknown }[] = [];
   for (const field of fields[type]) {
     const a = (source as unknown as Record<string, unknown>)[field], b = (target as unknown as Record<string, unknown>)[field];
@@ -90,8 +92,8 @@ export async function previewMerge(tx: Tx, workspaceId: string, userId: string, 
   for (const [id, item] of byField) if (item.source && item.target && item.source.value !== item.target.value)
     conflicts.push({ key: `custom:${id}`, label: `Field: ${item.name}`, source: item.source.value, target: item.target.value });
   const linkImpact = type === 'company' ? { people: dependencies.people, deals: dependencies.deals } : type === 'person' ? { deals: dependencies.deals, moveDealsToCompanyId: (target as typeof people.$inferSelect).companyId } : {};
-  const snapshot = createHash('sha256').update(JSON.stringify({ source, target, entries, values, dependencies })).digest('hex');
-  return { type, sourceId, targetId, sourceVersion: source.version, targetVersion: target.version, sourceName: source.name, targetName: target.name, conflicts, links: linkImpact, lists: [...byList.entries()].map(([id, item]) => ({ id, name: item.listName, source: item.source ? { stage: item.source.stage, note: item.source.note } : null, target: item.target ? { stage: item.target.stage, note: item.target.note } : null })), notesAndTasks: { notes: (await tx.select({ id: notes.id }).from(notes).where(and(eq(notes.workspaceId, workspaceId), eq(notes.targetType, type), eq(notes.targetId, sourceId)))).length, tasks: (await tx.select({ id: tasks.id }).from(tasks).where(and(eq(tasks.workspaceId, workspaceId), eq(tasks.targetType, type), eq(tasks.targetId, sourceId)))).length }, snapshot, source, target, entries, values, byList, byField };
+  const snapshot = createHash('sha256').update(JSON.stringify({ source, target, entries, values, dependencies, linkedNotes, linkedTasks })).digest('hex');
+  return { type, sourceId, targetId, sourceVersion: source.version, targetVersion: target.version, sourceName: source.name, targetName: target.name, conflicts, links: linkImpact, lists: [...byList.entries()].map(([id, item]) => ({ id, name: item.listName, source: item.source ? { stage: item.source.stage, note: item.source.note } : null, target: item.target ? { stage: item.target.stage, note: item.target.note } : null })), notesAndTasks: { notes: linkedNotes.length, tasks: linkedTasks.length }, snapshot, source, target, entries, values, byList, byField };
 }
 export async function softDelete(workspaceId: string, userId: string, type: RecordType, id: number, version: number) {
   return getDb().transaction(async tx => {
@@ -162,6 +164,10 @@ export async function mergeRecords(workspaceId: string, userId: string, type: Re
     }
     if (type === 'person') {
       const company = await getRecord(tx, workspaceId, 'company', Number(selected.companyId)); active(company);
+      if (selected.companyId !== (target as typeof people.$inferSelect).companyId) {
+        const [existingDeal] = await tx.select({ id: deals.id }).from(deals).where(and(eq(deals.workspaceId, workspaceId), eq(deals.personId, targetId))).limit(1);
+        if (existingDeal) throw new LifecycleError('The survivor has deals in its current company. Keep that company or move those deals before merging.', 409);
+      }
     }
     if (type === 'deal') {
       const company = await getRecord(tx, workspaceId, 'company', Number(selected.companyId)); active(company);
