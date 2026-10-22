@@ -1,0 +1,9 @@
+'use client';
+import { useEffect, useState } from 'react';
+
+type Event = { id: number; dealId: number; fromStage: string | null; toStage: string; changedAt: string; lostReason: string | null };
+export default function DealHistory({ workspaceId, dealId, stage }: { workspaceId: string; dealId: number; stage: string }) {
+  const [events, setEvents] = useState<Event[]>([]), [mergedEvents, setMergedEvents] = useState<Event[]>([]), [incomplete, setIncomplete] = useState(false), [loading, setLoading] = useState(true), [error, setError] = useState('');
+  useEffect(() => { let live = true; fetch(`/api/deals/history?dealId=${dealId}`, { cache: 'no-store', headers: { 'x-workspace-id': workspaceId } }).then(async r => { const j = await r.json(); if (!r.ok) throw new Error(j.error || 'Could not load stage history.'); if (live) { setEvents(j.events); setMergedEvents(j.mergedEvents || []); setIncomplete(j.historyIncomplete); } }).catch(e => { if (live) setError(e.message); }).finally(() => { if (live) setLoading(false); }); return () => { live = false; }; }, [workspaceId, dealId, stage]);
+  return <section className="panel"><h2>Stage history</h2>{loading && <p role="status">Loading stage history…</p>}{error && <p role="alert">{error}</p>}{incomplete && <p className="muted">Older stage changes were not recorded, so this history starts with the first tracked change.</p>}{events.map(e => <div className="activityitem" key={e.id}><strong>{e.fromStage || 'Created'} → {e.toStage}</strong><small>{new Date(e.changedAt).toLocaleString()}</small>{e.lostReason && <p>Lost reason: {e.lostReason}</p>}</div>)}{mergedEvents.length > 0 && <><h3>Earlier merged deals</h3>{mergedEvents.map(e => <div className="activityitem" key={e.id}><strong>Deal #{e.dealId}: {e.fromStage || 'Created'} → {e.toStage}</strong><small>{new Date(e.changedAt).toLocaleString()}</small>{e.lostReason && <p>Lost reason: {e.lostReason}</p>}</div>)}</>}</section>;
+}

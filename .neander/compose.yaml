@@ -14,8 +14,14 @@ x-neander:
   ingress:
     service: web
     port: 8080
-    root_probe: /
-  environment: []
+    root_probe: /api/health
+  environment:
+    - service: web
+      name: DATABASE_URL
+      required: true
+      source: provisioned
+      provider: Neon
   probes:
     - path: /api/health
       success_status_range: 2xx
+  migration: nextjs-drizzle

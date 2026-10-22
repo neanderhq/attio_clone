@@ -12,10 +12,16 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DeploymentExamplesTests(unittest.TestCase):
-    def test_base_stays_database_free(self):
-        metadata = yaml.safe_load((ROOT / '.neander/compose.yaml').read_text())['x-neander']
-        self.assertEqual(metadata['environment'], [])
-        self.assertNotIn('migration', metadata)
+    def test_installed_database_recipe(self):
+        recipe = yaml.safe_load((ROOT / '.neander/compose.yaml').read_text())
+        metadata = recipe['x-neander']
+        self.assertEqual(metadata['migration'], 'nextjs-drizzle')
+        self.assertEqual(metadata['environment'], [{'service': 'web', 'name': 'DATABASE_URL',
+                                                    'required': True, 'source': 'provisioned', 'provider': 'Neon'}])
+        self.assertEqual(metadata['ingress']['root_probe'], '/api/health')
+        self.assertEqual(metadata['probes'][0]['path'], '/api/health')
+        self.assertTrue((ROOT / '.neander/migrate.mjs').is_file())
+        self.assertTrue(list((ROOT / 'drizzle').glob('*.sql')))
 
     def test_database_and_auth_recipes_declare_complete_requirements(self):
         examples = list((ROOT / '.neander/blocks').glob('*/.neander/compose.yaml.example'))
