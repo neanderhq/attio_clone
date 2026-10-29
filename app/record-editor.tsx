@@ -1,5 +1,7 @@
 'use client';
 import { useEffect, useState, type FormEvent } from 'react';
+import { Dialog } from './workspace-ui';
+import { AttioButton } from '../src/neander-design-pack/attio/1.1.0/AttioBlocks';
 import { CURRENCIES, STAGES } from '../shared/crm';
 
 type RecordType = 'company' | 'person' | 'deal' | 'note';
@@ -7,6 +9,7 @@ type RecordData = { id: number; version: number; name?: string; domain?: string 
 type Option = { id: number; name: string; companyId?: number };
 function draftOf(record: RecordData) { return { name: record.name || '', domain: record.domain || '', description: record.description || '', email: record.email || '', companyId: String(record.companyId || ''), personId: String(record.personId || ''), stage: record.stage || 'Lead', owner: record.owner || '', value: String((record.valueCents || 0) / 100), currency: record.currency || 'USD', lostReason: record.lostReason || '', body: record.body || '' }; }
 export default function RecordEditor({ type, record, workspaceId, companies, people, canWrite, onSaved, onRefresh }: { type: RecordType; record: RecordData; workspaceId: string; companies: Option[]; people: Option[]; canWrite: boolean; onSaved: () => Promise<void>; onRefresh: () => Promise<void> }) {
+  const [editing,setEditing]=useState(false);
   const [draft, setDraft] = useState(() => draftOf(record));
   const [baseVersion, setBaseVersion] = useState(record.version);
   const [state, setState] = useState<'idle' | 'pending' | 'saved' | 'error'>('idle');
@@ -29,8 +32,8 @@ export default function RecordEditor({ type, record, workspaceId, companies, peo
       await onSaved();
     } catch (error) { setState('error'); setMessage(error instanceof Error ? error.message : 'Could not save this record.'); }
   }
-  return <form className="record-editor" onSubmit={save}>
-    <h3>Edit {type}</h3>
+  return <><AttioButton leadingIcon="note" onClick={()=>setEditing(true)}>Edit {type}</AttioButton><Dialog open={editing} onClose={()=>setEditing(false)} title={`Edit ${type}`}><form className="record-editor" onSubmit={save}>
+
     {type !== 'note' && <label className="field">Name<input required maxLength={120} disabled={!canWrite || state === 'pending'} value={draft.name} onChange={e => field('name', e.target.value)} /></label>}
     {type === 'company' && <><label className="field">Domain<input maxLength={253} disabled={!canWrite || state === 'pending'} value={draft.domain} onChange={e => field('domain', e.target.value)} /></label><label className="field">Description<input maxLength={500} disabled={!canWrite || state === 'pending'} value={draft.description} onChange={e => field('description', e.target.value)} /></label></>}
     {type === 'person' && <><label className="field">Email<input type="email" maxLength={254} disabled={!canWrite || state === 'pending'} value={draft.email} onChange={e => field('email', e.target.value)} /></label><label className="field">Company<select disabled={!canWrite || state === 'pending'} value={draft.companyId} onChange={e => field('companyId', e.target.value)}>{companies.map(company => <option key={company.id} value={company.id}>{company.name}</option>)}</select></label></>}
@@ -38,12 +41,12 @@ export default function RecordEditor({ type, record, workspaceId, companies, peo
     {type === 'note' && <label className="field">Note<textarea required maxLength={2000} disabled={!canWrite || state === 'pending'} value={draft.body} onChange={e => field('body', e.target.value)} /></label>}
     {canWrite && <><button className="primary" disabled={state === 'pending'}>{state === 'pending' ? 'Saving…' : 'Save changes'}</button>{state === 'error' && <button type="button" className="textlink" onClick={async () => { await onRefresh(); setMessage('Latest record loaded. Your draft is still here; review it before retrying.'); }}>Load latest version, keep draft</button>}</>}
     {message && <p role={state === 'error' ? 'alert' : 'status'} className={state === 'error' ? 'alert' : 'muted'}>{message}</p>}
-  </form>;
+  </form></Dialog></>;
 }
 
 export function RecordHistory({ type, id, version, workspaceId }: { type: RecordType; id: number; version: number; workspaceId: string }) {
   const [items, setItems] = useState<{ id: number; actorEmail: string; changes: Record<string, { from: string | number | null; to: string | number | null }>; changedAt: string }[]>([]);
   const [error, setError] = useState('');
   useEffect(() => { let active = true; setItems([]); fetch(`/api/records/history?type=${type}&id=${id}`, { headers: { 'x-workspace-id': workspaceId }, cache: 'no-store' }).then(async response => { const result = await response.json(); if (!response.ok) throw new Error(result.error || 'Could not load changes.'); if (active) { setItems(result.changes); setError(''); } }).catch(cause => { if (active) setError(cause instanceof Error ? cause.message : 'Could not load changes.'); }); return () => { active = false; }; }, [type, id, version, workspaceId]);
-  return <section className="record-history"><h3>Change history</h3>{error && <p role="alert">{error}</p>}{items.length ? items.map(item => <div className="activityitem" key={item.id}><small>{item.actorEmail} · {new Date(item.changedAt).toLocaleString()}</small>{Object.entries(item.changes).map(([field, change]) => <p key={field}>{field}: {String(change.from ?? 'empty')} → {String(change.to ?? 'empty')}</p>)}</div>) : !error && <p className="muted">No edits recorded yet.</p>}</section>;
+  return <details className="record-history disclosure"><summary>Change history</summary>{error && <p role="alert">{error}</p>}{items.length ? items.map(item => <div className="activityitem" key={item.id}><small>{item.actorEmail} · {new Date(item.changedAt).toLocaleString()}</small>{Object.entries(item.changes).map(([field, change]) => <p key={field}>{field}: {String(change.from ?? 'empty')} → {String(change.to ?? 'empty')}</p>)}</div>) : !error && <p className="muted">No edits recorded yet.</p>}</details>;
 }

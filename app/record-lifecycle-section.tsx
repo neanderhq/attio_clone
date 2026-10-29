@@ -1,6 +1,8 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
 
+import { Dialog } from './workspace-ui';
+
 type RecordType = 'company' | 'person' | 'deal';
 type Item = { id: number; name: string; version: number };
 type Conflict = { key: string; label: string; source: unknown; target: unknown };
@@ -13,9 +15,10 @@ async function request(workspaceId: string, method: 'POST' | 'DELETE', body: obj
 }
 const show = (value: unknown) => value === null ? 'Empty' : typeof value === 'object' ? JSON.stringify(value) : String(value);
 export function RecordLifecycle({ workspaceId, type, record, records, onChanged, onRemoved, onMerged }: { workspaceId: string; type: RecordType; record: Item; records: Item[]; onChanged: () => Promise<void>; onRemoved: () => void; onMerged: (id: number) => void }) {
+  const [deleteOpen,setDeleteOpen]=useState(false);
   const [targetId, setTargetId] = useState(''), [preview, setPreview] = useState<Preview | null>(null), [resolutions, setResolutions] = useState<Record<string, 'source' | 'target'>>({}), [error, setError] = useState(''), [busy, setBusy] = useState(false);
   async function run(action: () => Promise<void>) { setBusy(true); setError(''); try { await action(); } catch (e) { setError(e instanceof Error ? e.message : 'Record change failed.'); } finally { setBusy(false); } }
-  return <section className="panel"><h2>Merge or remove record</h2><p className="muted">Merging keeps the surviving record and moves notes, tasks, links and list entries. Review every conflict before confirming.</p>
+  return <details className="disclosure"><summary>Merge or move to Trash</summary><p className="muted">Merging keeps the surviving record and moves notes, tasks, links and list entries. Review every conflict before confirming.</p>
     <label className="field">Merge this record into<select value={targetId} onChange={e => { setTargetId(e.target.value); setPreview(null); setResolutions({}); }}><option value="">Choose the record to keep</option>{records.filter(item => item.id !== record.id).map(item => <option value={item.id} key={item.id}>{item.name} · #{item.id}</option>)}</select></label>
     <button className="textlink" disabled={busy || !targetId} onClick={() => void run(async () => { const result = await request(workspaceId, 'POST', { action: 'previewMerge', type, sourceId: record.id, targetId: Number(targetId) }); setPreview(result); setResolutions({}); })}>Review merge</button>
     {preview && <div className="merge-preview"><h3>Merge preview</h3><p>Keep {preview.targetName} · #{preview.targetId}; merge in {preview.sourceName} · #{preview.sourceId}.</p><p>{preview.notesAndTasks.notes} notes and {preview.notesAndTasks.tasks} tasks move with this record. {Object.entries(preview.links).map(([key, value]) => `${key}: ${value}`).join(' · ')}</p>
@@ -23,9 +26,10 @@ export function RecordLifecycle({ workspaceId, type, record, records, onChanged,
       {preview.conflicts.map(conflict => <label className="field" key={conflict.key}>{conflict.label}: choose the value to keep<select value={resolutions[conflict.key] || ''} onChange={e => setResolutions(old => ({ ...old, [conflict.key]: e.target.value as 'source' | 'target' }))}><option value="">Choose a resolution</option><option value="target">Keep survivor: {show(conflict.target)}</option><option value="source">Use merged record: {show(conflict.source)}</option></select></label>)}
       <button className="primary" disabled={busy || preview.conflicts.some(conflict => !resolutions[conflict.key])} onClick={() => void run(async () => { const saved = await request(workspaceId, 'POST', { action: 'merge', type, sourceId: record.id, targetId: preview.targetId, snapshot: preview.snapshot, resolutions }); await onChanged(); onMerged(saved.targetId); })}>Confirm merge</button>
     </div>}
-    <div className="delete-control"><button className="textlink" disabled={busy} onClick={() => { if (window.confirm(`Move ${record.name} to Trash? You can restore it within 30 days.`)) void run(async () => { await request(workspaceId, 'DELETE', { type, id: record.id, version: record.version }); await onChanged(); onRemoved(); }); }}>Move to Trash</button><small>Linked active people and deals must be moved or merged first.</small></div>
+    <div className="delete-control"><button className="textlink" disabled={busy} onClick={() => setDeleteOpen(true)}>Move to Trash</button><small>Linked active people and deals must be moved or merged first.</small></div>
     {error && <p role="alert" className="alert">{error}</p>}
-  </section>;
+    <Dialog open={deleteOpen} onClose={()=>setDeleteOpen(false)} title="Move record to Trash?"><p>{record.name} can be restored within 30 days. Its notes, tasks and list memberships stay attached.</p>{error&&<p role="alert" className="alert">{error}</p>}<button className="danger-button" disabled={busy} onClick={()=>void run(async()=>{await request(workspaceId,'DELETE',{type,id:record.id,version:record.version});await onChanged();setDeleteOpen(false);onRemoved()})}>{busy?'Moving…':'Move to Trash'}</button></Dialog>
+  </details>;
 }
 export function TrashSection({ workspaceId, onChanged }: { workspaceId: string; onChanged: () => Promise<void> }) {
   const [items, setItems] = useState<(Item & { type: RecordType; deletedAt: string })[]>([]), [error, setError] = useState(''), [busy, setBusy] = useState(false);
