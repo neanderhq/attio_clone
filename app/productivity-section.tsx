@@ -1,6 +1,10 @@
 'use client';
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
 
+import { Dialog } from './workspace-ui';
+import { Icon } from '../src/neander-design-pack/attio/1.1.0/AttioIcon';
+import { AttioButton } from '../src/neander-design-pack/attio/1.1.0/AttioBlocks';
+
 export type Task = { id: number; version: number; targetType: string; targetId: number; title: string; dueDate: string | null; done: boolean; assigneeId: string | null; createdAt: string };
 export type Member = { id: string; email: string; role: string };
 type InboxItem = { id: number; kind: string; taskId: number; taskTitle: string; targetType: string; targetId: number; createdAt: string; readAt: string | null };
@@ -10,6 +14,7 @@ function localDate() { const now = new Date(); return `${now.getFullYear()}-${St
 function bucket(task: Task, today: string) { return task.done ? 'Completed' : !task.dueDate ? 'No due date' : task.dueDate < today ? 'Overdue' : task.dueDate === today ? 'Today' : 'Upcoming'; }
 
 export function TaskItem({ task, members, workspaceId, canWrite, recordName, openRecord, onSaved }: { task: Task; members: Member[]; workspaceId: string; canWrite: boolean; recordName: Props['recordName']; openRecord: Props['openRecord']; onSaved: Props['onSaved'] }) {
+  const [editing,setEditing]=useState(false);
   const [title, setTitle] = useState(task.title), [dueDate, setDueDate] = useState(task.dueDate || ''), [assigneeId, setAssigneeId] = useState(task.assigneeId || ''), [done, setDone] = useState(task.done);
   const [version, setVersion] = useState(task.version), [state, setState] = useState<'idle' | 'pending' | 'saved' | 'error'>('idle'), [message, setMessage] = useState(''), [conflict, setConflict] = useState(false);
   useEffect(() => { if (state === 'saved') { setTitle(task.title); setDueDate(task.dueDate || ''); setAssigneeId(task.assigneeId || ''); setDone(task.done); setVersion(task.version); } }, [task, state]);
@@ -22,7 +27,7 @@ export function TaskItem({ task, members, workspaceId, canWrite, recordName, ope
       setVersion(result.version); setConflict(false); setState('saved'); setMessage('Saved.'); await onSaved();
     } catch (error) { setState('error'); setMessage(error instanceof Error ? error.message : 'Could not save task.'); }
   }
-  return <form className="productivity-task" onSubmit={save}>
+  return <><div className="task-summary"><span className={`task-status ${task.done?'is-done':''}`} aria-label={task.done?'Completed':'Incomplete'}>{task.done?<Icon name="check" size={11}/>:null}</span><button className="task-summary-title" onClick={()=>setEditing(true)}><strong className={task.done?'done':''}>{task.title}</strong><small>{recordName(task.targetType,task.targetId)||'Record'}</small></button><span className="muted">{task.dueDate||'No due date'}</span><AttioButton variant="ghost" leadingIcon="note" aria-label={`${canWrite?'Edit':'View'} task ${task.title}`} onClick={()=>setEditing(true)}/></div><Dialog open={editing} onClose={()=>setEditing(false)} title={canWrite?'Edit task':'Task details'}><form className="productivity-task" onSubmit={save}>
     <label className="task-check"><input type="checkbox" checked={done} disabled={!canWrite || state === 'pending'} onChange={event => { setDone(event.target.checked); setState('idle'); }} /><span>Completed</span></label>
     <label className="field">Task<input required maxLength={160} value={title} disabled={!canWrite || state === 'pending'} onChange={event => { setTitle(event.target.value); setState('idle'); }} /></label>
     <label className="field">Due date<input type="date" value={dueDate} disabled={!canWrite || state === 'pending'} onChange={event => { setDueDate(event.target.value); setState('idle'); }} /></label>
@@ -30,7 +35,7 @@ export function TaskItem({ task, members, workspaceId, canWrite, recordName, ope
     <button type="button" className="textlink" onClick={() => openRecord(task.targetType as 'company' | 'person' | 'deal', task.targetId)}>{recordName(task.targetType, task.targetId) || 'Open record'}</button>
     {canWrite && <div className="productivity-actions"><button className="primary" disabled={state === 'pending' || conflict}>{state === 'pending' ? 'Saving…' : 'Save task'}</button>{conflict && <button type="button" onClick={() => { setVersion(task.version); setConflict(false); setMessage('Latest version loaded. Your draft is still here; review it before saving.'); }}>Load latest version, keep draft</button>}</div>}
     {message && <p role={state === 'error' ? 'alert' : 'status'} className={state === 'error' ? 'alert' : 'muted'}>{message}</p>}
-  </form>;
+  </form></Dialog></>;
 }
 
 export default function ProductivitySection({ mode, workspaceId, userId, tasks, canWrite, recordName, openRecord, onSaved }: Props) {
