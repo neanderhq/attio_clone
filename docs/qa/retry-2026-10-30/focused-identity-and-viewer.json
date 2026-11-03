@@ -1,0 +1,1095 @@
+{
+  "group": "identity-and-viewer",
+  "environment": "confirmed-local-development",
+  "database": {
+    "host": "127.0.0.1",
+    "port": 55433,
+    "database": "neander_dev",
+    "confirmedBy": "effective DATABASE_URL and project Compose port binding"
+  },
+  "method": "imported route handlers, fixed-clock functions and scoped SQL fixtures; no HTTP server or browser",
+  "startedAt": "2026-10-30T12:32:26.924Z",
+  "checks": [
+    {
+      "id": "BC-ID-006",
+      "label": "Competing identities leave exactly one canonical active identity after create and edit races",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:32:27.044Z",
+      "status": "PASS",
+      "requestIds": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "BC-LIFE-005",
+      "label": "Viewer merge submission refused before any irreversible changes",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:32:27.115Z",
+      "status": "PASS",
+      "requestIds": [
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "requestId": 1,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 2,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "8c2cb97a-6cb1-40f9-9b41-de8511751f9d",
+          "email": "focused-1793363546751-identity-and-viewer-owner@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "name": "Fictional Focused 1793363546751-identity-and-viewer owner",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 3,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 4,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "dfe17c16-b830-435b-af4c-9b7fa2a5e381",
+          "email": "focused-1793363546751-identity-and-viewer-member@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+            "name": "Fictional Focused 1793363546751-identity-and-viewer member",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 5,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 6,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "871a6edd-200c-45ee-9044-2134d75598e4",
+          "email": "focused-1793363546751-identity-and-viewer-viewer@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6",
+            "name": "Fictional Focused 1793363546751-identity-and-viewer viewer",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 7,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 8,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 9,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional race A",
+        "domain": "focused-race.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 1856,
+        "name": "Fictional race A",
+        "domain": "focused-race.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.048Z"
+      }
+    },
+    {
+      "requestId": 10,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional race B",
+        "domain": "FOCUSED-RACE.EXAMPLE"
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "A company with this domain already exists in this workspace."
+      }
+    },
+    {
+      "requestId": 11,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1856,
+            "name": "Fictional race A",
+            "domain": "focused-race.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.048Z"
+          }
+        ],
+        "people": [],
+        "deals": [],
+        "notes": [],
+        "tasks": []
+      }
+    },
+    {
+      "requestId": 12,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional identity source",
+        "domain": "race-a.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 1857,
+        "name": "Fictional identity source",
+        "domain": "race-a.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.069Z"
+      }
+    },
+    {
+      "requestId": 13,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional identity target",
+        "domain": "race-b.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 1858,
+        "name": "Fictional identity target",
+        "domain": "race-b.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.074Z"
+      }
+    },
+    {
+      "requestId": 14,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "PATCH",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "company",
+        "id": 1857,
+        "version": 1,
+        "domain": "joined.example"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 1857,
+        "name": "Fictional identity source",
+        "domain": "joined.example",
+        "description": null,
+        "version": 2,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.069Z"
+      }
+    },
+    {
+      "requestId": 15,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "PATCH",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "company",
+        "id": 1858,
+        "version": 1,
+        "domain": "JOINED.EXAMPLE"
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "A company with this domain already exists in this workspace."
+      }
+    },
+    {
+      "requestId": 16,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1857,
+            "name": "Fictional identity source",
+            "domain": "joined.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.069Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1858,
+            "name": "Fictional identity target",
+            "domain": "race-b.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.074Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1856,
+            "name": "Fictional race A",
+            "domain": "focused-race.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.048Z"
+          }
+        ],
+        "people": [],
+        "deals": [],
+        "notes": [],
+        "tasks": []
+      }
+    },
+    {
+      "requestId": 17,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional race person A",
+        "companyId": 1857,
+        "email": "race-a@example.test"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 188,
+        "name": "Fictional race person A",
+        "email": "race-a@example.test",
+        "companyId": 1857,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.095Z"
+      }
+    },
+    {
+      "requestId": 18,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional race person B",
+        "companyId": 1857,
+        "email": "race-b@example.test"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 189,
+        "name": "Fictional race person B",
+        "email": "race-b@example.test",
+        "companyId": 1857,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.099Z"
+      }
+    },
+    {
+      "requestId": 19,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "PATCH",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "person",
+        "id": 189,
+        "version": 1,
+        "email": "JOINED@example.test"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 189,
+        "name": "Fictional race person B",
+        "email": "joined@example.test",
+        "companyId": 1857,
+        "version": 2,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.099Z"
+      }
+    },
+    {
+      "requestId": 20,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "PATCH",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "person",
+        "id": 188,
+        "version": 1,
+        "email": "joined@example.test"
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "A person with this email already exists in this workspace."
+      }
+    },
+    {
+      "requestId": 21,
+      "checkId": "BC-ID-006",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1857,
+            "name": "Fictional identity source",
+            "domain": "joined.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.069Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1858,
+            "name": "Fictional identity target",
+            "domain": "race-b.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.074Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1856,
+            "name": "Fictional race A",
+            "domain": "focused-race.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.048Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 188,
+            "name": "Fictional race person A",
+            "email": "race-a@example.test",
+            "companyId": 1857,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.095Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 189,
+            "name": "Fictional race person B",
+            "email": "joined@example.test",
+            "companyId": 1857,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.099Z"
+          }
+        ],
+        "deals": [],
+        "notes": [],
+        "tasks": []
+      }
+    },
+    {
+      "requestId": 22,
+      "checkId": "BC-LIFE-005",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional merge source"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 1859,
+        "name": "Fictional merge source",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.120Z"
+      }
+    },
+    {
+      "requestId": 23,
+      "checkId": "BC-LIFE-005",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional merge target"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+        "id": 1860,
+        "name": "Fictional merge target",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:32:27.126Z"
+      }
+    },
+    {
+      "requestId": 24,
+      "checkId": "BC-LIFE-005",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "company",
+        "sourceId": 1859,
+        "targetId": 1860
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "company",
+        "sourceId": 1859,
+        "targetId": 1860,
+        "sourceVersion": 1,
+        "targetVersion": 1,
+        "sourceName": "Fictional merge source",
+        "targetName": "Fictional merge target",
+        "conflicts": [
+          {
+            "key": "name",
+            "label": "Name",
+            "source": "Fictional merge source",
+            "target": "Fictional merge target"
+          }
+        ],
+        "links": {
+          "people": 0,
+          "deals": 0
+        },
+        "lists": [],
+        "notesAndTasks": {
+          "notes": 0,
+          "tasks": 0
+        },
+        "snapshot": "eb4d17ae19ee7d54839d6bdc0465299b3af14763a47140fae1072075f54c1cb3"
+      }
+    },
+    {
+      "requestId": 25,
+      "checkId": "BC-LIFE-005",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "requestBody": {
+        "action": "merge",
+        "type": "company",
+        "sourceId": 1859,
+        "targetId": 1860,
+        "snapshot": "eb4d17ae19ee7d54839d6bdc0465299b3af14763a47140fae1072075f54c1cb3",
+        "resolutions": {
+          "name": "target"
+        }
+      },
+      "httpStatus": 403,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 26,
+      "checkId": "BC-LIFE-005",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1857,
+            "name": "Fictional identity source",
+            "domain": "joined.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.069Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1858,
+            "name": "Fictional identity target",
+            "domain": "race-b.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.074Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1859,
+            "name": "Fictional merge source",
+            "domain": null,
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.120Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1860,
+            "name": "Fictional merge target",
+            "domain": null,
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.126Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 1856,
+            "name": "Fictional race A",
+            "domain": "focused-race.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.048Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 188,
+            "name": "Fictional race person A",
+            "email": "race-a@example.test",
+            "companyId": 1857,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.095Z"
+          },
+          {
+            "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+            "id": 189,
+            "name": "Fictional race person B",
+            "email": "joined@example.test",
+            "companyId": 1857,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:32:27.099Z"
+          }
+        ],
+        "deals": [],
+        "notes": [],
+        "tasks": []
+      }
+    }
+  ],
+  "sql": [
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_record_lifecycle_events WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_custom_values WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_custom_fields WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_entries WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_views WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_grants WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_lists WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_notifications WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM record_changes WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 2,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM deal_stage_events WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM tasks WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM notes WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM deals WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM people WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 2,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM companies WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 5,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_memberships WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 5,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_workspaces WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_sessions WHERE user_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c2cb97a-6cb1-40f9-9b41-de8511751f9d",
+          "dfe17c16-b830-435b-af4c-9b7fa2a5e381",
+          "871a6edd-200c-45ee-9044-2134d75598e4"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_users WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c2cb97a-6cb1-40f9-9b41-de8511751f9d",
+          "dfe17c16-b830-435b-af4c-9b7fa2a5e381",
+          "871a6edd-200c-45ee-9044-2134d75598e4"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "SELECT id FROM crm_workspaces WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+          "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+          "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "SELECT id FROM crm_users WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "8c2cb97a-6cb1-40f9-9b41-de8511751f9d",
+          "dfe17c16-b830-435b-af4c-9b7fa2a5e381",
+          "871a6edd-200c-45ee-9044-2134d75598e4"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    }
+  ],
+  "fixtures": [
+    {
+      "userId": "8c2cb97a-6cb1-40f9-9b41-de8511751f9d",
+      "workspaceId": "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "label": "owner",
+      "email": "focused-1793363546751-identity-and-viewer-owner@example.test"
+    },
+    {
+      "userId": "dfe17c16-b830-435b-af4c-9b7fa2a5e381",
+      "workspaceId": "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+      "label": "member",
+      "email": "focused-1793363546751-identity-and-viewer-member@example.test"
+    },
+    {
+      "userId": "871a6edd-200c-45ee-9044-2134d75598e4",
+      "workspaceId": "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6",
+      "label": "viewer",
+      "email": "focused-1793363546751-identity-and-viewer-viewer@example.test"
+    }
+  ],
+  "cleanup": {
+    "status": "verified",
+    "workspacesRemoved": [
+      "8c8e4039-d16b-487e-84d2-5d46d5c43bec",
+      "b0a63dd8-b0d0-43c7-8e9f-4a3e68f161f1",
+      "c07a086f-7dc2-4bbc-ab0b-8b06eb79e3b6"
+    ],
+    "usersRemoved": [
+      "8c2cb97a-6cb1-40f9-9b41-de8511751f9d",
+      "dfe17c16-b830-435b-af4c-9b7fa2a5e381",
+      "871a6edd-200c-45ee-9044-2134d75598e4"
+    ]
+  },
+  "finishedAt": "2026-10-30T12:32:27.213Z"
+}

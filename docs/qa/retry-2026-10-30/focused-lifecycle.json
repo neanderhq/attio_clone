@@ -1,0 +1,3787 @@
+{
+  "group": "lifecycle",
+  "environment": "confirmed-local-development",
+  "database": {
+    "host": "127.0.0.1",
+    "port": 55433,
+    "database": "neander_dev",
+    "confirmedBy": "effective DATABASE_URL and project Compose port binding"
+  },
+  "method": "imported route handlers, fixed-clock functions and scoped SQL fixtures; no HTTP server or browser",
+  "startedAt": "2026-10-30T12:26:55.699Z",
+  "checks": [
+    {
+      "id": "BC-LIFE-001",
+      "label": "Custom value conflicts and complete preview requirements for each supported type",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:55.848Z",
+      "status": "PASS",
+      "requestIds": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ]
+    },
+    {
+      "id": "BC-LIFE-004",
+      "label": "Record edit after preview invalidates merge without partial moves",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:55.968Z",
+      "status": "PASS",
+      "requestIds": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    {
+      "id": "BC-LIFE-002",
+      "label": "Person merge moves notes/tasks/deals; company and list cases in existing suite",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:56.010Z",
+      "status": "PASS",
+      "requestIds": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "BC-LIFE-003",
+      "label": "Merged deal redirect, separate source events, non-restorable source and actor/time audit",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:56.053Z",
+      "status": "PASS",
+      "requestIds": [
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ]
+    },
+    {
+      "id": "BC-LIFE-007",
+      "label": "Stale deletion refuses unchanged active record",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:56.098Z",
+      "status": "PASS",
+      "requestIds": [
+        67,
+        68,
+        69,
+        70
+      ]
+    },
+    {
+      "id": "BC-LIFE-009",
+      "label": "Unique custom collision and inactive/mismatched parents refuse restore atomically",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:56.111Z",
+      "status": "PASS",
+      "requestIds": [
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93
+      ]
+    },
+    {
+      "id": "BC-LIFE-010",
+      "label": "Expired restore returns 410, excluded from Trash, row remains stored",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:56.198Z",
+      "status": "PASS",
+      "requestIds": [
+        94,
+        95,
+        96,
+        97
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "requestId": 1,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 2,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "fc96fd60-9d83-4820-b541-714e85221b98",
+          "email": "focused-1793363215569-lifecycle-owner@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "name": "Fictional Focused 1793363215569-lifecycle owner",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 3,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 4,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "1d589e56-c6cb-43f5-9395-18849055d1b9",
+          "email": "focused-1793363215569-lifecycle-member@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+            "name": "Fictional Focused 1793363215569-lifecycle member",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 5,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 6,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "e2e8de68-75f7-47a0-94fb-6329dffc95a8",
+          "email": "focused-1793363215569-lifecycle-viewer@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "8ef48532-c5cf-4f12-af86-f4d180f367bb",
+            "name": "Fictional Focused 1793363215569-lifecycle viewer",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 7,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 8,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 9,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional Company"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1343,
+        "name": "Fictional Company",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.812Z"
+      }
+    },
+    {
+      "requestId": 10,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional second"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1344,
+        "name": "Fictional second",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.819Z"
+      }
+    },
+    {
+      "requestId": 11,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional Person",
+        "companyId": 1343
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 179,
+        "name": "Fictional Person",
+        "email": null,
+        "companyId": 1343,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.824Z"
+      }
+    },
+    {
+      "requestId": 12,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional Person",
+        "companyId": 1344
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 180,
+        "name": "Fictional Person",
+        "email": null,
+        "companyId": 1344,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.830Z"
+      }
+    },
+    {
+      "requestId": 13,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional Deal",
+        "companyId": 1343,
+        "personId": 179,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 120,
+        "name": "Fictional Deal",
+        "companyId": 1343,
+        "personId": 179,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.837Z"
+      }
+    },
+    {
+      "requestId": 14,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional Deal",
+        "companyId": 1344,
+        "personId": 180,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 121,
+        "name": "Fictional Deal",
+        "companyId": 1344,
+        "personId": 180,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.844Z"
+      }
+    },
+    {
+      "requestId": 15,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "company",
+        "name": "Fictional merge field company",
+        "kind": "text",
+        "required": false,
+        "unique": false,
+        "options": []
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "id": "dd863f25-2caf-47de-b627-dedffe817ce7",
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "objectType": "company",
+        "name": "Fictional merge field company",
+        "kind": "text",
+        "options": [],
+        "required": false,
+        "unique": false,
+        "archivedAt": null,
+        "createdAt": "2026-10-30T12:26:55.848Z"
+      }
+    },
+    {
+      "requestId": 16,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "PUT",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "company",
+        "recordId": 1343,
+        "version": 1,
+        "values": {
+          "dd863f25-2caf-47de-b627-dedffe817ce7": "Source"
+        }
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "version": 2
+      }
+    },
+    {
+      "requestId": 17,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "PUT",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "company",
+        "recordId": 1344,
+        "version": 1,
+        "values": {
+          "dd863f25-2caf-47de-b627-dedffe817ce7": "Target"
+        }
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "version": 2
+      }
+    },
+    {
+      "requestId": 18,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "note",
+        "targetType": "company",
+        "targetId": 1343,
+        "body": "Fictional source note"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 69,
+        "targetType": "company",
+        "targetId": 1343,
+        "body": "Fictional source note",
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:55.863Z"
+      }
+    },
+    {
+      "requestId": 19,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "task",
+        "targetType": "company",
+        "targetId": 1343,
+        "title": "Fictional source task"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 86,
+        "targetType": "company",
+        "targetId": 1343,
+        "title": "Fictional source task",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": null,
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:55.867Z"
+      }
+    },
+    {
+      "requestId": 20,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "company",
+        "sourceId": 1343,
+        "targetId": 1344
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "company",
+        "sourceId": 1343,
+        "targetId": 1344,
+        "sourceVersion": 2,
+        "targetVersion": 2,
+        "sourceName": "Fictional Company",
+        "targetName": "Fictional second",
+        "conflicts": [
+          {
+            "key": "name",
+            "label": "Name",
+            "source": "Fictional Company",
+            "target": "Fictional second"
+          },
+          {
+            "key": "custom:dd863f25-2caf-47de-b627-dedffe817ce7",
+            "label": "Field: Fictional merge field company",
+            "source": "Source",
+            "target": "Target"
+          }
+        ],
+        "links": {
+          "people": 1,
+          "deals": 1
+        },
+        "lists": [],
+        "notesAndTasks": {
+          "notes": 1,
+          "tasks": 1
+        },
+        "snapshot": "fe6cd8b46a80c597760e83f6f4270393036361bf3fc2df24df9062e85fb8191a"
+      }
+    },
+    {
+      "requestId": 21,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "merge",
+        "type": "company",
+        "sourceId": 1343,
+        "targetId": 1344,
+        "snapshot": "fe6cd8b46a80c597760e83f6f4270393036361bf3fc2df24df9062e85fb8191a",
+        "resolutions": {}
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "Choose a resolution for every conflict."
+      }
+    },
+    {
+      "requestId": 22,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "company",
+        "sourceId": 1343,
+        "targetId": 1343
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "Choose two different records."
+      }
+    },
+    {
+      "requestId": 23,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "company",
+        "sourceId": 1343,
+        "targetId": 2147483647
+      },
+      "httpStatus": 404,
+      "responseBody": {
+        "error": "Record not found."
+      }
+    },
+    {
+      "requestId": 24,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "person",
+        "name": "Fictional merge field person",
+        "kind": "text",
+        "required": false,
+        "unique": false,
+        "options": []
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "id": "1b42639e-4f62-4899-a76a-935cddda50c2",
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "objectType": "person",
+        "name": "Fictional merge field person",
+        "kind": "text",
+        "options": [],
+        "required": false,
+        "unique": false,
+        "archivedAt": null,
+        "createdAt": "2026-10-30T12:26:55.887Z"
+      }
+    },
+    {
+      "requestId": 25,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "PUT",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "person",
+        "recordId": 179,
+        "version": 1,
+        "values": {
+          "1b42639e-4f62-4899-a76a-935cddda50c2": "Source"
+        }
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "version": 2
+      }
+    },
+    {
+      "requestId": 26,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "PUT",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "person",
+        "recordId": 180,
+        "version": 1,
+        "values": {
+          "1b42639e-4f62-4899-a76a-935cddda50c2": "Target"
+        }
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "version": 2
+      }
+    },
+    {
+      "requestId": 27,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "note",
+        "targetType": "person",
+        "targetId": 179,
+        "body": "Fictional source note"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 70,
+        "targetType": "person",
+        "targetId": 179,
+        "body": "Fictional source note",
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:55.899Z"
+      }
+    },
+    {
+      "requestId": 28,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "task",
+        "targetType": "person",
+        "targetId": 179,
+        "title": "Fictional source task"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 87,
+        "targetType": "person",
+        "targetId": 179,
+        "title": "Fictional source task",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": null,
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:55.902Z"
+      }
+    },
+    {
+      "requestId": 29,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "person",
+        "sourceId": 179,
+        "targetId": 180
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "person",
+        "sourceId": 179,
+        "targetId": 180,
+        "sourceVersion": 2,
+        "targetVersion": 2,
+        "sourceName": "Fictional Person",
+        "targetName": "Fictional Person",
+        "conflicts": [
+          {
+            "key": "companyId",
+            "label": "Linked company ID",
+            "source": 1343,
+            "target": 1344
+          },
+          {
+            "key": "custom:1b42639e-4f62-4899-a76a-935cddda50c2",
+            "label": "Field: Fictional merge field person",
+            "source": "Source",
+            "target": "Target"
+          }
+        ],
+        "links": {
+          "deals": 1,
+          "moveDealsToCompanyId": 1344
+        },
+        "lists": [],
+        "notesAndTasks": {
+          "notes": 1,
+          "tasks": 1
+        },
+        "snapshot": "f37a03b6d5ad6e94eb09a61c604dade7dd7939271326a468617b44a0dbc69c6d"
+      }
+    },
+    {
+      "requestId": 30,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "merge",
+        "type": "person",
+        "sourceId": 179,
+        "targetId": 180,
+        "snapshot": "f37a03b6d5ad6e94eb09a61c604dade7dd7939271326a468617b44a0dbc69c6d",
+        "resolutions": {}
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "Choose a resolution for every conflict."
+      }
+    },
+    {
+      "requestId": 31,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "person",
+        "sourceId": 179,
+        "targetId": 179
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "Choose two different records."
+      }
+    },
+    {
+      "requestId": 32,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "person",
+        "sourceId": 179,
+        "targetId": 2147483647
+      },
+      "httpStatus": 404,
+      "responseBody": {
+        "error": "Record not found."
+      }
+    },
+    {
+      "requestId": 33,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "deal",
+        "name": "Fictional merge field deal",
+        "kind": "text",
+        "required": false,
+        "unique": false,
+        "options": []
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "id": "c5d8a65f-ca56-48f9-8bd0-fc5d8a2841be",
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "objectType": "deal",
+        "name": "Fictional merge field deal",
+        "kind": "text",
+        "options": [],
+        "required": false,
+        "unique": false,
+        "archivedAt": null,
+        "createdAt": "2026-10-30T12:26:55.931Z"
+      }
+    },
+    {
+      "requestId": 34,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "PUT",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "deal",
+        "recordId": 120,
+        "version": 1,
+        "values": {
+          "c5d8a65f-ca56-48f9-8bd0-fc5d8a2841be": "Source"
+        }
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "version": 2
+      }
+    },
+    {
+      "requestId": 35,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "PUT",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "deal",
+        "recordId": 121,
+        "version": 1,
+        "values": {
+          "c5d8a65f-ca56-48f9-8bd0-fc5d8a2841be": "Target"
+        }
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "version": 2
+      }
+    },
+    {
+      "requestId": 36,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "note",
+        "targetType": "deal",
+        "targetId": 120,
+        "body": "Fictional source note"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 71,
+        "targetType": "deal",
+        "targetId": 120,
+        "body": "Fictional source note",
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:55.943Z"
+      }
+    },
+    {
+      "requestId": 37,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "task",
+        "targetType": "deal",
+        "targetId": 120,
+        "title": "Fictional source task"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 88,
+        "targetType": "deal",
+        "targetId": 120,
+        "title": "Fictional source task",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": null,
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:55.947Z"
+      }
+    },
+    {
+      "requestId": 38,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "deal",
+        "sourceId": 120,
+        "targetId": 121
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "deal",
+        "sourceId": 120,
+        "targetId": 121,
+        "sourceVersion": 2,
+        "targetVersion": 2,
+        "sourceName": "Fictional Deal",
+        "targetName": "Fictional Deal",
+        "conflicts": [
+          {
+            "key": "companyId",
+            "label": "Linked company ID",
+            "source": 1343,
+            "target": 1344
+          },
+          {
+            "key": "personId",
+            "label": "Linked person ID",
+            "source": 179,
+            "target": 180
+          },
+          {
+            "key": "custom:c5d8a65f-ca56-48f9-8bd0-fc5d8a2841be",
+            "label": "Field: Fictional merge field deal",
+            "source": "Source",
+            "target": "Target"
+          }
+        ],
+        "links": {},
+        "lists": [],
+        "notesAndTasks": {
+          "notes": 1,
+          "tasks": 1
+        },
+        "snapshot": "45d00edb16369964c60116875a7304a641d08cc9fb88ebfa5107481e8869437a"
+      }
+    },
+    {
+      "requestId": 39,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "merge",
+        "type": "deal",
+        "sourceId": 120,
+        "targetId": 121,
+        "snapshot": "45d00edb16369964c60116875a7304a641d08cc9fb88ebfa5107481e8869437a",
+        "resolutions": {}
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "Choose a resolution for every conflict."
+      }
+    },
+    {
+      "requestId": 40,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "deal",
+        "sourceId": 120,
+        "targetId": 120
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "Choose two different records."
+      }
+    },
+    {
+      "requestId": 41,
+      "checkId": "BC-LIFE-001",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "deal",
+        "sourceId": 120,
+        "targetId": 2147483647
+      },
+      "httpStatus": 404,
+      "responseBody": {
+        "error": "Record not found."
+      }
+    },
+    {
+      "requestId": 42,
+      "checkId": "BC-LIFE-004",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional stale source"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1345,
+        "name": "Fictional stale source",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.969Z"
+      }
+    },
+    {
+      "requestId": 43,
+      "checkId": "BC-LIFE-004",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional stale target"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1346,
+        "name": "Fictional stale target",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.976Z"
+      }
+    },
+    {
+      "requestId": 44,
+      "checkId": "BC-LIFE-004",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "note",
+        "targetType": "company",
+        "targetId": 1345,
+        "body": "Keep source"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 72,
+        "targetType": "company",
+        "targetId": 1345,
+        "body": "Keep source",
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:55.980Z"
+      }
+    },
+    {
+      "requestId": 45,
+      "checkId": "BC-LIFE-004",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "company",
+        "sourceId": 1345,
+        "targetId": 1346
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "company",
+        "sourceId": 1345,
+        "targetId": 1346,
+        "sourceVersion": 1,
+        "targetVersion": 1,
+        "sourceName": "Fictional stale source",
+        "targetName": "Fictional stale target",
+        "conflicts": [
+          {
+            "key": "name",
+            "label": "Name",
+            "source": "Fictional stale source",
+            "target": "Fictional stale target"
+          }
+        ],
+        "links": {
+          "people": 0,
+          "deals": 0
+        },
+        "lists": [],
+        "notesAndTasks": {
+          "notes": 1,
+          "tasks": 0
+        },
+        "snapshot": "29e57db80e431a1c495c3af13316fe8301d6fc2dfc14ac13c37a0f8f0cd2d441"
+      }
+    },
+    {
+      "requestId": 46,
+      "checkId": "BC-LIFE-004",
+      "environment": "local-development-route",
+      "method": "PATCH",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "id": 1345,
+        "version": 1,
+        "name": "Changed after preview"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1345,
+        "name": "Changed after preview",
+        "domain": null,
+        "description": null,
+        "version": 2,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:55.969Z"
+      }
+    },
+    {
+      "requestId": 47,
+      "checkId": "BC-LIFE-004",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "merge",
+        "type": "company",
+        "sourceId": 1345,
+        "targetId": 1346,
+        "snapshot": "29e57db80e431a1c495c3af13316fe8301d6fc2dfc14ac13c37a0f8f0cd2d441",
+        "resolutions": {
+          "name": "target"
+        }
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "These records changed. Review a fresh merge preview."
+      }
+    },
+    {
+      "requestId": 48,
+      "checkId": "BC-LIFE-004",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1345,
+            "name": "Changed after preview",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.969Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1343,
+            "name": "Fictional Company",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.812Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1344,
+            "name": "Fictional second",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.819Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1346,
+            "name": "Fictional stale target",
+            "domain": null,
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.976Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 179,
+            "name": "Fictional Person",
+            "email": null,
+            "companyId": 1343,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.824Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 180,
+            "name": "Fictional Person",
+            "email": null,
+            "companyId": 1344,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.830Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 120,
+            "name": "Fictional Deal",
+            "companyId": 1343,
+            "personId": 179,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.837Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 121,
+            "name": "Fictional Deal",
+            "companyId": 1344,
+            "personId": 180,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.844Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 69,
+            "targetType": "company",
+            "targetId": 1343,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.863Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 70,
+            "targetType": "person",
+            "targetId": 179,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.899Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 71,
+            "targetType": "deal",
+            "targetId": 120,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.943Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 72,
+            "targetType": "company",
+            "targetId": 1345,
+            "body": "Keep source",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.980Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 86,
+            "targetType": "company",
+            "targetId": 1343,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.867Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 87,
+            "targetType": "person",
+            "targetId": 179,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.902Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 88,
+            "targetType": "deal",
+            "targetId": 120,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.947Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 49,
+      "checkId": "BC-LIFE-002",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional merge person source",
+        "companyId": 1343
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 181,
+        "name": "Fictional merge person source",
+        "email": null,
+        "companyId": 1343,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.012Z"
+      }
+    },
+    {
+      "requestId": 50,
+      "checkId": "BC-LIFE-002",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional merge person target",
+        "companyId": 1343
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 182,
+        "name": "Fictional merge person target",
+        "email": null,
+        "companyId": 1343,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.020Z"
+      }
+    },
+    {
+      "requestId": 51,
+      "checkId": "BC-LIFE-002",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "note",
+        "targetType": "person",
+        "targetId": 181,
+        "body": "Keep person note"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 73,
+        "targetType": "person",
+        "targetId": 181,
+        "body": "Keep person note",
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:56.024Z"
+      }
+    },
+    {
+      "requestId": 52,
+      "checkId": "BC-LIFE-002",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "task",
+        "targetType": "person",
+        "targetId": 181,
+        "title": "Keep person task"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 89,
+        "targetType": "person",
+        "targetId": 181,
+        "title": "Keep person task",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": null,
+        "version": 1,
+        "createdAt": "2026-10-30T12:26:56.028Z"
+      }
+    },
+    {
+      "requestId": 53,
+      "checkId": "BC-LIFE-002",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional Deal",
+        "companyId": 1343,
+        "personId": 181,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 122,
+        "name": "Fictional Deal",
+        "companyId": 1343,
+        "personId": 181,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.032Z"
+      }
+    },
+    {
+      "requestId": 54,
+      "checkId": "BC-LIFE-002",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "person",
+        "sourceId": 181,
+        "targetId": 182
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "person",
+        "sourceId": 181,
+        "targetId": 182,
+        "sourceVersion": 1,
+        "targetVersion": 1,
+        "sourceName": "Fictional merge person source",
+        "targetName": "Fictional merge person target",
+        "conflicts": [
+          {
+            "key": "name",
+            "label": "Name",
+            "source": "Fictional merge person source",
+            "target": "Fictional merge person target"
+          }
+        ],
+        "links": {
+          "deals": 1,
+          "moveDealsToCompanyId": 1343
+        },
+        "lists": [],
+        "notesAndTasks": {
+          "notes": 1,
+          "tasks": 1
+        },
+        "snapshot": "21f01b3cb0ea0ac16cc809d2a24e8bd592f1f28575e8c909f3221b118ac24e0d"
+      }
+    },
+    {
+      "requestId": 55,
+      "checkId": "BC-LIFE-002",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "merge",
+        "type": "person",
+        "sourceId": 181,
+        "targetId": 182,
+        "snapshot": "21f01b3cb0ea0ac16cc809d2a24e8bd592f1f28575e8c909f3221b118ac24e0d",
+        "resolutions": {
+          "name": "target"
+        }
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "person",
+        "sourceId": 181,
+        "targetId": 182,
+        "version": 2
+      }
+    },
+    {
+      "requestId": 56,
+      "checkId": "BC-LIFE-002",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1345,
+            "name": "Changed after preview",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.969Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1343,
+            "name": "Fictional Company",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.812Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1344,
+            "name": "Fictional second",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.819Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1346,
+            "name": "Fictional stale target",
+            "domain": null,
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.976Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 179,
+            "name": "Fictional Person",
+            "email": null,
+            "companyId": 1343,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.824Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 180,
+            "name": "Fictional Person",
+            "email": null,
+            "companyId": 1344,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.830Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 182,
+            "name": "Fictional merge person target",
+            "email": null,
+            "companyId": 1343,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.020Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 120,
+            "name": "Fictional Deal",
+            "companyId": 1343,
+            "personId": 179,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.837Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 121,
+            "name": "Fictional Deal",
+            "companyId": 1344,
+            "personId": 180,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.844Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 122,
+            "name": "Fictional Deal",
+            "companyId": 1343,
+            "personId": 182,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.032Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 69,
+            "targetType": "company",
+            "targetId": 1343,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.863Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 70,
+            "targetType": "person",
+            "targetId": 179,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.899Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 71,
+            "targetType": "deal",
+            "targetId": 120,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.943Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 72,
+            "targetType": "company",
+            "targetId": 1345,
+            "body": "Keep source",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.980Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 73,
+            "targetType": "person",
+            "targetId": 182,
+            "body": "Keep person note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:56.024Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 86,
+            "targetType": "company",
+            "targetId": 1343,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.867Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 87,
+            "targetType": "person",
+            "targetId": 179,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.902Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 88,
+            "targetType": "deal",
+            "targetId": 120,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.947Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 89,
+            "targetType": "person",
+            "targetId": 182,
+            "title": "Keep person task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 2,
+            "createdAt": "2026-10-30T12:26:56.028Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 57,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional source timeline",
+        "companyId": 1343,
+        "personId": 179,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 123,
+        "name": "Fictional source timeline",
+        "companyId": 1343,
+        "personId": 179,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.057Z"
+      }
+    },
+    {
+      "requestId": 58,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional target timeline",
+        "companyId": 1343,
+        "personId": 179,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 124,
+        "name": "Fictional target timeline",
+        "companyId": 1343,
+        "personId": 179,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.063Z"
+      }
+    },
+    {
+      "requestId": 59,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "PATCH",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "deal",
+        "id": 123,
+        "version": 1,
+        "stage": "Qualified"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 123,
+        "name": "Fictional source timeline",
+        "companyId": 1343,
+        "personId": 179,
+        "stage": "Qualified",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 2,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.057Z"
+      }
+    },
+    {
+      "requestId": 60,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "previewMerge",
+        "type": "deal",
+        "sourceId": 123,
+        "targetId": 124
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "deal",
+        "sourceId": 123,
+        "targetId": 124,
+        "sourceVersion": 2,
+        "targetVersion": 1,
+        "sourceName": "Fictional source timeline",
+        "targetName": "Fictional target timeline",
+        "conflicts": [
+          {
+            "key": "name",
+            "label": "Name",
+            "source": "Fictional source timeline",
+            "target": "Fictional target timeline"
+          },
+          {
+            "key": "stage",
+            "label": "Pipeline stage",
+            "source": "Qualified",
+            "target": "Lead"
+          }
+        ],
+        "links": {},
+        "lists": [],
+        "notesAndTasks": {
+          "notes": 0,
+          "tasks": 0
+        },
+        "snapshot": "92f2174572de331939fb38b63c3b30bd8bc3d4bc86db7d7cb952ea0a4a640e96"
+      }
+    },
+    {
+      "requestId": 61,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "merge",
+        "type": "deal",
+        "sourceId": 123,
+        "targetId": 124,
+        "snapshot": "92f2174572de331939fb38b63c3b30bd8bc3d4bc86db7d7cb952ea0a4a640e96",
+        "resolutions": {
+          "name": "target",
+          "stage": "target"
+        }
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "deal",
+        "sourceId": 123,
+        "targetId": 124,
+        "version": 2
+      }
+    },
+    {
+      "requestId": 62,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "records/lifecycle?action=resolve&type=deal&id=123",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "type": "deal",
+        "id": 124,
+        "redirected": true
+      }
+    },
+    {
+      "requestId": 63,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1345,
+            "name": "Changed after preview",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.969Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1343,
+            "name": "Fictional Company",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.812Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1344,
+            "name": "Fictional second",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.819Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1346,
+            "name": "Fictional stale target",
+            "domain": null,
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.976Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 179,
+            "name": "Fictional Person",
+            "email": null,
+            "companyId": 1343,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.824Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 180,
+            "name": "Fictional Person",
+            "email": null,
+            "companyId": 1344,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.830Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 182,
+            "name": "Fictional merge person target",
+            "email": null,
+            "companyId": 1343,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.020Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 120,
+            "name": "Fictional Deal",
+            "companyId": 1343,
+            "personId": 179,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.837Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 121,
+            "name": "Fictional Deal",
+            "companyId": 1344,
+            "personId": 180,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.844Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 122,
+            "name": "Fictional Deal",
+            "companyId": 1343,
+            "personId": 182,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.032Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 124,
+            "name": "Fictional target timeline",
+            "companyId": 1343,
+            "personId": 179,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.063Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 69,
+            "targetType": "company",
+            "targetId": 1343,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.863Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 70,
+            "targetType": "person",
+            "targetId": 179,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.899Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 71,
+            "targetType": "deal",
+            "targetId": 120,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.943Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 72,
+            "targetType": "company",
+            "targetId": 1345,
+            "body": "Keep source",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.980Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 73,
+            "targetType": "person",
+            "targetId": 182,
+            "body": "Keep person note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:56.024Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 86,
+            "targetType": "company",
+            "targetId": 1343,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.867Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 87,
+            "targetType": "person",
+            "targetId": 179,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.902Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 88,
+            "targetType": "deal",
+            "targetId": 120,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.947Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 89,
+            "targetType": "person",
+            "targetId": 182,
+            "title": "Keep person task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 2,
+            "createdAt": "2026-10-30T12:26:56.028Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 64,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "deal",
+        "id": 123,
+        "version": 3
+      },
+      "httpStatus": 404,
+      "responseBody": {
+        "error": "Record is not available to restore."
+      }
+    },
+    {
+      "requestId": 65,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "deals/history?dealId=124",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "events": [
+          {
+            "id": 194,
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "dealId": 124,
+            "fromStage": null,
+            "toStage": "Lead",
+            "changedAt": "2026-10-30T12:26:56.065Z",
+            "lostReason": null
+          }
+        ],
+        "mergedEvents": [
+          {
+            "id": 193,
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "dealId": 123,
+            "fromStage": null,
+            "toStage": "Lead",
+            "changedAt": "2026-10-30T12:26:56.059Z",
+            "lostReason": null
+          },
+          {
+            "id": 195,
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "dealId": 123,
+            "fromStage": "Lead",
+            "toStage": "Qualified",
+            "changedAt": "2026-10-30T12:26:56.070Z",
+            "lostReason": null
+          }
+        ],
+        "historyIncomplete": false
+      }
+    },
+    {
+      "requestId": 66,
+      "checkId": "BC-LIFE-003",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "records/lifecycle?action=history&type=deal&id=124",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "events": [
+          {
+            "id": 196,
+            "action": "merge",
+            "recordId": 123,
+            "details": {
+              "targetId": 124,
+              "resolutions": {
+                "name": "target",
+                "stage": "target"
+              },
+              "sourceVersion": 2,
+              "targetVersion": 1
+            },
+            "createdAt": "2026-10-30T12:26:56.077Z",
+            "actorEmail": "focused-1793363215569-lifecycle-owner@example.test"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 67,
+      "checkId": "BC-LIFE-007",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional stale trash"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1347,
+        "name": "Fictional stale trash",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.099Z"
+      }
+    },
+    {
+      "requestId": 68,
+      "checkId": "BC-LIFE-007",
+      "environment": "local-development-route",
+      "method": "PATCH",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "id": 1347,
+        "version": 1,
+        "name": "Fictional newer"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1347,
+        "name": "Fictional newer",
+        "domain": null,
+        "description": null,
+        "version": 2,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.099Z"
+      }
+    },
+    {
+      "requestId": 69,
+      "checkId": "BC-LIFE-007",
+      "environment": "local-development-route",
+      "method": "DELETE",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "id": 1347,
+        "version": 1
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "This record changed. Refresh before deleting it."
+      }
+    },
+    {
+      "requestId": 70,
+      "checkId": "BC-LIFE-007",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1345,
+            "name": "Changed after preview",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.969Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1343,
+            "name": "Fictional Company",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.812Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1347,
+            "name": "Fictional newer",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.099Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1344,
+            "name": "Fictional second",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.819Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 1346,
+            "name": "Fictional stale target",
+            "domain": null,
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.976Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 179,
+            "name": "Fictional Person",
+            "email": null,
+            "companyId": 1343,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.824Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 180,
+            "name": "Fictional Person",
+            "email": null,
+            "companyId": 1344,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.830Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 182,
+            "name": "Fictional merge person target",
+            "email": null,
+            "companyId": 1343,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.020Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 120,
+            "name": "Fictional Deal",
+            "companyId": 1343,
+            "personId": 179,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.837Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 121,
+            "name": "Fictional Deal",
+            "companyId": 1344,
+            "personId": 180,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:55.844Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 122,
+            "name": "Fictional Deal",
+            "companyId": 1343,
+            "personId": 182,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.032Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 124,
+            "name": "Fictional target timeline",
+            "companyId": 1343,
+            "personId": 179,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:56.063Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 69,
+            "targetType": "company",
+            "targetId": 1343,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.863Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 70,
+            "targetType": "person",
+            "targetId": 179,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.899Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 71,
+            "targetType": "deal",
+            "targetId": 120,
+            "body": "Fictional source note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.943Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 72,
+            "targetType": "company",
+            "targetId": 1345,
+            "body": "Keep source",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.980Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 73,
+            "targetType": "person",
+            "targetId": 182,
+            "body": "Keep person note",
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:56.024Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 86,
+            "targetType": "company",
+            "targetId": 1343,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.867Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 87,
+            "targetType": "person",
+            "targetId": 179,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.902Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 88,
+            "targetType": "deal",
+            "targetId": 120,
+            "title": "Fictional source task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:26:55.947Z"
+          },
+          {
+            "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+            "id": 89,
+            "targetType": "person",
+            "targetId": 182,
+            "title": "Keep person task",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 2,
+            "createdAt": "2026-10-30T12:26:56.028Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 71,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "custom-fields",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "objectType": "company",
+        "name": "Fictional unique restore",
+        "kind": "text",
+        "required": false,
+        "unique": true,
+        "options": []
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "id": "123a6777-ead5-4bdd-a74b-234610fa6cf0",
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "objectType": "company",
+        "name": "Fictional unique restore",
+        "kind": "text",
+        "options": [],
+        "required": false,
+        "unique": true,
+        "archivedAt": null,
+        "createdAt": "2026-10-30T12:26:56.111Z"
+      }
+    },
+    {
+      "requestId": 72,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional unique",
+        "customValues": {
+          "123a6777-ead5-4bdd-a74b-234610fa6cf0": "UNIQUE"
+        }
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1348,
+        "name": "Fictional unique",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.115Z"
+      }
+    },
+    {
+      "requestId": 73,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "DELETE",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "id": 1348,
+        "version": 1
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "deletedAt": "2026-10-30T12:26:56.122Z",
+        "restoreUntil": "2026-11-29T12:26:56.122Z",
+        "id": 1348,
+        "type": "company"
+      }
+    },
+    {
+      "requestId": 74,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional collision",
+        "customValues": {
+          "123a6777-ead5-4bdd-a74b-234610fa6cf0": "unique"
+        }
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1349,
+        "name": "Fictional collision",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.124Z"
+      }
+    },
+    {
+      "requestId": 75,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "company",
+        "id": 1348,
+        "version": 2
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "A custom field identity is already in use. Resolve it before restoring."
+      }
+    },
+    {
+      "requestId": 76,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "records/lifecycle?action=trash",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "records": [
+          {
+            "id": 1348,
+            "name": "Fictional unique",
+            "version": 2,
+            "deletedAt": "2026-10-30T12:26:56.122Z",
+            "type": "company"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 77,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "DELETE",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "id": 1349,
+        "version": 1
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "deletedAt": "2026-10-30T12:26:56.134Z",
+        "restoreUntil": "2026-11-29T12:26:56.134Z",
+        "id": 1349,
+        "type": "company"
+      }
+    },
+    {
+      "requestId": 78,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "company",
+        "id": 1348,
+        "version": 2
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "id": 1348,
+        "type": "company",
+        "version": 3
+      }
+    },
+    {
+      "requestId": 79,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional inactive parent"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1350,
+        "name": "Fictional inactive parent",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.140Z"
+      }
+    },
+    {
+      "requestId": 80,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional Person",
+        "companyId": 1350
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 183,
+        "name": "Fictional Person",
+        "email": null,
+        "companyId": 1350,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.143Z"
+      }
+    },
+    {
+      "requestId": 81,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "DELETE",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "person",
+        "id": 183,
+        "version": 1
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "deletedAt": "2026-10-30T12:26:56.150Z",
+        "restoreUntil": "2026-11-29T12:26:56.150Z",
+        "id": 183,
+        "type": "person"
+      }
+    },
+    {
+      "requestId": 82,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "DELETE",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "id": 1350,
+        "version": 1
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "deletedAt": "2026-10-30T12:26:56.154Z",
+        "restoreUntil": "2026-11-29T12:26:56.154Z",
+        "id": 1350,
+        "type": "company"
+      }
+    },
+    {
+      "requestId": 83,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "person",
+        "id": 183,
+        "version": 2
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "Restore the linked company first."
+      }
+    },
+    {
+      "requestId": 84,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "company",
+        "id": 1350,
+        "version": 2
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "id": 1350,
+        "type": "company",
+        "version": 3
+      }
+    },
+    {
+      "requestId": 85,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "person",
+        "id": 183,
+        "version": 2
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "id": 183,
+        "type": "person",
+        "version": 3
+      }
+    },
+    {
+      "requestId": 86,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional restored deal person",
+        "companyId": 1350
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 184,
+        "name": "Fictional restored deal person",
+        "email": null,
+        "companyId": 1350,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.166Z"
+      }
+    },
+    {
+      "requestId": 87,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional Deal",
+        "companyId": 1350,
+        "personId": 184,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 125,
+        "name": "Fictional Deal",
+        "companyId": 1350,
+        "personId": 184,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.170Z"
+      }
+    },
+    {
+      "requestId": 88,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "DELETE",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "deal",
+        "id": 125,
+        "version": 1
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "deletedAt": "2026-10-30T12:26:56.178Z",
+        "restoreUntil": "2026-11-29T12:26:56.178Z",
+        "id": 125,
+        "type": "deal"
+      }
+    },
+    {
+      "requestId": 89,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "DELETE",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "person",
+        "id": 184,
+        "version": 1
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "deletedAt": "2026-10-30T12:26:56.181Z",
+        "restoreUntil": "2026-11-29T12:26:56.181Z",
+        "id": 184,
+        "type": "person"
+      }
+    },
+    {
+      "requestId": 90,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "deal",
+        "id": 125,
+        "version": 2
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "Restore or repair the linked person first."
+      }
+    },
+    {
+      "requestId": 91,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "person",
+        "id": 184,
+        "version": 2
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "id": 184,
+        "type": "person",
+        "version": 3
+      }
+    },
+    {
+      "requestId": 92,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "deal",
+        "id": 125,
+        "version": 2
+      },
+      "httpStatus": 409,
+      "responseBody": {
+        "error": "Restore or repair the linked person first."
+      }
+    },
+    {
+      "requestId": 93,
+      "checkId": "BC-LIFE-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "deal",
+        "id": 125,
+        "version": 2
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "id": 125,
+        "type": "deal",
+        "version": 3
+      }
+    },
+    {
+      "requestId": 94,
+      "checkId": "BC-LIFE-010",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional expired"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        "id": 1351,
+        "name": "Fictional expired",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:56.199Z"
+      }
+    },
+    {
+      "requestId": 95,
+      "checkId": "BC-LIFE-010",
+      "environment": "local-development-route",
+      "method": "DELETE",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "type": "company",
+        "id": 1351,
+        "version": 1
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "deletedAt": "2026-10-30T12:26:56.204Z",
+        "restoreUntil": "2026-11-29T12:26:56.204Z",
+        "id": 1351,
+        "type": "company"
+      }
+    },
+    {
+      "requestId": 96,
+      "checkId": "BC-LIFE-010",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "records/lifecycle",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "requestBody": {
+        "action": "restore",
+        "type": "company",
+        "id": 1351,
+        "version": 2
+      },
+      "httpStatus": 410,
+      "responseBody": {
+        "error": "The 30-day restore window has ended."
+      }
+    },
+    {
+      "requestId": 97,
+      "checkId": "BC-LIFE-010",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "records/lifecycle?action=trash",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "httpStatus": 200,
+      "responseBody": {
+        "records": [
+          {
+            "id": 1349,
+            "name": "Fictional collision",
+            "version": 2,
+            "deletedAt": "2026-10-30T12:26:56.134Z",
+            "type": "company"
+          }
+        ]
+      }
+    }
+  ],
+  "sql": [
+    {
+      "checkId": "BC-LIFE-003",
+      "query": "SELECT deal_id FROM deal_stage_events WHERE workspace_id=$1 AND deal_id=$2",
+      "parameters": [
+        "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        123
+      ],
+      "rowCount": 2,
+      "rows": [
+        {
+          "deal_id": 123
+        },
+        {
+          "deal_id": 123
+        }
+      ]
+    },
+    {
+      "checkId": "BC-LIFE-009",
+      "query": "UPDATE people SET company_id=$1 WHERE workspace_id=$2 AND id=$3",
+      "parameters": [
+        1344,
+        "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        184
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": "BC-LIFE-009",
+      "query": "UPDATE people SET company_id=$1 WHERE workspace_id=$2 AND id=$3",
+      "parameters": [
+        1350,
+        "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        184
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": "BC-LIFE-010",
+      "query": "UPDATE companies SET deleted_at=now()-interval '31 days' WHERE workspace_id=$1 AND id=$2",
+      "parameters": [
+        "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        1351
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": "BC-LIFE-010",
+      "query": "SELECT id,deleted_at FROM companies WHERE workspace_id=$1 AND id=$2",
+      "parameters": [
+        "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+        1351
+      ],
+      "rowCount": 1,
+      "rows": [
+        {
+          "id": 1351,
+          "deleted_at": {}
+        }
+      ]
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_record_lifecycle_events WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 14,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_custom_values WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 8,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_custom_fields WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 4,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_entries WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_views WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_grants WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_lists WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_notifications WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM record_changes WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM deal_stage_events WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 7,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM tasks WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 4,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM notes WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 5,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM deals WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 6,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM people WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 6,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM companies WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 9,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_memberships WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 5,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_workspaces WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_sessions WHERE user_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "fc96fd60-9d83-4820-b541-714e85221b98",
+          "1d589e56-c6cb-43f5-9395-18849055d1b9",
+          "e2e8de68-75f7-47a0-94fb-6329dffc95a8"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_users WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "fc96fd60-9d83-4820-b541-714e85221b98",
+          "1d589e56-c6cb-43f5-9395-18849055d1b9",
+          "e2e8de68-75f7-47a0-94fb-6329dffc95a8"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "SELECT id FROM crm_workspaces WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+          "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+          "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "SELECT id FROM crm_users WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "fc96fd60-9d83-4820-b541-714e85221b98",
+          "1d589e56-c6cb-43f5-9395-18849055d1b9",
+          "e2e8de68-75f7-47a0-94fb-6329dffc95a8"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    }
+  ],
+  "fixtures": [
+    {
+      "userId": "fc96fd60-9d83-4820-b541-714e85221b98",
+      "workspaceId": "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "label": "owner",
+      "email": "focused-1793363215569-lifecycle-owner@example.test"
+    },
+    {
+      "userId": "1d589e56-c6cb-43f5-9395-18849055d1b9",
+      "workspaceId": "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+      "label": "member",
+      "email": "focused-1793363215569-lifecycle-member@example.test"
+    },
+    {
+      "userId": "e2e8de68-75f7-47a0-94fb-6329dffc95a8",
+      "workspaceId": "8ef48532-c5cf-4f12-af86-f4d180f367bb",
+      "label": "viewer",
+      "email": "focused-1793363215569-lifecycle-viewer@example.test"
+    }
+  ],
+  "cleanup": {
+    "status": "verified",
+    "workspacesRemoved": [
+      "23fb6ed3-baa5-40b9-9298-7a5d0b9b066c",
+      "4a3e28a6-32e2-4ca0-bb38-5ef40f56015f",
+      "8ef48532-c5cf-4f12-af86-f4d180f367bb"
+    ],
+    "usersRemoved": [
+      "fc96fd60-9d83-4820-b541-714e85221b98",
+      "1d589e56-c6cb-43f5-9395-18849055d1b9",
+      "e2e8de68-75f7-47a0-94fb-6329dffc95a8"
+    ]
+  },
+  "finishedAt": "2026-10-30T12:26:56.223Z"
+}

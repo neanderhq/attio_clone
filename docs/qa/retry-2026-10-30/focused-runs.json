@@ -1,0 +1,38 @@
+[
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-focused.mts core",
+    "exitCode": 1,
+    "output": "{\"id\":\"BC-REL-004\",\"label\":\"Foreign and mismatched links refuse atomically; exact person-create status\",\"name\":\"AssertionError\",\"message\":\"Expected values to be strictly deep-equal:\\n+ actual - expected\\n\\n+ [\\n+   {\\n+     actual: 409,\\n+     error: 'The linked company changed. Review the person and try again.',\\n+     expected: 404,\\n+     type: 'person'\\n+   }\\n+ ]\\n- []\\n\",\"actual\":[{\"type\":\"person\",\"expected\":404,\"actual\":409,\"error\":\"The linked company changed. Review the person and try again.\"}],\"expected\":[]}\n{\"id\":\"BC-ACCESS-005\",\"label\":\"Ordinary owned-fixture route denial matrix; no adversarial probes\",\"name\":\"AssertionError\",\"message\":\"Known discrepancy: expected 404, got 409: The linked company changed. Review the person and try again.\\n\\n409 !== 404\\n\",\"actual\":409,\"expected\":404}\n{\"group\":\"core\",\"checks\":[{\"id\":\"BC-REL-004\",\"label\":\"Foreign and mismatched links refuse atomically; exact person-create status\",\"status\":\"FAIL\"},{\"id\":\"BC-REL-006\",\"label\":\"Fresh company and deal retry after stale saves\",\"status\":\"PASS\"},{\"id\":\"BC-RPT-003\",\"label\":\"Legacy Won unknown date disclosure and exclusion plus fixed clocks\",\"status\":\"PASS\"},{\"id\":\"BC-TASK-006\",\"label\":\"Invalid calendar/completion values and foreign links leave task unchanged\",\"status\":\"PASS\"},{\"id\":\"BC-TASK-007\",\"label\":\"Task current deletion removes assignment notices after stale refusal\",\"status\":\"PASS\"},{\"id\":\"BC-NOTE-004\",\"label\":\"Stale note removal preserves note; current removal succeeds\",\"status\":\"PASS\"},{\"id\":\"BC-ACCESS-005\",\"label\":\"Ordinary owned-fixture route denial matrix; no adversarial probes\",\"status\":\"FAIL\"}],\"cleanup\":\"verified\"}\n",
+    "environment": "local-development",
+    "checkedPaths": [
+      "/tmp/ledger-retry-focused.mts"
+    ]
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-focused.mts fields-lists",
+    "exitCode": 0,
+    "output": "{\"group\":\"fields-lists\",\"checks\":[{\"id\":\"BC-LIST-007\",\"label\":\"View schema, stage, note limits and cross-list/workspace IDs\",\"status\":\"PASS\"},{\"id\":\"BC-FLD-005\",\"label\":\"Type and size edges, option limits, immutable definitions and 32 active cap\",\"status\":\"PASS\"},{\"id\":\"BC-FLD-006\",\"label\":\"Stale/custom field scope and no-op version server assertions\",\"status\":\"PASS\"},{\"id\":\"BC-FLD-007\",\"label\":\"Admin archive retains ID/value; Member and Viewer denied\",\"status\":\"PASS\"}],\"cleanup\":\"verified\"}\n",
+    "environment": "local-development",
+    "checkedPaths": [
+      "/tmp/ledger-retry-focused.mts"
+    ]
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-focused.mts csv",
+    "exitCode": 1,
+    "output": "{\"id\":\"BC-CSV-009\",\"label\":\"CSV malformed/header/UTF8/file/row/capacity boundaries and complete reads\",\"name\":\"AssertionError\",\"message\":\"Expected values to be strictly equal:\\n\\n'create' !== 'error'\\n\",\"actual\":\"create\",\"expected\":\"error\"}\n{\"group\":\"csv\",\"checks\":[{\"id\":\"BC-CSV-008\",\"label\":\"Preview/import replan, protected reassignment and concurrent identical imports\",\"status\":\"PASS\"},{\"id\":\"BC-CSV-009\",\"label\":\"CSV malformed/header/UTF8/file/row/capacity boundaries and complete reads\",\"status\":\"FAIL\"}],\"cleanup\":\"verified\"}\n",
+    "environment": "local-development",
+    "checkedPaths": [
+      "/tmp/ledger-retry-focused.mts"
+    ]
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-focused.mts lifecycle",
+    "exitCode": 0,
+    "output": "{\"group\":\"lifecycle\",\"checks\":[{\"id\":\"BC-LIFE-001\",\"label\":\"Custom value conflicts and complete preview requirements for each supported type\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-004\",\"label\":\"Record edit after preview invalidates merge without partial moves\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-002\",\"label\":\"Person merge moves notes/tasks/deals; company and list cases in existing suite\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-003\",\"label\":\"Merged deal redirect, separate source events, non-restorable source and actor/time audit\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-007\",\"label\":\"Stale deletion refuses unchanged active record\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-009\",\"label\":\"Unique custom collision and inactive/mismatched parents refuse restore atomically\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-010\",\"label\":\"Expired restore returns 410, excluded from Trash, row remains stored\",\"status\":\"PASS\"}],\"cleanup\":\"verified\"}\n",
+    "environment": "local-development",
+    "checkedPaths": [
+      "/tmp/ledger-retry-focused.mts"
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "catalogueHashUnchanged": true,
+  "originalRequestsPreserved": 348,
+  "appendedPublishedRequests": 119,
+  "localEvidenceIsNotPublishedProof": true,
+  "originalPassStatusesPreserved": 22,
+  "originalNotRunIdsDispositioned": 35,
+  "executedRetryIds": 32,
+  "browserOnlyNotExecutedIds": 3,
+  "retryTotals": {
+    "PASS": 25,
+    "FAIL": 2,
+    "BLOCKED": 5,
+    "NOT_RUN": 3,
+    "NOT_IMPLEMENTED": 0
+  },
+  "aggregateTotals": {
+    "PASS": 47,
+    "FAIL": 2,
+    "BLOCKED": 22,
+    "NOT_RUN": 3,
+    "NOT_IMPLEMENTED": 6
+  },
+  "laneTotals": {
+    "P": {
+      "PASS": 25,
+      "FAIL": 0,
+      "BLOCKED": 17,
+      "NOT_RUN": 3,
+      "NOT_IMPLEMENTED": 0
+    },
+    "L": {
+      "PASS": 22,
+      "FAIL": 2,
+      "BLOCKED": 5,
+      "NOT_RUN": 0,
+      "NOT_IMPLEMENTED": 0
+    },
+    "N": {
+      "PASS": 0,
+      "FAIL": 0,
+      "BLOCKED": 0,
+      "NOT_RUN": 0,
+      "NOT_IMPLEMENTED": 6
+    }
+  },
+  "sourceDiffExitCode": 0,
+  "cleanupAudit": "PASS",
+  "sensitiveValuesAbsent": true,
+  "commandsRecorded": 20
+}

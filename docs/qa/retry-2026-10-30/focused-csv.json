@@ -1,0 +1,1137 @@
+{
+  "group": "csv",
+  "environment": "confirmed-local-development",
+  "database": {
+    "host": "127.0.0.1",
+    "port": 55433,
+    "database": "neander_dev",
+    "confirmedBy": "effective DATABASE_URL and project Compose port binding"
+  },
+  "method": "imported route handlers, fixed-clock functions and scoped SQL fixtures; no HTTP server or browser",
+  "startedAt": "2026-10-30T12:26:44.880Z",
+  "checks": [
+    {
+      "id": "BC-CSV-008",
+      "label": "Preview/import replan, protected reassignment and concurrent identical imports",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:45.018Z",
+      "status": "PASS",
+      "requestIds": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "BC-CSV-009",
+      "label": "CSV malformed/header/UTF8/file/row/capacity boundaries and complete reads",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:26:45.067Z",
+      "status": "FAIL",
+      "error": {
+        "name": "AssertionError",
+        "message": "Expected values to be strictly equal:\n\n'create' !== 'error'\n",
+        "actual": "create",
+        "expected": "error"
+      },
+      "requestIds": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "requestId": 1,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 2,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "f07eea6e-f96f-471b-92c1-129be34334ce",
+          "email": "focused-1793363204750-csv-owner@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "name": "Fictional Focused 1793363204750-csv owner",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 3,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 4,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "5c3c2c97-60f9-4bc2-a6fb-64d68f97cb07",
+          "email": "focused-1793363204750-csv-member@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+            "name": "Fictional Focused 1793363204750-csv member",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 5,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 6,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "004b57f3-43f4-4b29-a492-590325213069",
+          "email": "focused-1793363204750-csv-viewer@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "388b2eb1-976d-42aa-a615-4717fa996d5e",
+            "name": "Fictional Focused 1793363204750-csv viewer",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 7,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 8,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 9,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional csv",
+        "domain": "focused.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+        "id": 1339,
+        "name": "Fictional csv",
+        "domain": "focused.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:44.994Z"
+      }
+    },
+    {
+      "requestId": 10,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional second",
+        "domain": "other.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+        "id": 1340,
+        "name": "Fictional second",
+        "domain": "other.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:45.000Z"
+      }
+    },
+    {
+      "requestId": 11,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional CSV person",
+        "companyId": 1339,
+        "email": "person@focused.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+        "id": 178,
+        "name": "Fictional CSV person",
+        "email": "person@focused.example",
+        "companyId": 1339,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:45.008Z"
+      }
+    },
+    {
+      "requestId": 12,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional Deal",
+        "companyId": 1339,
+        "personId": 178,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+        "id": 119,
+        "name": "Fictional Deal",
+        "companyId": 1339,
+        "personId": 178,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:45.014Z"
+      }
+    },
+    {
+      "requestId": 13,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "preview",
+        "type": "companies",
+        "fileBytes": 43
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "preview",
+        "headers": [
+          "Domain",
+          "Name"
+        ],
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "create",
+            "message": "Will create company."
+          }
+        ],
+        "counts": {
+          "create": 1,
+          "update": 0,
+          "unchanged": 0,
+          "error": 0
+        }
+      }
+    },
+    {
+      "requestId": 14,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "type": "company",
+        "name": "Intervening fictional",
+        "domain": "replan.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+        "id": 1341,
+        "name": "Intervening fictional",
+        "domain": "replan.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:26:45.029Z"
+      }
+    },
+    {
+      "requestId": 15,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "import",
+        "type": "companies",
+        "fileBytes": 43
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "completed",
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "update",
+            "id": 1341,
+            "message": "Company updated."
+          }
+        ],
+        "counts": {
+          "create": 0,
+          "update": 1,
+          "unchanged": 0,
+          "error": 0
+        }
+      }
+    },
+    {
+      "requestId": 16,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "preview",
+        "type": "people",
+        "fileBytes": 76
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "preview",
+        "headers": [
+          "Email",
+          "Name",
+          "Company"
+        ],
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "update",
+            "id": 178,
+            "message": "Will update person."
+          }
+        ],
+        "counts": {
+          "create": 0,
+          "update": 1,
+          "unchanged": 0,
+          "error": 0
+        }
+      }
+    },
+    {
+      "requestId": 17,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "import",
+        "type": "people",
+        "fileBytes": 76
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "completed",
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "error",
+            "id": 178,
+            "message": "Move this person’s deals before changing their company."
+          }
+        ],
+        "counts": {
+          "create": 0,
+          "update": 0,
+          "unchanged": 0,
+          "error": 1
+        }
+      }
+    },
+    {
+      "requestId": 18,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 1339,
+            "name": "Fictional csv",
+            "domain": "focused.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:44.994Z"
+          },
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 1341,
+            "name": "Fictional replan",
+            "domain": "replan.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.029Z"
+          },
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 1340,
+            "name": "Fictional second",
+            "domain": "other.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.000Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 178,
+            "name": "Fictional CSV person",
+            "email": "person@focused.example",
+            "companyId": 1339,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.008Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 119,
+            "name": "Fictional Deal",
+            "companyId": 1339,
+            "personId": 178,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.014Z"
+          }
+        ],
+        "notes": [],
+        "tasks": []
+      }
+    },
+    {
+      "requestId": 19,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "import",
+        "type": "companies",
+        "fileBytes": 51
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "completed",
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "create",
+            "id": 1342,
+            "message": "Company created."
+          }
+        ],
+        "counts": {
+          "create": 1,
+          "update": 0,
+          "unchanged": 0,
+          "error": 0
+        }
+      }
+    },
+    {
+      "requestId": 20,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "import",
+        "type": "companies",
+        "fileBytes": 51
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "completed",
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "unchanged",
+            "id": 1342,
+            "message": "Values already match."
+          }
+        ],
+        "counts": {
+          "create": 0,
+          "update": 0,
+          "unchanged": 1,
+          "error": 0
+        }
+      }
+    },
+    {
+      "requestId": 21,
+      "checkId": "BC-CSV-008",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 1342,
+            "name": "Fictional concurrent",
+            "domain": "concurrent.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.058Z"
+          },
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 1339,
+            "name": "Fictional csv",
+            "domain": "focused.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:44.994Z"
+          },
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 1341,
+            "name": "Fictional replan",
+            "domain": "replan.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.029Z"
+          },
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 1340,
+            "name": "Fictional second",
+            "domain": "other.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.000Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 178,
+            "name": "Fictional CSV person",
+            "email": "person@focused.example",
+            "companyId": 1339,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.008Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+            "id": 119,
+            "name": "Fictional Deal",
+            "companyId": 1339,
+            "personId": 178,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:26:45.014Z"
+          }
+        ],
+        "notes": [],
+        "tasks": []
+      }
+    },
+    {
+      "requestId": 22,
+      "checkId": "BC-CSV-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "preview",
+        "type": "companies",
+        "fileBytes": 23
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "Malformed CSV: an opening quote has no closing quote."
+      }
+    },
+    {
+      "requestId": 23,
+      "checkId": "BC-CSV-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "preview",
+        "type": "companies",
+        "fileBytes": 17
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "CSV headers must be unique."
+      }
+    },
+    {
+      "requestId": 24,
+      "checkId": "BC-CSV-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "preview",
+        "type": "companies",
+        "fileBytes": 11
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "CSV headers cannot be blank."
+      }
+    },
+    {
+      "requestId": 25,
+      "checkId": "BC-CSV-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "preview",
+        "type": "companies",
+        "fileBytes": 31
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "Map the required domain, name headers."
+      }
+    },
+    {
+      "requestId": 26,
+      "checkId": "BC-CSV-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "preview",
+        "type": "companies",
+        "fileBytes": 2
+      },
+      "httpStatus": 400,
+      "responseBody": {
+        "error": "CSV file must be valid UTF-8."
+      }
+    },
+    {
+      "requestId": 27,
+      "checkId": "BC-CSV-009",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "requestBody": {
+        "action": "preview",
+        "type": "companies",
+        "fileBytes": 10485760
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "preview",
+        "headers": [
+          "Domain",
+          "Name",
+          "Description"
+        ],
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "create",
+            "message": "Will create company."
+          }
+        ],
+        "counts": {
+          "create": 1,
+          "update": 0,
+          "unchanged": 0,
+          "error": 0
+        }
+      }
+    }
+  ],
+  "sql": [
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_record_lifecycle_events WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_custom_values WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_custom_fields WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_entries WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_views WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_grants WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_lists WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_notifications WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM record_changes WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM deal_stage_events WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM tasks WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM notes WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM deals WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM people WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM companies WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 4,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_memberships WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 5,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_workspaces WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_sessions WHERE user_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "f07eea6e-f96f-471b-92c1-129be34334ce",
+          "5c3c2c97-60f9-4bc2-a6fb-64d68f97cb07",
+          "004b57f3-43f4-4b29-a492-590325213069"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_users WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "f07eea6e-f96f-471b-92c1-129be34334ce",
+          "5c3c2c97-60f9-4bc2-a6fb-64d68f97cb07",
+          "004b57f3-43f4-4b29-a492-590325213069"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "SELECT id FROM crm_workspaces WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+          "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+          "388b2eb1-976d-42aa-a615-4717fa996d5e"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "SELECT id FROM crm_users WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "f07eea6e-f96f-471b-92c1-129be34334ce",
+          "5c3c2c97-60f9-4bc2-a6fb-64d68f97cb07",
+          "004b57f3-43f4-4b29-a492-590325213069"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    }
+  ],
+  "fixtures": [
+    {
+      "userId": "f07eea6e-f96f-471b-92c1-129be34334ce",
+      "workspaceId": "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "label": "owner",
+      "email": "focused-1793363204750-csv-owner@example.test"
+    },
+    {
+      "userId": "5c3c2c97-60f9-4bc2-a6fb-64d68f97cb07",
+      "workspaceId": "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+      "label": "member",
+      "email": "focused-1793363204750-csv-member@example.test"
+    },
+    {
+      "userId": "004b57f3-43f4-4b29-a492-590325213069",
+      "workspaceId": "388b2eb1-976d-42aa-a615-4717fa996d5e",
+      "label": "viewer",
+      "email": "focused-1793363204750-csv-viewer@example.test"
+    }
+  ],
+  "cleanup": {
+    "status": "verified",
+    "workspacesRemoved": [
+      "a9fdb841-3baa-46da-b186-5b469a0cd2df",
+      "86f2aadb-95cc-42b6-8e58-47f1b98022a2",
+      "388b2eb1-976d-42aa-a615-4717fa996d5e"
+    ],
+    "usersRemoved": [
+      "f07eea6e-f96f-471b-92c1-129be34334ce",
+      "5c3c2c97-60f9-4bc2-a6fb-64d68f97cb07",
+      "004b57f3-43f4-4b29-a492-590325213069"
+    ]
+  },
+  "finishedAt": "2026-10-30T12:26:45.407Z"
+}

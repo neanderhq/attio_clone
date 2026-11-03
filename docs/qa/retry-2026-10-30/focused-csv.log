@@ -1,0 +1,2 @@
+{"id":"BC-CSV-009","label":"CSV malformed/header/UTF8/file/row/capacity boundaries and complete reads","name":"AssertionError","message":"Expected values to be strictly equal:\n\n'create' !== 'error'\n","actual":"create","expected":"error"}
+{"group":"csv","checks":[{"id":"BC-CSV-008","label":"Preview/import replan, protected reassignment and concurrent identical imports","status":"PASS"},{"id":"BC-CSV-009","label":"CSV malformed/header/UTF8/file/row/capacity boundaries and complete reads","status":"FAIL"}],"cleanup":"verified"}
