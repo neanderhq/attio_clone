@@ -1,0 +1,3680 @@
+{
+  "startedAt": "2026-10-30T12:24:06.278Z",
+  "environment": "published-https",
+  "baseUrl": "https://attio-clone-staging-qjs5-bibeinudna-uc.a.run.app",
+  "deploymentRevision": "unknown; not queried",
+  "method": "sequential bounded ordinary HTTP operations on fresh fictional owned fixtures; no browser",
+  "requests": [
+    {
+      "requestId": 349,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:24:06.294Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "action": "login"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 8521,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 350,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:24:14.803Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 481,
+      "responseBody": {
+        "user": {
+          "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+          "email": "[authorized demo account]"
+        },
+        "workspaces": [
+          {
+            "id": "81191639-cec2-4f06-825a-4672ef66d3ec",
+            "name": "Published Workflow Demo — fictional data only",
+            "role": "Admin"
+          },
+          {
+            "id": "f52a28a1-994f-47a2-8f11-2f9f827bf9a0",
+            "name": "Published Workflow QA — 1793274885314",
+            "role": "Admin"
+          },
+          {
+            "id": "92346c65-b169-44e0-a8d1-abae79382b8a",
+            "name": "Business QA — HTTP 2026-10-29T13:15:50.672Z",
+            "role": "Admin"
+          },
+          {
+            "id": "5b64003d-35e2-4445-aae4-55b174a9b043",
+            "name": "Business QA — HTTP 2026-10-29T13:15:50.672Z — Fields",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 351,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:24:15.604Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "action": "createWorkspace"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 667,
+      "responseBody": {
+        "workspace": {
+          "id": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "name": "Fictional Retry QA 1793363046279",
+          "createdAt": "2026-10-30T12:24:15.928Z"
+        }
+      }
+    },
+    {
+      "requestId": 352,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:16.405Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 843,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 353,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:17.250Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 432,
+      "responseBody": {
+        "user": {
+          "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+          "email": "retry-member-1793363046279@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "541f47d8-df89-4ce2-be6f-a258b40d44fe",
+            "name": "Fictional Retry member 1793363046279",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 354,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:18.049Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": "541f47d8-df89-4ce2-be6f-a258b40d44fe",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "action": "logout"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 447,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 355,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:18.849Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/auth",
+      "workspaceId": "541f47d8-df89-4ce2-be6f-a258b40d44fe",
+      "expectedHttpStatus": 401,
+      "httpStatus": 401,
+      "elapsedMs": 438,
+      "responseBody": {
+        "error": "Sign in to continue."
+      }
+    },
+    {
+      "requestId": 356,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:19.650Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": null,
+      "expectedHttpStatus": 401,
+      "httpStatus": 401,
+      "elapsedMs": 391,
+      "responseBody": {
+        "error": "Sign in to continue."
+      }
+    },
+    {
+      "requestId": 357,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:20.450Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 401,
+      "requestBody": {
+        "action": "login"
+      },
+      "httpStatus": 401,
+      "elapsedMs": 521,
+      "responseBody": {
+        "error": "Invalid email or password."
+      }
+    },
+    {
+      "requestId": 358,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:21.250Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "action": "login"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 593,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 359,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:22.050Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/auth",
+      "workspaceId": "541f47d8-df89-4ce2-be6f-a258b40d44fe",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 511,
+      "responseBody": {
+        "user": {
+          "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+          "email": "retry-member-1793363046279@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "541f47d8-df89-4ce2-be6f-a258b40d44fe",
+            "name": "Fictional Retry member 1793363046279",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 360,
+      "checkId": "BC-ACCESS-001",
+      "setup": false,
+      "at": "2026-10-30T12:24:22.851Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": "541f47d8-df89-4ce2-be6f-a258b40d44fe",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 926,
+      "responseBody": {
+        "companies": [],
+        "people": [],
+        "deals": [],
+        "notes": [],
+        "tasks": []
+      }
+    },
+    {
+      "requestId": 361,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:24:23.781Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 707,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 362,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:24:24.582Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/auth",
+      "workspaceId": null,
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 430,
+      "responseBody": {
+        "user": {
+          "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+          "email": "retry-viewer-1793363046279@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "2b296b54-c2b0-4e55-97f1-a17ef7d57e1e",
+            "name": "Fictional Retry viewer 1793363046279",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 363,
+      "checkId": "BC-ACCESS-002",
+      "setup": false,
+      "at": "2026-10-30T12:24:25.383Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 730,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 364,
+      "checkId": "BC-ACCESS-002",
+      "setup": false,
+      "at": "2026-10-30T12:24:26.184Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 532,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 365,
+      "checkId": "BC-ACCESS-002",
+      "setup": false,
+      "at": "2026-10-30T12:24:26.985Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 576,
+      "responseBody": {
+        "error": "Only admins can manage members."
+      }
+    },
+    {
+      "requestId": 366,
+      "checkId": "BC-ACCESS-002",
+      "setup": false,
+      "at": "2026-10-30T12:24:27.787Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 412,
+      "responseBody": {
+        "error": "Only admins can manage members."
+      }
+    },
+    {
+      "requestId": 367,
+      "checkId": "BC-ACCESS-002",
+      "setup": false,
+      "at": "2026-10-30T12:24:28.589Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 404,
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 404,
+      "elapsedMs": 532,
+      "responseBody": {
+        "error": "That person must create an account first."
+      }
+    },
+    {
+      "requestId": 368,
+      "checkId": "BC-ACCESS-002",
+      "setup": false,
+      "at": "2026-10-30T12:24:29.390Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/auth",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 400,
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 400,
+      "elapsedMs": 481,
+      "responseBody": {
+        "error": "Ask another admin to change your role."
+      }
+    },
+    {
+      "requestId": 369,
+      "checkId": "BC-ACCESS-002",
+      "setup": false,
+      "at": "2026-10-30T12:24:30.191Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/auth",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 505,
+      "responseBody": {
+        "user": {
+          "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+          "email": "retry-member-1793363046279@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "name": "Fictional Retry QA 1793363046279",
+            "role": "Member"
+          },
+          {
+            "id": "541f47d8-df89-4ce2-be6f-a258b40d44fe",
+            "name": "Fictional Retry member 1793363046279",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 370,
+      "checkId": "BC-ACCESS-002",
+      "setup": false,
+      "at": "2026-10-30T12:24:30.991Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/auth",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 2962,
+      "responseBody": {
+        "user": {
+          "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+          "email": "retry-viewer-1793363046279@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "name": "Fictional Retry QA 1793363046279",
+            "role": "Viewer"
+          },
+          {
+            "id": "2b296b54-c2b0-4e55-97f1-a17ef7d57e1e",
+            "name": "Fictional Retry viewer 1793363046279",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 371,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:24:33.955Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional Retry Cedar",
+        "domain": "retry-cedar.example"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 798,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 13,
+        "name": "Fictional Retry Cedar",
+        "domain": "retry-cedar.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:24:34.330Z"
+      }
+    },
+    {
+      "requestId": 372,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:24:34.754Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/lists",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "action": "create",
+        "objectType": "company",
+        "name": "Fictional Retry Shared",
+        "visibility": "shared"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 728,
+      "responseBody": {
+        "list": {
+          "id": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+          "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "creatorId": "11e7eb62-6041-49ff-a358-1a685174c327",
+          "name": "Fictional Retry Shared",
+          "objectType": "company",
+          "visibility": "shared",
+          "createdAt": "2026-10-30T12:24:35.092Z"
+        }
+      }
+    },
+    {
+      "requestId": 373,
+      "checkId": "BC-TASK-004",
+      "setup": false,
+      "at": "2026-10-30T12:24:35.556Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "task",
+        "targetType": "company",
+        "targetId": 13,
+        "title": "Fictional Retry assignment",
+        "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 782,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 14,
+        "targetType": "company",
+        "targetId": 13,
+        "title": "Fictional Retry assignment",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+        "version": 1,
+        "createdAt": "2026-10-30T12:24:35.918Z"
+      }
+    },
+    {
+      "requestId": 374,
+      "checkId": "BC-TASK-004",
+      "setup": false,
+      "at": "2026-10-30T12:24:36.357Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 799,
+      "responseBody": {
+        "members": [
+          {
+            "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "email": "[authorized demo account]",
+            "role": "Admin"
+          },
+          {
+            "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "email": "retry-member-1793363046279@example.test",
+            "role": "Member"
+          },
+          {
+            "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "email": "retry-viewer-1793363046279@example.test",
+            "role": "Viewer"
+          }
+        ],
+        "notifications": [
+          {
+            "id": 1,
+            "kind": "task_assigned",
+            "taskId": 14,
+            "taskTitle": "Fictional Retry assignment",
+            "targetType": "company",
+            "targetId": 13,
+            "createdAt": "2026-10-30T12:24:35.918Z",
+            "readAt": null
+          }
+        ],
+        "unreadCount": 1
+      }
+    },
+    {
+      "requestId": 375,
+      "checkId": "BC-TASK-004",
+      "setup": false,
+      "at": "2026-10-30T12:24:37.157Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "type": "task",
+        "id": 14,
+        "version": 1,
+        "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 605,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 14,
+        "targetType": "company",
+        "targetId": 13,
+        "title": "Fictional Retry assignment",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+        "version": 1,
+        "createdAt": "2026-10-30T12:24:35.918Z"
+      }
+    },
+    {
+      "requestId": 376,
+      "checkId": "BC-TASK-004",
+      "setup": false,
+      "at": "2026-10-30T12:24:37.958Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 605,
+      "responseBody": {
+        "members": [
+          {
+            "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "email": "[authorized demo account]",
+            "role": "Admin"
+          },
+          {
+            "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "email": "retry-member-1793363046279@example.test",
+            "role": "Member"
+          },
+          {
+            "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "email": "retry-viewer-1793363046279@example.test",
+            "role": "Viewer"
+          }
+        ],
+        "notifications": [
+          {
+            "id": 1,
+            "kind": "task_assigned",
+            "taskId": 14,
+            "taskTitle": "Fictional Retry assignment",
+            "targetType": "company",
+            "targetId": 13,
+            "createdAt": "2026-10-30T12:24:35.918Z",
+            "readAt": null
+          }
+        ],
+        "unreadCount": 1
+      }
+    },
+    {
+      "requestId": 377,
+      "checkId": "BC-TASK-004",
+      "setup": false,
+      "at": "2026-10-30T12:24:38.759Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "type": "task",
+        "id": 14,
+        "version": 1,
+        "assigneeId": "11e7eb62-6041-49ff-a358-1a685174c327"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 629,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 14,
+        "targetType": "company",
+        "targetId": 13,
+        "title": "Fictional Retry assignment",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": "11e7eb62-6041-49ff-a358-1a685174c327",
+        "version": 2,
+        "createdAt": "2026-10-30T12:24:35.918Z"
+      }
+    },
+    {
+      "requestId": 378,
+      "checkId": "BC-TASK-004",
+      "setup": false,
+      "at": "2026-10-30T12:24:39.559Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 573,
+      "responseBody": {
+        "members": [
+          {
+            "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "email": "[authorized demo account]",
+            "role": "Admin"
+          },
+          {
+            "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "email": "retry-member-1793363046279@example.test",
+            "role": "Member"
+          },
+          {
+            "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "email": "retry-viewer-1793363046279@example.test",
+            "role": "Viewer"
+          }
+        ],
+        "notifications": [],
+        "unreadCount": 0
+      }
+    },
+    {
+      "requestId": 379,
+      "checkId": "BC-TASK-004",
+      "setup": false,
+      "at": "2026-10-30T12:24:40.360Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "type": "task",
+        "id": 14,
+        "version": 2,
+        "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 695,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 14,
+        "targetType": "company",
+        "targetId": 13,
+        "title": "Fictional Retry assignment",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+        "version": 3,
+        "createdAt": "2026-10-30T12:24:35.918Z"
+      }
+    },
+    {
+      "requestId": 380,
+      "checkId": "BC-TASK-004",
+      "setup": false,
+      "at": "2026-10-30T12:24:41.162Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 542,
+      "responseBody": {
+        "members": [
+          {
+            "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "email": "[authorized demo account]",
+            "role": "Admin"
+          },
+          {
+            "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "email": "retry-member-1793363046279@example.test",
+            "role": "Member"
+          },
+          {
+            "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "email": "retry-viewer-1793363046279@example.test",
+            "role": "Viewer"
+          }
+        ],
+        "notifications": [
+          {
+            "id": 2,
+            "kind": "task_assigned",
+            "taskId": 14,
+            "taskTitle": "Fictional Retry assignment",
+            "targetType": "company",
+            "targetId": 13,
+            "createdAt": "2026-10-30T12:24:40.692Z",
+            "readAt": null
+          },
+          {
+            "id": 1,
+            "kind": "task_assigned",
+            "taskId": 14,
+            "taskTitle": "Fictional Retry assignment",
+            "targetType": "company",
+            "targetId": 13,
+            "createdAt": "2026-10-30T12:24:35.918Z",
+            "readAt": null
+          }
+        ],
+        "unreadCount": 2
+      }
+    },
+    {
+      "requestId": 381,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:41.962Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "task",
+        "targetType": "company",
+        "targetId": 13,
+        "title": "Fictional Viewer notice",
+        "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 1075,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 15,
+        "targetType": "company",
+        "targetId": 13,
+        "title": "Fictional Viewer notice",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+        "version": 1,
+        "createdAt": "2026-10-30T12:24:42.337Z"
+      }
+    },
+    {
+      "requestId": 382,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:43.040Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 535,
+      "responseBody": {
+        "members": [
+          {
+            "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "email": "[authorized demo account]",
+            "role": "Admin"
+          },
+          {
+            "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "email": "retry-member-1793363046279@example.test",
+            "role": "Member"
+          },
+          {
+            "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "email": "retry-viewer-1793363046279@example.test",
+            "role": "Viewer"
+          }
+        ],
+        "notifications": [
+          {
+            "id": 3,
+            "kind": "task_assigned",
+            "taskId": 15,
+            "taskTitle": "Fictional Viewer notice",
+            "targetType": "company",
+            "targetId": 13,
+            "createdAt": "2026-10-30T12:24:42.337Z",
+            "readAt": null
+          }
+        ],
+        "unreadCount": 1
+      }
+    },
+    {
+      "requestId": 383,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:43.841Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "id": 3
+      },
+      "httpStatus": 200,
+      "elapsedMs": 497,
+      "responseBody": {
+        "id": 3,
+        "readAt": "2026-10-30T12:24:44.181Z"
+      }
+    },
+    {
+      "requestId": 384,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:44.642Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "id": 3
+      },
+      "httpStatus": 200,
+      "elapsedMs": 518,
+      "responseBody": {
+        "id": 3,
+        "readAt": "2026-10-30T12:24:44.181Z"
+      }
+    },
+    {
+      "requestId": 385,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:45.443Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 527,
+      "responseBody": {
+        "members": [
+          {
+            "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "email": "[authorized demo account]",
+            "role": "Admin"
+          },
+          {
+            "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "email": "retry-member-1793363046279@example.test",
+            "role": "Member"
+          },
+          {
+            "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "email": "retry-viewer-1793363046279@example.test",
+            "role": "Viewer"
+          }
+        ],
+        "notifications": [
+          {
+            "id": 3,
+            "kind": "task_assigned",
+            "taskId": 15,
+            "taskTitle": "Fictional Viewer notice",
+            "targetType": "company",
+            "targetId": 13,
+            "createdAt": "2026-10-30T12:24:42.337Z",
+            "readAt": "2026-10-30T12:24:44.181Z"
+          }
+        ],
+        "unreadCount": 0
+      }
+    },
+    {
+      "requestId": 386,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:46.244Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 497,
+      "responseBody": {
+        "members": [
+          {
+            "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "email": "[authorized demo account]",
+            "role": "Admin"
+          },
+          {
+            "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "email": "retry-member-1793363046279@example.test",
+            "role": "Member"
+          },
+          {
+            "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "email": "retry-viewer-1793363046279@example.test",
+            "role": "Viewer"
+          }
+        ],
+        "notifications": [],
+        "unreadCount": 0
+      }
+    },
+    {
+      "requestId": 387,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:47.046Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 404,
+      "requestBody": {
+        "id": 3
+      },
+      "httpStatus": 404,
+      "elapsedMs": 519,
+      "responseBody": {
+        "error": "Notification not found."
+      }
+    },
+    {
+      "requestId": 388,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:47.847Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 522,
+      "responseBody": {
+        "members": [
+          {
+            "id": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "email": "[authorized demo account]",
+            "role": "Admin"
+          },
+          {
+            "id": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "email": "retry-member-1793363046279@example.test",
+            "role": "Member"
+          },
+          {
+            "id": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "email": "retry-viewer-1793363046279@example.test",
+            "role": "Viewer"
+          }
+        ],
+        "notifications": [
+          {
+            "id": 2,
+            "kind": "task_assigned",
+            "taskId": 14,
+            "taskTitle": "Fictional Retry assignment",
+            "targetType": "company",
+            "targetId": 13,
+            "createdAt": "2026-10-30T12:24:40.692Z",
+            "readAt": null
+          },
+          {
+            "id": 1,
+            "kind": "task_assigned",
+            "taskId": 14,
+            "taskTitle": "Fictional Retry assignment",
+            "targetType": "company",
+            "targetId": 13,
+            "createdAt": "2026-10-30T12:24:35.918Z",
+            "readAt": null
+          }
+        ],
+        "unreadCount": 2
+      }
+    },
+    {
+      "requestId": 389,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:48.649Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/productivity",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 404,
+      "requestBody": {
+        "id": 3
+      },
+      "httpStatus": 404,
+      "elapsedMs": 532,
+      "responseBody": {
+        "error": "Notification not found."
+      }
+    },
+    {
+      "requestId": 390,
+      "checkId": "BC-TASK-005",
+      "setup": false,
+      "at": "2026-10-30T12:24:49.450Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "task",
+        "id": 15,
+        "version": 1,
+        "title": "Viewer attempt"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 461,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 391,
+      "checkId": "BC-LIST-006",
+      "setup": false,
+      "at": "2026-10-30T12:24:50.250Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/lists",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "action": "create",
+        "objectType": "company",
+        "name": "Fictional Member private",
+        "visibility": "private"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 655,
+      "responseBody": {
+        "list": {
+          "id": "3e7dab58-64bc-486d-a72a-c71aa965e0b7",
+          "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "creatorId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+          "name": "Fictional Member private",
+          "objectType": "company",
+          "visibility": "private",
+          "createdAt": "2026-10-30T12:24:50.593Z"
+        }
+      }
+    },
+    {
+      "requestId": 392,
+      "checkId": "BC-LIST-006",
+      "setup": false,
+      "at": "2026-10-30T12:24:51.051Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/lists",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "action": "addEntry",
+        "listId": "3e7dab58-64bc-486d-a72a-c71aa965e0b7",
+        "recordId": 13
+      },
+      "httpStatus": 201,
+      "elapsedMs": 951,
+      "responseBody": {
+        "entry": {
+          "id": "feae477f-ae07-4197-944d-ad2c9dd289f7",
+          "listId": "3e7dab58-64bc-486d-a72a-c71aa965e0b7",
+          "recordId": 13,
+          "stage": "New",
+          "note": null,
+          "createdAt": "2026-10-30T12:24:51.631Z"
+        }
+      }
+    },
+    {
+      "requestId": 393,
+      "checkId": "BC-LIST-006",
+      "setup": false,
+      "at": "2026-10-30T12:24:52.004Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/lists",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 461,
+      "responseBody": {
+        "lists": [
+          {
+            "id": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "creatorId": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "name": "Fictional Retry Shared",
+            "objectType": "company",
+            "visibility": "shared",
+            "createdAt": "2026-10-30T12:24:35.092Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 394,
+      "checkId": "BC-LIST-006",
+      "setup": false,
+      "at": "2026-10-30T12:24:52.805Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/lists?listId=3e7dab58-64bc-486d-a72a-c71aa965e0b7",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 404,
+      "httpStatus": 404,
+      "elapsedMs": 632,
+      "responseBody": {
+        "error": "List not found."
+      }
+    },
+    {
+      "requestId": 395,
+      "checkId": "BC-LIST-006",
+      "setup": false,
+      "at": "2026-10-30T12:24:53.605Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/lists?listId=046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 721,
+      "responseBody": {
+        "lists": [
+          {
+            "id": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "creatorId": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "name": "Fictional Retry Shared",
+            "objectType": "company",
+            "visibility": "shared",
+            "createdAt": "2026-10-30T12:24:35.092Z"
+          }
+        ],
+        "list": {
+          "id": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+          "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "creatorId": "11e7eb62-6041-49ff-a358-1a685174c327",
+          "name": "Fictional Retry Shared",
+          "objectType": "company",
+          "visibility": "shared",
+          "createdAt": "2026-10-30T12:24:35.092Z"
+        },
+        "entries": [],
+        "views": [
+          {
+            "id": "fb10233d-8983-4afc-b4e0-a7a76ce35ef4",
+            "listId": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+            "name": "Board",
+            "kind": "board",
+            "config": {
+              "sort": "name",
+              "columns": [
+                "name",
+                "stage",
+                "note"
+              ],
+              "filterStage": ""
+            }
+          },
+          {
+            "id": "9411e3c8-9c27-4a35-a752-7c1ab7693dd1",
+            "listId": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+            "name": "Table",
+            "kind": "table",
+            "config": {
+              "sort": "name",
+              "columns": [
+                "name",
+                "stage",
+                "note"
+              ],
+              "filterStage": ""
+            }
+          }
+        ],
+        "grants": [],
+        "canWrite": false,
+        "canGrant": false
+      }
+    },
+    {
+      "requestId": 396,
+      "checkId": "BC-LIST-006",
+      "setup": false,
+      "at": "2026-10-30T12:24:54.406Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/lists",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "action": "grant",
+        "listId": "3e7dab58-64bc-486d-a72a-c71aa965e0b7",
+        "access": "Reader"
+      },
+      "httpStatus": 400,
+      "elapsedMs": 608,
+      "responseBody": {
+        "error": "Enter a valid email."
+      }
+    },
+    {
+      "requestId": 397,
+      "checkId": "BC-CSV-010",
+      "setup": false,
+      "at": "2026-10-30T12:24:55.207Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 772,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 13,
+            "name": "Fictional Retry Cedar",
+            "domain": "retry-cedar.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:24:34.330Z"
+          }
+        ],
+        "people": [],
+        "deals": [],
+        "notes": [],
+        "tasks": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Retry assignment",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "version": 3,
+            "createdAt": "2026-10-30T12:24:35.918Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Viewer notice",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "version": 1,
+            "createdAt": "2026-10-30T12:24:42.337Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 398,
+      "checkId": "BC-CSV-010",
+      "setup": false,
+      "at": "2026-10-30T12:24:56.007Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/csv?type=companies",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 466,
+      "responseBody": "\"domain\",\"name\",\"description\"\r\n\"retry-cedar.example\",\"Fictional Retry Cedar\",\"\"\r\n"
+    },
+    {
+      "requestId": 399,
+      "checkId": "BC-CSV-010",
+      "setup": false,
+      "at": "2026-10-30T12:24:56.808Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/csv",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "action": "preview",
+        "type": "companies",
+        "file": {
+          "name": "fictional-retry.csv",
+          "size": 50
+        }
+      },
+      "httpStatus": 200,
+      "elapsedMs": 628,
+      "responseBody": {
+        "status": "preview",
+        "headers": [
+          "Domain",
+          "Name"
+        ],
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "create",
+            "message": "Will create company."
+          }
+        ],
+        "counts": {
+          "create": 1,
+          "update": 0,
+          "unchanged": 0,
+          "error": 0
+        }
+      }
+    },
+    {
+      "requestId": 400,
+      "checkId": "BC-CSV-010",
+      "setup": false,
+      "at": "2026-10-30T12:24:57.609Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/csv",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "action": "import",
+        "type": "companies",
+        "file": {
+          "name": "fictional-retry.csv",
+          "size": 50
+        }
+      },
+      "httpStatus": 403,
+      "elapsedMs": 572,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 401,
+      "checkId": "BC-CSV-010",
+      "setup": false,
+      "at": "2026-10-30T12:24:58.411Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/csv?type=companies",
+      "workspaceId": "2b296b54-c2b0-4e55-97f1-a17ef7d57e1e",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 593,
+      "responseBody": "\"domain\",\"name\",\"description\"\r\n"
+    },
+    {
+      "requestId": 402,
+      "checkId": "BC-CSV-010",
+      "setup": false,
+      "at": "2026-10-30T12:24:59.212Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 519,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 13,
+            "name": "Fictional Retry Cedar",
+            "domain": "retry-cedar.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:24:34.330Z"
+          }
+        ],
+        "people": [],
+        "deals": [],
+        "notes": [],
+        "tasks": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Retry assignment",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "version": 3,
+            "createdAt": "2026-10-30T12:24:35.918Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Viewer notice",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "version": 1,
+            "createdAt": "2026-10-30T12:24:42.337Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 403,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:00.014Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional Role Company"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 772,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 14,
+        "name": "Fictional Role Company",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:25:00.425Z"
+      }
+    },
+    {
+      "requestId": 404,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:00.815Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "type": "company",
+        "id": 14,
+        "version": 1,
+        "name": "Fictional Role Updated"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 716,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 14,
+        "name": "Fictional Role Updated",
+        "domain": null,
+        "description": null,
+        "version": 2,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:25:00.425Z"
+      }
+    },
+    {
+      "requestId": 405,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:01.616Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional Role Person",
+        "companyId": 14
+      },
+      "httpStatus": 201,
+      "elapsedMs": 774,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 8,
+        "name": "Fictional Role Person",
+        "email": null,
+        "companyId": 14,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:25:01.981Z"
+      }
+    },
+    {
+      "requestId": 406,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:02.417Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional Role Deal",
+        "companyId": 14,
+        "personId": 8,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "elapsedMs": 966,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 9,
+        "name": "Fictional Role Deal",
+        "companyId": 14,
+        "personId": 8,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:25:02.867Z"
+      }
+    },
+    {
+      "requestId": 407,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:03.383Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "note",
+        "targetType": "deal",
+        "targetId": 9,
+        "body": "Fictional role context"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 712,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 6,
+        "targetType": "deal",
+        "targetId": 9,
+        "body": "Fictional role context",
+        "version": 1,
+        "createdAt": "2026-10-30T12:25:03.742Z"
+      }
+    },
+    {
+      "requestId": 408,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:04.184Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "task",
+        "targetType": "deal",
+        "targetId": 9,
+        "title": "Fictional role followup"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 753,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 16,
+        "targetType": "deal",
+        "targetId": 9,
+        "title": "Fictional role followup",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": null,
+        "version": 1,
+        "createdAt": "2026-10-30T12:25:04.621Z"
+      }
+    },
+    {
+      "requestId": 409,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:04.985Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional Role Company"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 731,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 15,
+        "name": "Fictional Role Company",
+        "domain": null,
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:25:05.359Z"
+      }
+    },
+    {
+      "requestId": 410,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:05.785Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "type": "company",
+        "id": 15,
+        "version": 1,
+        "name": "Fictional Role Updated"
+      },
+      "httpStatus": 200,
+      "elapsedMs": 724,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 15,
+        "name": "Fictional Role Updated",
+        "domain": null,
+        "description": null,
+        "version": 2,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:25:05.359Z"
+      }
+    },
+    {
+      "requestId": 411,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:06.586Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional Role Person",
+        "companyId": 15
+      },
+      "httpStatus": 201,
+      "elapsedMs": 804,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 9,
+        "name": "Fictional Role Person",
+        "email": null,
+        "companyId": 15,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:25:06.942Z"
+      }
+    },
+    {
+      "requestId": 412,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:07.392Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "deal",
+        "name": "Fictional Role Deal",
+        "companyId": 15,
+        "personId": 9,
+        "owner": "Fictional QA",
+        "stage": "Lead",
+        "currency": "USD",
+        "valueCents": 100
+      },
+      "httpStatus": 201,
+      "elapsedMs": 935,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 10,
+        "name": "Fictional Role Deal",
+        "companyId": 15,
+        "personId": 9,
+        "stage": "Lead",
+        "owner": "Fictional QA",
+        "valueCents": 100,
+        "currency": "USD",
+        "lostReason": null,
+        "wonClosedAt": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:25:07.837Z"
+      }
+    },
+    {
+      "requestId": 413,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:08.330Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "note",
+        "targetType": "deal",
+        "targetId": 10,
+        "body": "Fictional role context"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 677,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 7,
+        "targetType": "deal",
+        "targetId": 10,
+        "body": "Fictional role context",
+        "version": 1,
+        "createdAt": "2026-10-30T12:25:08.691Z"
+      }
+    },
+    {
+      "requestId": 414,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:09.131Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "type": "task",
+        "targetType": "deal",
+        "targetId": 10,
+        "title": "Fictional role followup"
+      },
+      "httpStatus": 201,
+      "elapsedMs": 677,
+      "responseBody": {
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "id": 17,
+        "targetType": "deal",
+        "targetId": 10,
+        "title": "Fictional role followup",
+        "dueDate": null,
+        "done": false,
+        "assigneeId": null,
+        "version": 1,
+        "createdAt": "2026-10-30T12:25:09.492Z"
+      }
+    },
+    {
+      "requestId": 415,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:09.932Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/custom-fields",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 201,
+      "requestBody": {
+        "objectType": "company",
+        "name": "Fictional Role Field",
+        "kind": "text",
+        "required": false,
+        "unique": false,
+        "options": []
+      },
+      "httpStatus": 201,
+      "elapsedMs": 738,
+      "responseBody": {
+        "id": "35a0897a-b5ce-4ed8-b093-8de51e14be86",
+        "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+        "objectType": "company",
+        "name": "Fictional Role Field",
+        "kind": "text",
+        "options": [],
+        "required": false,
+        "unique": false,
+        "archivedAt": null,
+        "createdAt": "2026-10-30T12:25:10.350Z"
+      }
+    },
+    {
+      "requestId": 416,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:10.734Z",
+      "environment": "published-https",
+      "method": "PUT",
+      "path": "/api/custom-fields",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "requestBody": {
+        "objectType": "company",
+        "recordId": 13,
+        "version": 1,
+        "values": {
+          "35a0897a-b5ce-4ed8-b093-8de51e14be86": "Fictional member value"
+        }
+      },
+      "httpStatus": 200,
+      "elapsedMs": 850,
+      "responseBody": {
+        "version": 2
+      }
+    },
+    {
+      "requestId": 417,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:11.587Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/custom-fields",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "objectType": "company",
+        "name": "Role denied definition",
+        "kind": "text",
+        "required": false,
+        "unique": false,
+        "options": []
+      },
+      "httpStatus": 403,
+      "elapsedMs": 425,
+      "responseBody": {
+        "error": "Only an Admin can define fields."
+      }
+    },
+    {
+      "requestId": 418,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:12.388Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/custom-fields",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "objectType": "company",
+        "name": "Role denied definition",
+        "kind": "text",
+        "required": false,
+        "unique": false,
+        "options": []
+      },
+      "httpStatus": 403,
+      "elapsedMs": 469,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 419,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:13.189Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 778,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 13,
+            "name": "Fictional Retry Cedar",
+            "domain": "retry-cedar.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:24:34.330Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:00.425Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:05.359Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 8,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 14,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:01.981Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 15,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:06.942Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Deal",
+            "companyId": 14,
+            "personId": 8,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:02.867Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 10,
+            "name": "Fictional Role Deal",
+            "companyId": 15,
+            "personId": 9,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:07.837Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 6,
+            "targetType": "deal",
+            "targetId": 9,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:03.742Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 7,
+            "targetType": "deal",
+            "targetId": 10,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:08.691Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Retry assignment",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "version": 3,
+            "createdAt": "2026-10-30T12:24:35.918Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Viewer notice",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "version": 1,
+            "createdAt": "2026-10-30T12:24:42.337Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 16,
+            "targetType": "deal",
+            "targetId": 9,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:04.621Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 17,
+            "targetType": "deal",
+            "targetId": 10,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:09.492Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 420,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:13.990Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "company",
+        "name": "Viewer create",
+        "targetType": "company",
+        "targetId": 13,
+        "body": "Fictional",
+        "title": "Fictional"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 407,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 421,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:14.790Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "company",
+        "id": 13,
+        "version": 2,
+        "name": "Viewer edit"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 472,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 422,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:15.590Z",
+      "environment": "published-https",
+      "method": "DELETE",
+      "path": "/api/records/lifecycle",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "company",
+        "id": 13,
+        "version": 2
+      },
+      "httpStatus": 403,
+      "elapsedMs": 436,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 423,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:16.392Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "person",
+        "name": "Viewer create",
+        "targetType": "company",
+        "targetId": 13,
+        "body": "Fictional",
+        "title": "Fictional"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 437,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 424,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:17.193Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "person",
+        "id": 8,
+        "version": 1,
+        "name": "Viewer edit"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 355,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 425,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:17.995Z",
+      "environment": "published-https",
+      "method": "DELETE",
+      "path": "/api/records/lifecycle",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "person",
+        "id": 8,
+        "version": 1
+      },
+      "httpStatus": 403,
+      "elapsedMs": 410,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 426,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:18.797Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "deal",
+        "name": "Viewer create",
+        "targetType": "company",
+        "targetId": 13,
+        "body": "Fictional",
+        "title": "Fictional"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 519,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 427,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:19.597Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "deal",
+        "id": 9,
+        "version": 1,
+        "name": "Viewer edit"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 397,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 428,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:20.398Z",
+      "environment": "published-https",
+      "method": "DELETE",
+      "path": "/api/records/lifecycle",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "deal",
+        "id": 9,
+        "version": 1
+      },
+      "httpStatus": 403,
+      "elapsedMs": 353,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 429,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:21.199Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "note",
+        "name": "Viewer create",
+        "targetType": "company",
+        "targetId": 13,
+        "body": "Fictional",
+        "title": "Fictional"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 427,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 430,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:22.000Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "note",
+        "id": 6,
+        "version": 1,
+        "body": "Viewer edit"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 421,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 431,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:22.801Z",
+      "environment": "published-https",
+      "method": "DELETE",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "note",
+        "id": 6,
+        "version": 1
+      },
+      "httpStatus": 403,
+      "elapsedMs": 386,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 432,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:23.602Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "task",
+        "name": "Viewer create",
+        "targetType": "company",
+        "targetId": 13,
+        "body": "Fictional",
+        "title": "Fictional"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 460,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 433,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:24.403Z",
+      "environment": "published-https",
+      "method": "PATCH",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "task",
+        "id": 14,
+        "version": 3,
+        "title": "Viewer edit"
+      },
+      "httpStatus": 403,
+      "elapsedMs": 349,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 434,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:25.204Z",
+      "environment": "published-https",
+      "method": "DELETE",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "type": "task",
+        "id": 14,
+        "version": 3
+      },
+      "httpStatus": 403,
+      "elapsedMs": 369,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 435,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:26.005Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/lists?listId=046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 1078,
+      "responseBody": {
+        "lists": [
+          {
+            "id": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "creatorId": "11e7eb62-6041-49ff-a358-1a685174c327",
+            "name": "Fictional Retry Shared",
+            "objectType": "company",
+            "visibility": "shared",
+            "createdAt": "2026-10-30T12:24:35.092Z"
+          }
+        ],
+        "list": {
+          "id": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+          "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "creatorId": "11e7eb62-6041-49ff-a358-1a685174c327",
+          "name": "Fictional Retry Shared",
+          "objectType": "company",
+          "visibility": "shared",
+          "createdAt": "2026-10-30T12:24:35.092Z"
+        },
+        "entries": [],
+        "views": [
+          {
+            "id": "fb10233d-8983-4afc-b4e0-a7a76ce35ef4",
+            "listId": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+            "name": "Board",
+            "kind": "board",
+            "config": {
+              "sort": "name",
+              "columns": [
+                "name",
+                "stage",
+                "note"
+              ],
+              "filterStage": ""
+            }
+          },
+          {
+            "id": "9411e3c8-9c27-4a35-a752-7c1ab7693dd1",
+            "listId": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+            "name": "Table",
+            "kind": "table",
+            "config": {
+              "sort": "name",
+              "columns": [
+                "name",
+                "stage",
+                "note"
+              ],
+              "filterStage": ""
+            }
+          }
+        ],
+        "grants": [],
+        "canWrite": false,
+        "canGrant": false
+      }
+    },
+    {
+      "requestId": 436,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:27.086Z",
+      "environment": "published-https",
+      "method": "POST",
+      "path": "/api/lists",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "action": "saveView",
+        "listId": "046350a7-64a6-4c50-a107-5df7dfe8ecd3",
+        "viewId": "fb10233d-8983-4afc-b4e0-a7a76ce35ef4",
+        "config": {
+          "filterStage": "",
+          "sort": "name",
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "httpStatus": 403,
+      "elapsedMs": 595,
+      "responseBody": {
+        "error": "You cannot change this list."
+      }
+    },
+    {
+      "requestId": 437,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:27.887Z",
+      "environment": "published-https",
+      "method": "PUT",
+      "path": "/api/custom-fields",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 403,
+      "requestBody": {
+        "objectType": "company",
+        "recordId": 13,
+        "version": 2,
+        "values": {
+          "35a0897a-b5ce-4ed8-b093-8de51e14be86": "Viewer edit"
+        }
+      },
+      "httpStatus": 403,
+      "elapsedMs": 477,
+      "responseBody": {
+        "error": "Viewers cannot change records."
+      }
+    },
+    {
+      "requestId": 438,
+      "checkId": "BC-ACCESS-003",
+      "setup": false,
+      "at": "2026-10-30T12:25:28.688Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 763,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 13,
+            "name": "Fictional Retry Cedar",
+            "domain": "retry-cedar.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:24:34.330Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:00.425Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:05.359Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 8,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 14,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:01.981Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 15,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:06.942Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Deal",
+            "companyId": 14,
+            "personId": 8,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:02.867Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 10,
+            "name": "Fictional Role Deal",
+            "companyId": 15,
+            "personId": 9,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:07.837Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 6,
+            "targetType": "deal",
+            "targetId": 9,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:03.742Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 7,
+            "targetType": "deal",
+            "targetId": 10,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:08.691Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Retry assignment",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "version": 3,
+            "createdAt": "2026-10-30T12:24:35.918Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Viewer notice",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "version": 1,
+            "createdAt": "2026-10-30T12:24:42.337Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 16,
+            "targetType": "deal",
+            "targetId": 9,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:04.621Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 17,
+            "targetType": "deal",
+            "targetId": 10,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:09.492Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 439,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:25:29.489Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 497,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 13,
+            "name": "Fictional Retry Cedar",
+            "domain": "retry-cedar.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:24:34.330Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:00.425Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:05.359Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 8,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 14,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:01.981Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 15,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:06.942Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Deal",
+            "companyId": 14,
+            "personId": 8,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:02.867Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 10,
+            "name": "Fictional Role Deal",
+            "companyId": 15,
+            "personId": 9,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:07.837Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 6,
+            "targetType": "deal",
+            "targetId": 9,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:03.742Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 7,
+            "targetType": "deal",
+            "targetId": 10,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:08.691Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Retry assignment",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "version": 3,
+            "createdAt": "2026-10-30T12:24:35.918Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Viewer notice",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "version": 1,
+            "createdAt": "2026-10-30T12:24:42.337Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 16,
+            "targetType": "deal",
+            "targetId": 9,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:04.621Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 17,
+            "targetType": "deal",
+            "targetId": 10,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:09.492Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 440,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:25:30.290Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 496,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 13,
+            "name": "Fictional Retry Cedar",
+            "domain": "retry-cedar.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:24:34.330Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:00.425Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:05.359Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 8,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 14,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:01.981Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 15,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:06.942Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Deal",
+            "companyId": 14,
+            "personId": 8,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:02.867Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 10,
+            "name": "Fictional Role Deal",
+            "companyId": 15,
+            "personId": 9,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:07.837Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 6,
+            "targetType": "deal",
+            "targetId": 9,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:03.742Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 7,
+            "targetType": "deal",
+            "targetId": 10,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:08.691Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Retry assignment",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "version": 3,
+            "createdAt": "2026-10-30T12:24:35.918Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Viewer notice",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "version": 1,
+            "createdAt": "2026-10-30T12:24:42.337Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 16,
+            "targetType": "deal",
+            "targetId": 9,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:04.621Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 17,
+            "targetType": "deal",
+            "targetId": 10,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:09.492Z"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 441,
+      "checkId": null,
+      "setup": true,
+      "at": "2026-10-30T12:25:31.091Z",
+      "environment": "published-https",
+      "method": "GET",
+      "path": "/api/crm",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "expectedHttpStatus": 200,
+      "httpStatus": 200,
+      "elapsedMs": 499,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 13,
+            "name": "Fictional Retry Cedar",
+            "domain": "retry-cedar.example",
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:24:34.330Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:00.425Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "name": "Fictional Role Updated",
+            "domain": null,
+            "description": null,
+            "version": 2,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:05.359Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 8,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 14,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:01.981Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Person",
+            "email": null,
+            "companyId": 15,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:06.942Z"
+          }
+        ],
+        "deals": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 9,
+            "name": "Fictional Role Deal",
+            "companyId": 14,
+            "personId": 8,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:02.867Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 10,
+            "name": "Fictional Role Deal",
+            "companyId": 15,
+            "personId": 9,
+            "stage": "Lead",
+            "owner": "Fictional QA",
+            "valueCents": 100,
+            "currency": "USD",
+            "lostReason": null,
+            "wonClosedAt": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:25:07.837Z"
+          }
+        ],
+        "notes": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 6,
+            "targetType": "deal",
+            "targetId": 9,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:03.742Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 7,
+            "targetType": "deal",
+            "targetId": 10,
+            "body": "Fictional role context",
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:08.691Z"
+          }
+        ],
+        "tasks": [
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 14,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Retry assignment",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+            "version": 3,
+            "createdAt": "2026-10-30T12:24:35.918Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 15,
+            "targetType": "company",
+            "targetId": 13,
+            "title": "Fictional Viewer notice",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+            "version": 1,
+            "createdAt": "2026-10-30T12:24:42.337Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 16,
+            "targetType": "deal",
+            "targetId": 9,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:04.621Z"
+          },
+          {
+            "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+            "id": 17,
+            "targetType": "deal",
+            "targetId": 10,
+            "title": "Fictional role followup",
+            "dueDate": null,
+            "done": false,
+            "assigneeId": null,
+            "version": 1,
+            "createdAt": "2026-10-30T12:25:09.492Z"
+          }
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "BC-ACCESS-001",
+      "environment": "published-https",
+      "method": "HTTP",
+      "startedAt": "2026-10-30T12:24:16.271Z",
+      "coverageGaps": [
+        "Browser reload/sign-in UI not observed; HTTP session restoration only."
+      ],
+      "requestIds": [
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360
+      ],
+      "status": "BLOCKED",
+      "actual": "Selected HTTP assertions passed; full scenario incomplete.",
+      "finishedAt": "2026-10-30T12:24:23.778Z"
+    },
+    {
+      "id": "BC-ACCESS-002",
+      "environment": "published-https",
+      "method": "HTTP",
+      "startedAt": "2026-10-30T12:24:25.012Z",
+      "coverageGaps": [
+        "Membership controls in browser not observed; ordinary server role enforcement checked."
+      ],
+      "requestIds": [
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370
+      ],
+      "status": "BLOCKED",
+      "actual": "Selected HTTP assertions passed; full scenario incomplete.",
+      "finishedAt": "2026-10-30T12:24:33.953Z"
+    },
+    {
+      "id": "BC-TASK-004",
+      "environment": "published-https",
+      "method": "HTTP",
+      "startedAt": "2026-10-30T12:24:35.482Z",
+      "coverageGaps": [],
+      "requestIds": [
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380
+      ],
+      "status": "PASS",
+      "actual": "All specified HTTP outcomes passed.",
+      "finishedAt": "2026-10-30T12:24:41.704Z"
+    },
+    {
+      "id": "BC-TASK-005",
+      "environment": "published-https",
+      "method": "HTTP",
+      "startedAt": "2026-10-30T12:24:41.705Z",
+      "coverageGaps": [],
+      "requestIds": [
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390
+      ],
+      "status": "PASS",
+      "actual": "All specified HTTP outcomes passed.",
+      "finishedAt": "2026-10-30T12:24:49.913Z"
+    },
+    {
+      "id": "BC-LIST-006",
+      "environment": "published-https",
+      "method": "HTTP",
+      "startedAt": "2026-10-30T12:24:49.914Z",
+      "coverageGaps": [],
+      "requestIds": [
+        391,
+        392,
+        393,
+        394,
+        395,
+        396
+      ],
+      "status": "FAIL",
+      "actual": "POST /api/lists: expected 200, actual 400; {\"error\":\"Enter a valid email.\"}\n\n400 !== 200\n",
+      "error": {
+        "name": "AssertionError",
+        "message": "POST /api/lists: expected 200, actual 400; {\"error\":\"Enter a valid email.\"}\n\n400 !== 200\n",
+        "actual": 400,
+        "expected": 200
+      },
+      "finishedAt": "2026-10-30T12:24:55.017Z"
+    },
+    {
+      "id": "BC-CSV-010",
+      "environment": "published-https",
+      "method": "HTTP",
+      "startedAt": "2026-10-30T12:24:55.018Z",
+      "coverageGaps": [],
+      "requestIds": [
+        397,
+        398,
+        399,
+        400,
+        401,
+        402
+      ],
+      "status": "PASS",
+      "actual": "All specified HTTP outcomes passed.",
+      "finishedAt": "2026-10-30T12:24:59.732Z"
+    },
+    {
+      "id": "BC-ACCESS-003",
+      "environment": "published-https",
+      "method": "HTTP",
+      "startedAt": "2026-10-30T12:24:59.733Z",
+      "coverageGaps": [
+        "Browser visibility of Admin/Member/Viewer controls not observed; server matrix exercised."
+      ],
+      "requestIds": [
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438
+      ],
+      "status": "BLOCKED",
+      "actual": "Selected HTTP assertions passed; full scenario incomplete.",
+      "finishedAt": "2026-10-30T12:25:29.452Z"
+    },
+    {
+      "id": "BC-LIST-004",
+      "status": "BLOCKED",
+      "environment": "published-browser-not-executed",
+      "method": "none",
+      "actual": "List URL refresh and workspace switching require parent browser tools.",
+      "coverageGaps": [
+        "List URL refresh and workspace switching require parent browser tools."
+      ],
+      "requestIds": []
+    },
+    {
+      "id": "BC-VIEW-001",
+      "status": "BLOCKED",
+      "environment": "published-browser-not-executed",
+      "method": "none",
+      "actual": "Search/filter/sort rendered controls require parent browser tools; local pure selection tests cannot pass this row.",
+      "coverageGaps": [
+        "Search/filter/sort rendered controls require parent browser tools; local pure selection tests cannot pass this row."
+      ],
+      "requestIds": []
+    },
+    {
+      "id": "BC-ACCESS-004",
+      "status": "BLOCKED",
+      "environment": "published-browser-not-executed",
+      "method": "none",
+      "actual": "Workspace selection, reload and stale-content flash require parent browser tools.",
+      "coverageGaps": [
+        "Workspace selection, reload and stale-content flash require parent browser tools."
+      ],
+      "requestIds": []
+    }
+  ],
+  "fixtures": [
+    {
+      "kind": "workspace",
+      "id": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "label": "Fictional Retry QA 1793363046279"
+    },
+    {
+      "kind": "controlled-account",
+      "label": "member",
+      "email": "retry-member-1793363046279@example.test",
+      "userId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+      "workspaceId": "541f47d8-df89-4ce2-be6f-a258b40d44fe"
+    },
+    {
+      "kind": "controlled-account",
+      "label": "viewer",
+      "email": "retry-viewer-1793363046279@example.test",
+      "userId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+      "workspaceId": "2b296b54-c2b0-4e55-97f1-a17ef7d57e1e"
+    },
+    {
+      "kind": "assignment-task",
+      "id": 14,
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2"
+    },
+    {
+      "kind": "final-visible-counts",
+      "userId": "11e7eb62-6041-49ff-a358-1a685174c327",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "counts": {
+        "companies": 3,
+        "people": 2,
+        "deals": 2,
+        "notes": 2,
+        "tasks": 4
+      }
+    },
+    {
+      "kind": "final-visible-counts",
+      "userId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "counts": {
+        "companies": 3,
+        "people": 2,
+        "deals": 2,
+        "notes": 2,
+        "tasks": 4
+      }
+    },
+    {
+      "kind": "final-visible-counts",
+      "userId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+      "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+      "counts": {
+        "companies": 3,
+        "people": 2,
+        "deals": 2,
+        "notes": 2,
+        "tasks": 4
+      }
+    }
+  ],
+  "retention": "Retain fresh fictional accounts, workspaces, fields, lists, records and notices for parent browser follow-up. No existing records modified.",
+  "finishedAt": "2026-10-30T12:25:31.590Z"
+}

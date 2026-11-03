@@ -1,0 +1,784 @@
+{
+  "runId": "retry-2026-10-30",
+  "startedAt": "2026-10-30T12:22:27.126596+00:00",
+  "finishedAt": "2026-10-30T12:32:58.718704+00:00",
+  "timeZone": "UTC",
+  "localCommit": "0d1f8fae927421f18250092e80074065a7a5c593",
+  "publishedRevision": "unknown; not queried",
+  "originalTotals": {
+    "PASS": 22,
+    "FAIL": 0,
+    "BLOCKED": 17,
+    "NOT_RUN": 35,
+    "NOT_IMPLEMENTED": 6
+  },
+  "originalSkippedReasonBreakdown": {
+    "exactRecordedReasons": [
+      {
+        "reason": "Reserved local-only/race/destructive/boundary scenario; no local execution in this published HTTP run.",
+        "count": 25
+      },
+      {
+        "reason": "Requires browser interactions, additional controlled roles, or broader checks not selected for this bounded single-login HTTP run.",
+        "count": 10
+      }
+    ],
+    "laneCounts": {
+      "L": 25,
+      "P": 10
+    },
+    "actionableClassification": {
+      "localReserved": 25,
+      "additionalControlledAccountsOrBroaderRoleCoverage": 7,
+      "browserOnly": 3
+    }
+  },
+  "retryTotals": {
+    "PASS": 25,
+    "FAIL": 2,
+    "BLOCKED": 5,
+    "NOT_RUN": 3,
+    "NOT_IMPLEMENTED": 0
+  },
+  "aggregateTotals": {
+    "PASS": 47,
+    "FAIL": 2,
+    "BLOCKED": 22,
+    "NOT_RUN": 3,
+    "NOT_IMPLEMENTED": 6
+  },
+  "laneTotals": {
+    "P": {
+      "PASS": 25,
+      "FAIL": 0,
+      "BLOCKED": 17,
+      "NOT_RUN": 3,
+      "NOT_IMPLEMENTED": 0
+    },
+    "L": {
+      "PASS": 22,
+      "FAIL": 2,
+      "BLOCKED": 5,
+      "NOT_RUN": 0,
+      "NOT_IMPLEMENTED": 0
+    },
+    "N": {
+      "PASS": 0,
+      "FAIL": 0,
+      "BLOCKED": 0,
+      "NOT_RUN": 0,
+      "NOT_IMPLEMENTED": 6
+    }
+  },
+  "all35Ids": [
+    {
+      "id": "BC-ID-006",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Competing company domain creates/edits and person email edits produced one success and one 409; active canonical identities did not duplicate.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-ID-007",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Scoped SQL created legacy duplicate company domains and person emails; actual imports returned ambiguity row errors without selecting or changing a candidate.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-REL-004",
+      "lane": "L",
+      "status": "FAIL",
+      "environment": "local-development",
+      "actual": "Foreign/mismatched company/person/deal/note/task operations refused; before/after linked collections unchanged. Person-create response contract fails: expected 404; actual 409, “The linked company changed. Review the person and try again.”",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-REL-006",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Company and deal stale versions returned 409, retained the winner, and fresh reviewed retries saved. Existing suite also exercised simultaneous competing company edits.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-RPT-003",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Fixed clocks exercised UTC, America/Los_Angeles and Asia/Kolkata month/day boundaries. SQL legacy Won with null close time was counted as unknown and excluded from monthly wins; invalid time zone returned 400.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-TASK-004",
+      "lane": "P",
+      "status": "PASS",
+      "environment": "published-https",
+      "actual": "All specified HTTP outcomes passed.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-TASK-005",
+      "lane": "P",
+      "status": "PASS",
+      "environment": "published-https",
+      "actual": "All specified HTTP outcomes passed.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-TASK-006",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Impossible date and non-boolean completion returned 400; foreign assignee/target returned 404 with task unchanged. Simultaneous same-version edits returned one 200 and one 409, preserving winner fields.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-TASK-007",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Stale task DELETE returned 409 and preserved task; current DELETE returned 200 and assignment notice disappeared from recipient inbox.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-NOTE-004",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Edited note survived old-version DELETE 409; current-version DELETE 200 removed it. Record Trash was not used.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIST-004",
+      "lane": "P",
+      "status": "NOT_RUN",
+      "environment": "published-browser-not-executed",
+      "actual": "List URL refresh and workspace switching require parent browser tools.",
+      "coverageGaps": [
+        "List URL refresh and workspace switching require parent browser tools."
+      ],
+      "retryDisposition": "NOT_RETRIED_BROWSER_TOOLS_REQUIRED"
+    },
+    {
+      "id": "BC-LIST-006",
+      "lane": "P",
+      "status": "PASS",
+      "environment": "published-https",
+      "actual": "Full ordinary HTTP list role matrix passed on fresh controlled fixtures in continuation. Original temporary runner omitted owner email; correct 400 “Enter a valid email.” was a harness error, preserved in prior retry evidence.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIST-007",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Missing Name, duplicate/unsupported columns, unsupported sort/filter/stage, note length 501, foreign list/workspace and other-list entry IDs were refused; saved entries/views remained unchanged.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-VIEW-001",
+      "lane": "P",
+      "status": "NOT_RUN",
+      "environment": "published-browser-not-executed",
+      "actual": "Search/filter/sort rendered controls require parent browser tools; local pure selection tests cannot pass this row.",
+      "coverageGaps": [
+        "Search/filter/sort rendered controls require parent browser tools; local pure selection tests cannot pass this row."
+      ],
+      "retryDisposition": "NOT_RETRIED_BROWSER_TOOLS_REQUIRED"
+    },
+    {
+      "id": "BC-VIEW-002",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "All three pure tests passed: case/whitespace and relationship search, field/stage filters, numeric sorts, expected ID order and source immutability. No UI or authorization proof claimed.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-FLD-005",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Exact validator boundaries passed: text 500/501, finite numbers at ±1 trillion and rejection beyond/nonfinite, strict boolean, real calendar date, select 2/30 versus 0/1/31 and case duplicates. Route refused unsupported definitions and definition updates, preserved original rules, allowed 32 active definitions and refused the 33rd with 409.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-FLD-006",
+      "lane": "L",
+      "status": "BLOCKED",
+      "environment": "local-development",
+      "actual": "Server evidence passed: changed custom value advanced version; stale returned 409; wrong object/foreign field returned 404; identical save retained version. Browser draft retention was not exercised.",
+      "coverageGaps": [
+        "Parent browser tools must verify stale custom-field draft retention and Load latest recovery."
+      ]
+    },
+    {
+      "id": "BC-FLD-007",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Member and Viewer archive returned 403; Admin archive 200 retained stable definition ID and saved value; editing archived value returned 404.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-CSV-006",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Local export apostrophe-escaped inert formula-like text with CSV quoting; parser verified rows and prefixes. No spreadsheet formulas evaluated; no byte-identical round-trip claimed.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-CSV-008",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Import replanned create preview to update after intervening creation. Actual ambiguous domain/email imports reported row errors. Protected person reassignment previewed update but import reported error without moving the person. Two identical concurrent imports returned create/unchanged and exactly one identity. Existing CSV suite verified mixed accepted/error rows.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-CSV-009",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Malformed quote, invalid UTF-8, blank/duplicate headers and missing mapping returned 400. Exactly 10 MiB accepted for preview; +1 byte returned 413. 10000 rows accepted; 10001 rejected. At 499 companies a two-row import created one and refused the next; 500 blocked further creates, and a scoped legacy 501st SQL fixture made CRM reads/CSV preview return 409 rather than a partial collection. Initial runner wrongly expected validation of an unmapped description; corrected continuation completed every remaining assertion.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-CSV-010",
+      "lane": "P",
+      "status": "PASS",
+      "environment": "published-https",
+      "actual": "All specified HTTP outcomes passed.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIFE-001",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Company/person/deal previews exposed differing ordinary/custom fields and notes/tasks; company preview included links and overlapping list conflict. Missing choices, self and absent targets refused. No browser review controls observed.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIFE-002",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Local reviewed company/person merges moved relationships, notes, tasks and list memberships; overlapping company entry collapsed using chosen source note. Person survivor-company change that would invalidate existing deals returned 409 with links unchanged.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIFE-003",
+      "lane": "L",
+      "status": "BLOCKED",
+      "environment": "local-development",
+      "actual": "Deal old-ID resolve returned survivor; source absent active and restore returned 404. Source stage rows remained under old ID in SQL and separate mergedEvents; audit included actor, time and target. Browser URL redirect and separate timeline rendering remain unobserved.",
+      "coverageGaps": [
+        "Parent browser tools must follow old record URL and verify separate source stage timeline display; local route/SQL proof is not browser proof."
+      ]
+    },
+    {
+      "id": "BC-LIFE-004",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "After-preview list entry, record name, new note and new task changes all invalidated old merge with 409; source stayed active and attached data was preserved until fresh reviewed merge.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIFE-005",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Owned Member private list blocked Admin merge preview without disclosing its name; Member creator Editor grant enabled fresh preview/merge. Viewer preview/merge-route access returned 403; no Admin override.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIFE-007",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Dependent and stale deletion returned 409. Local controlled delete/create and delete/reassignment races refused at least one operation; SQL found zero active people under deleted companies.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIFE-009",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Domain, email and unique custom collisions returned restore 409 until resolved. Inactive parent and inactive/mismatched deal person returned 409; repairing/restoring parents allowed same-identity restore. Failed unique restore left record in Trash.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-LIFE-010",
+      "lane": "L",
+      "status": "PASS",
+      "environment": "local-development",
+      "actual": "Only disposable local company deletion was backdated 31 days: restore 410, absent eligible Trash, row still present in database before scoped cleanup.",
+      "coverageGaps": []
+    },
+    {
+      "id": "BC-ACCESS-001",
+      "lane": "P",
+      "status": "BLOCKED",
+      "environment": "published-https",
+      "actual": "Selected HTTP assertions passed; full scenario incomplete.",
+      "coverageGaps": [
+        "Browser reload/sign-in UI not observed; HTTP session restoration only."
+      ]
+    },
+    {
+      "id": "BC-ACCESS-002",
+      "lane": "P",
+      "status": "BLOCKED",
+      "environment": "published-https",
+      "actual": "Selected HTTP assertions passed; full scenario incomplete.",
+      "coverageGaps": [
+        "Membership controls in browser not observed; ordinary server role enforcement checked."
+      ]
+    },
+    {
+      "id": "BC-ACCESS-003",
+      "lane": "P",
+      "status": "BLOCKED",
+      "environment": "published-https",
+      "actual": "Selected HTTP assertions passed; full scenario incomplete.",
+      "coverageGaps": [
+        "Browser visibility of Admin/Member/Viewer controls not observed; server matrix exercised."
+      ]
+    },
+    {
+      "id": "BC-ACCESS-004",
+      "lane": "P",
+      "status": "NOT_RUN",
+      "environment": "published-browser-not-executed",
+      "actual": "Workspace selection, reload and stale-content flash require parent browser tools.",
+      "coverageGaps": [
+        "Workspace selection, reload and stale-content flash require parent browser tools."
+      ],
+      "retryDisposition": "NOT_RETRIED_BROWSER_TOOLS_REQUIRED"
+    },
+    {
+      "id": "BC-ACCESS-005",
+      "lane": "L",
+      "status": "FAIL",
+      "environment": "local-development",
+      "actual": "Ordinary owned-fixture anonymous/unjoined/foreign-route and Viewer checks ran across suites. The known person-create contract failed: expected 404, actual 409, “The linked company changed. Review the person and try again.” The original CRM suite stopped at line 57; later suites/focused checks ran independently. No adversarial workflow or exploit probe performed.",
+      "coverageGaps": []
+    }
+  ],
+  "commands": [
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-crm-api.ts",
+      "exitCode": 1,
+      "checkedPaths": [
+        "scripts/check-crm-api.ts"
+      ],
+      "startedAt": "2026-10-30T12:22:27.126596+00:00",
+      "output": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n409 !== 404\n\n    at main (/Users/abhinavrastogi/neander-projects/attio_clone_staging/scripts/check-crm-api.ts:57:10)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 409,\n  expected: 404,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n",
+      "environment": "local-development-route"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-record-edits.ts",
+      "exitCode": 0,
+      "checkedPaths": [
+        "scripts/check-record-edits.ts"
+      ],
+      "startedAt": "2026-10-30T12:22:37.705516+00:00",
+      "output": "Record edit checks passed: stale concurrent writes, canonical duplicate races, validation, links, history, workspace isolation, and Viewer denial.\n",
+      "environment": "local-development-route"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-productivity.ts",
+      "exitCode": 0,
+      "checkedPaths": [
+        "scripts/check-productivity.ts"
+      ],
+      "startedAt": "2026-10-30T12:22:48.357087+00:00",
+      "output": "Productivity checks passed: assignment notifications, self suppression, read privacy, stale task writes, completion, Viewer denial, and workspace isolation.\n",
+      "environment": "local-development-route"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-reports-api.ts",
+      "exitCode": 0,
+      "checkedPaths": [
+        "scripts/check-reports-api.ts"
+      ],
+      "startedAt": "2026-10-30T12:22:58.953744+00:00",
+      "output": "Reports: transition history and reopening, lost reason, currency separation, timezone month boundaries, workspace access, and drilldown reconciliation passed.\n",
+      "environment": "local-development-route"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-lists-api.ts",
+      "exitCode": 0,
+      "checkedPaths": [
+        "scripts/check-lists-api.ts"
+      ],
+      "startedAt": "2026-10-30T12:23:09.461893+00:00",
+      "output": "Lists: private/shared access, grants, viewer denial, workspace isolation, unique entries, independent stages, saved view reload, and record-preserving removal passed.\n",
+      "environment": "local-development-route"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-custom-fields.ts",
+      "exitCode": 0,
+      "checkedPaths": [
+        "scripts/check-custom-fields.ts"
+      ],
+      "startedAt": "2026-10-30T12:23:20.009125+00:00",
+      "output": "Custom field checks passed: typed values, required creation, uniqueness, archive retention, stale edits, role and workspace boundaries.\n",
+      "environment": "local-development-route"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-csv-api.ts",
+      "exitCode": 0,
+      "checkedPaths": [
+        "scripts/check-csv-api.ts"
+      ],
+      "startedAt": "2026-10-30T12:23:30.767155+00:00",
+      "output": "CSV checks passed: mapping, malformed and invalid rows, duplicate identities, formula safety, retries, workspace isolation, and Viewer denial.\n",
+      "environment": "local-development-route"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-record-lifecycle.ts",
+      "exitCode": 0,
+      "checkedPaths": [
+        "scripts/check-record-lifecycle.ts"
+      ],
+      "startedAt": "2026-10-30T12:23:41.290465+00:00",
+      "output": "Record lifecycle checks passed: merges, survivor-deal protection, late note/task previews, concurrent Company deletion and Person writes, lists, access, restore, audit, stage history and redirects.\n",
+      "environment": "local-development-route"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx --test shared/record-views.test.ts",
+      "exitCode": 0,
+      "checkedPaths": [
+        "shared/record-views.test.ts"
+      ],
+      "startedAt": "2026-10-30T12:23:52.679693+00:00",
+      "output": "✔ search matches authorized loaded relationship and contact fields, ignoring case and whitespace (0.513375ms)\n✔ filters retain only matching fields or deal stages (0.063667ms)\n✔ numeric sorts compare numbers and do not mutate source records (0.066292ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 90.480708\n",
+      "environment": "local-unit"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-focused.mts core",
+      "exitCode": 1,
+      "output": "{\"id\":\"BC-REL-004\",\"label\":\"Foreign and mismatched links refuse atomically; exact person-create status\",\"name\":\"AssertionError\",\"message\":\"Expected values to be strictly deep-equal:\\n+ actual - expected\\n\\n+ [\\n+   {\\n+     actual: 409,\\n+     error: 'The linked company changed. Review the person and try again.',\\n+     expected: 404,\\n+     type: 'person'\\n+   }\\n+ ]\\n- []\\n\",\"actual\":[{\"type\":\"person\",\"expected\":404,\"actual\":409,\"error\":\"The linked company changed. Review the person and try again.\"}],\"expected\":[]}\n{\"id\":\"BC-ACCESS-005\",\"label\":\"Ordinary owned-fixture route denial matrix; no adversarial probes\",\"name\":\"AssertionError\",\"message\":\"Known discrepancy: expected 404, got 409: The linked company changed. Review the person and try again.\\n\\n409 !== 404\\n\",\"actual\":409,\"expected\":404}\n{\"group\":\"core\",\"checks\":[{\"id\":\"BC-REL-004\",\"label\":\"Foreign and mismatched links refuse atomically; exact person-create status\",\"status\":\"FAIL\"},{\"id\":\"BC-REL-006\",\"label\":\"Fresh company and deal retry after stale saves\",\"status\":\"PASS\"},{\"id\":\"BC-RPT-003\",\"label\":\"Legacy Won unknown date disclosure and exclusion plus fixed clocks\",\"status\":\"PASS\"},{\"id\":\"BC-TASK-006\",\"label\":\"Invalid calendar/completion values and foreign links leave task unchanged\",\"status\":\"PASS\"},{\"id\":\"BC-TASK-007\",\"label\":\"Task current deletion removes assignment notices after stale refusal\",\"status\":\"PASS\"},{\"id\":\"BC-NOTE-004\",\"label\":\"Stale note removal preserves note; current removal succeeds\",\"status\":\"PASS\"},{\"id\":\"BC-ACCESS-005\",\"label\":\"Ordinary owned-fixture route denial matrix; no adversarial probes\",\"status\":\"FAIL\"}],\"cleanup\":\"verified\"}\n",
+      "environment": "local-development",
+      "checkedPaths": [
+        "/tmp/ledger-retry-focused.mts"
+      ]
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-focused.mts fields-lists",
+      "exitCode": 0,
+      "output": "{\"group\":\"fields-lists\",\"checks\":[{\"id\":\"BC-LIST-007\",\"label\":\"View schema, stage, note limits and cross-list/workspace IDs\",\"status\":\"PASS\"},{\"id\":\"BC-FLD-005\",\"label\":\"Type and size edges, option limits, immutable definitions and 32 active cap\",\"status\":\"PASS\"},{\"id\":\"BC-FLD-006\",\"label\":\"Stale/custom field scope and no-op version server assertions\",\"status\":\"PASS\"},{\"id\":\"BC-FLD-007\",\"label\":\"Admin archive retains ID/value; Member and Viewer denied\",\"status\":\"PASS\"}],\"cleanup\":\"verified\"}\n",
+      "environment": "local-development",
+      "checkedPaths": [
+        "/tmp/ledger-retry-focused.mts"
+      ]
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-focused.mts csv",
+      "exitCode": 1,
+      "output": "{\"id\":\"BC-CSV-009\",\"label\":\"CSV malformed/header/UTF8/file/row/capacity boundaries and complete reads\",\"name\":\"AssertionError\",\"message\":\"Expected values to be strictly equal:\\n\\n'create' !== 'error'\\n\",\"actual\":\"create\",\"expected\":\"error\"}\n{\"group\":\"csv\",\"checks\":[{\"id\":\"BC-CSV-008\",\"label\":\"Preview/import replan, protected reassignment and concurrent identical imports\",\"status\":\"PASS\"},{\"id\":\"BC-CSV-009\",\"label\":\"CSV malformed/header/UTF8/file/row/capacity boundaries and complete reads\",\"status\":\"FAIL\"}],\"cleanup\":\"verified\"}\n",
+      "environment": "local-development",
+      "checkedPaths": [
+        "/tmp/ledger-retry-focused.mts"
+      ]
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-focused.mts lifecycle",
+      "exitCode": 0,
+      "output": "{\"group\":\"lifecycle\",\"checks\":[{\"id\":\"BC-LIFE-001\",\"label\":\"Custom value conflicts and complete preview requirements for each supported type\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-004\",\"label\":\"Record edit after preview invalidates merge without partial moves\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-002\",\"label\":\"Person merge moves notes/tasks/deals; company and list cases in existing suite\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-003\",\"label\":\"Merged deal redirect, separate source events, non-restorable source and actor/time audit\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-007\",\"label\":\"Stale deletion refuses unchanged active record\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-009\",\"label\":\"Unique custom collision and inactive/mismatched parents refuse restore atomically\",\"status\":\"PASS\"},{\"id\":\"BC-LIFE-010\",\"label\":\"Expired restore returns 410, excluded from Trash, row remains stored\",\"status\":\"PASS\"}],\"cleanup\":\"verified\"}\n",
+      "environment": "local-development",
+      "checkedPaths": [
+        "/tmp/ledger-retry-focused.mts"
+      ]
+    },
+    {
+      "command": "mise exec -- node /tmp/ledger-retry-published.mjs",
+      "exitCode": 1,
+      "output": "BC-TASK-004 PASS; BC-TASK-005 PASS; BC-CSV-010 PASS; BC-LIST-006 interrupted by runner missing email; browser rows incomplete.",
+      "checkedPaths": [
+        "/tmp/ledger-retry-published.mjs"
+      ],
+      "environment": "published-https"
+    },
+    {
+      "command": "mise exec -- node /tmp/ledger-retry-list-continuation.mjs",
+      "exitCode": 0,
+      "output": "BC-LIST-006 PASS; all specified HTTP outcomes passed.",
+      "checkedPaths": [
+        "/tmp/ledger-retry-list-continuation.mjs"
+      ],
+      "environment": "published-https"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-csv-continuation.mts csv",
+      "exitCode": 0,
+      "output": "BC-CSV-009 PASS; cleanup verified.",
+      "checkedPaths": [
+        "/tmp/ledger-retry-csv-continuation.mts"
+      ],
+      "environment": "local-development"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-ambiguity.mts csv-ambiguity",
+      "exitCode": 0,
+      "output": "BC-ID-007 actual import ambiguity PASS; cleanup verified.",
+      "checkedPaths": [
+        "/tmp/ledger-retry-ambiguity.mts"
+      ],
+      "environment": "local-development"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx /tmp/ledger-retry-identity.mts identity-and-viewer",
+      "exitCode": 0,
+      "output": "BC-ID-006 canonical identity counts after races PASS; BC-LIFE-005 Viewer merge refusal PASS; cleanup verified.",
+      "checkedPaths": [
+        "/tmp/ledger-retry-identity.mts"
+      ],
+      "environment": "local-development"
+    },
+    {
+      "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs /tmp/ledger-retry-cleanup-audit.cjs",
+      "exitCode": 0,
+      "output": "PASS: original five users and workspaces retained; zero new users/workspaces remain.",
+      "checkedPaths": [
+        "docs/qa/retry-2026-10-30/cleanup-audit.json"
+      ],
+      "environment": "local-development"
+    },
+    {
+      "command": "python3 /tmp/ledger-validate-retry.py",
+      "exitCode": 0,
+      "checkedPaths": [
+        "docs/qa/published-business-check-results.json",
+        "docs/qa/retry-2026-10-30",
+        "docs/qa/business-check-catalogue.md"
+      ],
+      "output": "PASS: 348 original requests and 22 PASS statuses preserved; catalogue unchanged; all 35 IDs reconciled; 32 executed, three browser-only not executed; no source diff; local cleanup verified.",
+      "environment": "evidence-validation"
+    }
+  ],
+  "commandsNote": "Published credentials provided via stdin and omitted. Temporary runners were inspected; all new harness code remained ephemeral in /tmp. No source edits, migration, deployment, communications, exploit probes or third-party testing. Existing scripts were run independently; complete successful scripts do not cover missing browser steps. Local guard enforces exact confirmed host/port/database.",
+  "runnerCorrections": [
+    {
+      "id": "BC-LIST-006",
+      "originalError": "POST /api/lists expected 200, actual 400; Enter a valid email.",
+      "cause": "Runner owner object lacked email.",
+      "resolution": "Full fresh-fixture continuation passed; original request remains recorded."
+    },
+    {
+      "id": "BC-CSV-009",
+      "originalError": "Expected values to be strictly equal: 'create' !== 'error'",
+      "cause": "10 MiB fixture description was unmapped and therefore intentionally ignored. Preview create is valid.",
+      "resolution": "Corrected expectation, reran entire row and completed size/row/capacity assertions."
+    }
+  ],
+  "failures": [
+    {
+      "id": "BC-REL-004",
+      "environment": "local-development",
+      "expected": 404,
+      "actual": 409,
+      "error": "The linked company changed. Review the person and try again.",
+      "businessEffect": "Write refused without partial foreign link; wrong route status and misleading error persist."
+    },
+    {
+      "id": "BC-ACCESS-005",
+      "environment": "local-development",
+      "expected": 404,
+      "actual": 409,
+      "error": "The linked company changed. Review the person and try again.",
+      "businessEffect": "Write refused without partial foreign link; wrong route status and misleading error persist."
+    }
+  ],
+  "browserHandoff": [
+    {
+      "id": "BC-LIST-004",
+      "reason": [
+        "List URL refresh and workspace switching require parent browser tools.",
+        "No browser execution performed; retained NOT_RUN rather than implying execution."
+      ],
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "BC-VIEW-001",
+      "reason": [
+        "Search/filter/sort rendered controls require parent browser tools; local pure selection tests cannot pass this row.",
+        "No browser execution performed; retained NOT_RUN rather than implying execution."
+      ],
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "BC-FLD-006",
+      "reason": [
+        "Parent browser tools must verify stale custom-field draft retention and Load latest recovery."
+      ]
+    },
+    {
+      "id": "BC-LIFE-003",
+      "reason": [
+        "Parent browser tools must follow old record URL and verify separate source stage timeline display; local route/SQL proof is not browser proof."
+      ]
+    },
+    {
+      "id": "BC-ACCESS-001",
+      "reason": [
+        "Browser reload/sign-in UI not observed; HTTP session restoration only."
+      ]
+    },
+    {
+      "id": "BC-ACCESS-002",
+      "reason": [
+        "Membership controls in browser not observed; ordinary server role enforcement checked."
+      ]
+    },
+    {
+      "id": "BC-ACCESS-003",
+      "reason": [
+        "Browser visibility of Admin/Member/Viewer controls not observed; server matrix exercised."
+      ]
+    },
+    {
+      "id": "BC-ACCESS-004",
+      "reason": [
+        "Workspace selection, reload and stale-content flash require parent browser tools.",
+        "No browser execution performed; retained NOT_RUN rather than implying execution."
+      ],
+      "status": "NOT_RUN"
+    }
+  ],
+  "fixtures": {
+    "published": "Six new fictional workspaces (two shared QA workspaces and four controlled-account private home workspaces), four controlled accounts, 14 CRM records, four lists, one field and three assignment notices retained; original two QA workspaces untouched. See HTTP creation requests for all record IDs. Generated controlled-account secrets discarded and absent from evidence.",
+    "publishedMetadata": [
+      [
+        {
+          "kind": "workspace",
+          "id": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "label": "Fictional Retry QA 1793363046279"
+        },
+        {
+          "kind": "controlled-account",
+          "label": "member",
+          "email": "retry-member-1793363046279@example.test",
+          "userId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+          "workspaceId": "541f47d8-df89-4ce2-be6f-a258b40d44fe"
+        },
+        {
+          "kind": "controlled-account",
+          "label": "viewer",
+          "email": "retry-viewer-1793363046279@example.test",
+          "userId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+          "workspaceId": "2b296b54-c2b0-4e55-97f1-a17ef7d57e1e"
+        },
+        {
+          "kind": "assignment-task",
+          "id": 14,
+          "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2"
+        },
+        {
+          "kind": "final-visible-counts",
+          "userId": "11e7eb62-6041-49ff-a358-1a685174c327",
+          "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "counts": {
+            "companies": 3,
+            "people": 2,
+            "deals": 2,
+            "notes": 2,
+            "tasks": 4
+          }
+        },
+        {
+          "kind": "final-visible-counts",
+          "userId": "e0e051d6-6e42-4004-97fe-1aa3eda41623",
+          "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "counts": {
+            "companies": 3,
+            "people": 2,
+            "deals": 2,
+            "notes": 2,
+            "tasks": 4
+          }
+        },
+        {
+          "kind": "final-visible-counts",
+          "userId": "35767c21-2121-4811-ad3b-b1adc5d85966",
+          "workspaceId": "06d04b0c-e627-4ba5-8473-7bbc674781d2",
+          "counts": {
+            "companies": 3,
+            "people": 2,
+            "deals": 2,
+            "notes": 2,
+            "tasks": 4
+          }
+        }
+      ],
+      [
+        {
+          "kind": "workspace",
+          "id": "ac3a49b9-71ab-41c6-8580-bc3dd07100b8",
+          "label": "Fictional List Retry 1793363238975"
+        },
+        {
+          "kind": "controlled-account",
+          "label": "list-member",
+          "email": "retry-list-member-1793363238975@example.test",
+          "userId": "ffc5f950-87bc-4f52-a16e-e42e4c891d0e",
+          "workspaceId": "2701644c-99d8-4239-ad9a-ef1c52282499"
+        },
+        {
+          "kind": "controlled-account",
+          "label": "list-viewer",
+          "email": "retry-list-viewer-1793363238975@example.test",
+          "userId": "9cb26cae-90e1-424d-8732-9e92511496ce",
+          "workspaceId": "f162761b-0c4c-4560-8421-eecfc57c4a1f"
+        },
+        {
+          "kind": "private-list",
+          "id": "1f441eea-6b4d-4a99-bd0d-b604cdfee501",
+          "workspaceId": "ac3a49b9-71ab-41c6-8580-bc3dd07100b8",
+          "creator": "ffc5f950-87bc-4f52-a16e-e42e4c891d0e"
+        }
+      ]
+    ],
+    "local": "All focused owned-workspace fixture users/workspaces removed in finally, verified absent. Existing suites cleaned their registered scopes. Final audit: original five users/workspaces retained, zero new users/workspaces remain.",
+    "localAudit": {
+      "environment": "local-development",
+      "at": "2026-10-30T12:32:58.674Z",
+      "originalWorkspaceCount": 5,
+      "originalUserCount": 5,
+      "originalWorkspacesRetained": true,
+      "originalUsersRetained": true,
+      "newWorkspaces": [],
+      "newUsers": [],
+      "scope": "All focused fixture cleanup uses exact registered user/workspace IDs. Existing suites cleaned their registered fixture scopes in finally. No unrelated workspace selected for SQL changes.",
+      "status": "PASS"
+    }
+  },
+  "catalogueSha256": "5d4db365a8a795e69d0e0ad63ea833d99a52fe0c46b5368848400f89019e1d7d",
+  "coverageAccounting": {
+    "originalSkippedIds": 35,
+    "actuallyExecutedRetryIds": 32,
+    "browserOnlyUnexecutedIds": [
+      "BC-ACCESS-004",
+      "BC-LIST-004",
+      "BC-VIEW-001"
+    ],
+    "browserPendingIds": [
+      "BC-LIST-004",
+      "BC-VIEW-001",
+      "BC-FLD-006",
+      "BC-LIFE-003",
+      "BC-ACCESS-001",
+      "BC-ACCESS-002",
+      "BC-ACCESS-003",
+      "BC-ACCESS-004"
+    ],
+    "note": "Original status and coverage preserved in retryHistory and original-results.json. Three wholly unexecuted browser IDs retain NOT_RUN; five additional rows are BLOCKED with partial server proof."
+  }
+}

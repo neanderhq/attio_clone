@@ -1,0 +1,779 @@
+{
+  "group": "csv-ambiguity",
+  "environment": "confirmed-local-development",
+  "database": {
+    "host": "127.0.0.1",
+    "port": 55433,
+    "database": "neander_dev",
+    "confirmedBy": "effective DATABASE_URL and project Compose port binding"
+  },
+  "method": "imported route handlers, fixed-clock functions and scoped SQL fixtures; no HTTP server or browser",
+  "startedAt": "2026-10-30T12:28:14.879Z",
+  "checks": [
+    {
+      "id": "BC-ID-007",
+      "label": "Actual imports reject legacy duplicate company domains and person emails without choosing a winner",
+      "environment": "local-development",
+      "startedAt": "2026-10-30T12:28:15.001Z",
+      "status": "PASS",
+      "requestIds": [
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "requestId": 1,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 2,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "44c2213b-181e-4c73-8685-d7bd2198747c",
+          "email": "focused-1793363294682-csv-ambiguity-owner@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "name": "Fictional Focused 1793363294682-csv-ambiguity owner",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 3,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 4,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "6f3dffe2-bd98-4380-84bf-100b00dfa29d",
+          "email": "focused-1793363294682-csv-ambiguity-member@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+            "name": "Fictional Focused 1793363294682-csv-ambiguity member",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 5,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {
+        "action": "register"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 6,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "auth",
+      "workspaceId": null,
+      "requestBody": {},
+      "httpStatus": 200,
+      "responseBody": {
+        "user": {
+          "id": "8597bff2-a893-4101-888b-6979de6b8e3c",
+          "email": "focused-1793363294682-csv-ambiguity-viewer@example.test"
+        },
+        "workspaces": [
+          {
+            "id": "2a22a0a8-a75e-4140-9985-a909f0dd63c0",
+            "name": "Fictional Focused 1793363294682-csv-ambiguity viewer",
+            "role": "Admin"
+          }
+        ]
+      }
+    },
+    {
+      "requestId": 7,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 8,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "auth",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "requestBody": {
+        "action": "setMember"
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "ok": true
+      }
+    },
+    {
+      "requestId": 9,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional ambiguity",
+        "domain": "ambiguous.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+        "id": 1853,
+        "name": "Fictional ambiguity",
+        "domain": "ambiguous.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:28:14.990Z"
+      }
+    },
+    {
+      "requestId": 10,
+      "checkId": null,
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "requestBody": {
+        "type": "person",
+        "name": "Fictional duplicate email",
+        "companyId": 1853,
+        "email": "ambiguous@example.test"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+        "id": 186,
+        "name": "Fictional duplicate email",
+        "email": "ambiguous@example.test",
+        "companyId": 1853,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:28:14.996Z"
+      }
+    },
+    {
+      "requestId": 11,
+      "checkId": "BC-ID-007",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 1853,
+            "name": "Fictional ambiguity",
+            "domain": "ambiguous.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:14.990Z"
+          },
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 1854,
+            "name": "Fictional legacy duplicate",
+            "domain": "AMBIGUOUS.EXAMPLE",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:15.001Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 186,
+            "name": "Fictional duplicate email",
+            "email": "ambiguous@example.test",
+            "companyId": 1853,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:14.996Z"
+          },
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 187,
+            "name": "Fictional legacy duplicate person",
+            "email": "AMBIGUOUS@example.test",
+            "companyId": 1853,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:15.003Z"
+          }
+        ],
+        "deals": [],
+        "notes": [],
+        "tasks": []
+      }
+    },
+    {
+      "requestId": 12,
+      "checkId": "BC-ID-007",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "requestBody": {
+        "action": "import",
+        "type": "companies",
+        "fileBytes": 46
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "completed",
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "error",
+            "message": "Multiple companies have this domain. Resolve duplicates before importing."
+          }
+        ],
+        "counts": {
+          "create": 0,
+          "update": 0,
+          "unchanged": 0,
+          "error": 1
+        }
+      }
+    },
+    {
+      "requestId": 13,
+      "checkId": "BC-ID-007",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "crm",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "requestBody": {
+        "type": "company",
+        "name": "Fictional clear company",
+        "domain": "unambiguous.example"
+      },
+      "httpStatus": 201,
+      "responseBody": {
+        "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+        "id": 1855,
+        "name": "Fictional clear company",
+        "domain": "unambiguous.example",
+        "description": null,
+        "version": 1,
+        "deletedAt": null,
+        "mergedIntoId": null,
+        "createdAt": "2026-10-30T12:28:15.022Z"
+      }
+    },
+    {
+      "requestId": 14,
+      "checkId": "BC-ID-007",
+      "environment": "local-development-route",
+      "method": "POST",
+      "path": "csv",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "requestBody": {
+        "action": "import",
+        "type": "people",
+        "fileBytes": 78
+      },
+      "httpStatus": 200,
+      "responseBody": {
+        "status": "completed",
+        "total": 1,
+        "outcomes": [
+          {
+            "row": 2,
+            "action": "error",
+            "message": "Multiple people have this email. Resolve duplicates before importing."
+          }
+        ],
+        "counts": {
+          "create": 0,
+          "update": 0,
+          "unchanged": 0,
+          "error": 1
+        }
+      }
+    },
+    {
+      "requestId": 15,
+      "checkId": "BC-ID-007",
+      "environment": "local-development-route",
+      "method": "GET",
+      "path": "crm",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "httpStatus": 200,
+      "responseBody": {
+        "companies": [
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 1853,
+            "name": "Fictional ambiguity",
+            "domain": "ambiguous.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:14.990Z"
+          },
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 1855,
+            "name": "Fictional clear company",
+            "domain": "unambiguous.example",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:15.022Z"
+          },
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 1854,
+            "name": "Fictional legacy duplicate",
+            "domain": "AMBIGUOUS.EXAMPLE",
+            "description": null,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:15.001Z"
+          }
+        ],
+        "people": [
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 186,
+            "name": "Fictional duplicate email",
+            "email": "ambiguous@example.test",
+            "companyId": 1853,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:14.996Z"
+          },
+          {
+            "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+            "id": 187,
+            "name": "Fictional legacy duplicate person",
+            "email": "AMBIGUOUS@example.test",
+            "companyId": 1853,
+            "version": 1,
+            "deletedAt": null,
+            "mergedIntoId": null,
+            "createdAt": "2026-10-30T12:28:15.003Z"
+          }
+        ],
+        "deals": [],
+        "notes": [],
+        "tasks": []
+      }
+    }
+  ],
+  "sql": [
+    {
+      "checkId": "BC-ID-007",
+      "query": "INSERT INTO companies (workspace_id,name,domain) VALUES ($1,$2,$3)",
+      "parameters": [
+        "47956cbb-0804-4429-b11b-938d9438bee1",
+        "Fictional legacy duplicate",
+        "AMBIGUOUS.EXAMPLE"
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": "BC-ID-007",
+      "query": "INSERT INTO people (workspace_id,name,email,company_id) VALUES ($1,$2,$3,$4)",
+      "parameters": [
+        "47956cbb-0804-4429-b11b-938d9438bee1",
+        "Fictional legacy duplicate person",
+        "AMBIGUOUS@example.test",
+        1853
+      ],
+      "rowCount": 1,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_record_lifecycle_events WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_custom_values WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_custom_fields WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_entries WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_views WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_list_grants WHERE list_id IN (SELECT id FROM crm_lists WHERE workspace_id=ANY($1::uuid[]))",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_lists WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_notifications WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM record_changes WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM deal_stage_events WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM tasks WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM notes WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM deals WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM people WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 2,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM companies WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_memberships WHERE workspace_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 5,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_workspaces WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_sessions WHERE user_id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "44c2213b-181e-4c73-8685-d7bd2198747c",
+          "6f3dffe2-bd98-4380-84bf-100b00dfa29d",
+          "8597bff2-a893-4101-888b-6979de6b8e3c"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "DELETE FROM crm_users WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "44c2213b-181e-4c73-8685-d7bd2198747c",
+          "6f3dffe2-bd98-4380-84bf-100b00dfa29d",
+          "8597bff2-a893-4101-888b-6979de6b8e3c"
+        ]
+      ],
+      "rowCount": 3,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "SELECT id FROM crm_workspaces WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "47956cbb-0804-4429-b11b-938d9438bee1",
+          "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+          "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    },
+    {
+      "checkId": null,
+      "query": "SELECT id FROM crm_users WHERE id=ANY($1::uuid[])",
+      "parameters": [
+        [
+          "44c2213b-181e-4c73-8685-d7bd2198747c",
+          "6f3dffe2-bd98-4380-84bf-100b00dfa29d",
+          "8597bff2-a893-4101-888b-6979de6b8e3c"
+        ]
+      ],
+      "rowCount": 0,
+      "rows": []
+    }
+  ],
+  "fixtures": [
+    {
+      "userId": "44c2213b-181e-4c73-8685-d7bd2198747c",
+      "workspaceId": "47956cbb-0804-4429-b11b-938d9438bee1",
+      "label": "owner",
+      "email": "focused-1793363294682-csv-ambiguity-owner@example.test"
+    },
+    {
+      "userId": "6f3dffe2-bd98-4380-84bf-100b00dfa29d",
+      "workspaceId": "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+      "label": "member",
+      "email": "focused-1793363294682-csv-ambiguity-member@example.test"
+    },
+    {
+      "userId": "8597bff2-a893-4101-888b-6979de6b8e3c",
+      "workspaceId": "2a22a0a8-a75e-4140-9985-a909f0dd63c0",
+      "label": "viewer",
+      "email": "focused-1793363294682-csv-ambiguity-viewer@example.test"
+    }
+  ],
+  "cleanup": {
+    "status": "verified",
+    "workspacesRemoved": [
+      "47956cbb-0804-4429-b11b-938d9438bee1",
+      "cbf0c526-3718-4188-9442-1ab249b0b4a3",
+      "2a22a0a8-a75e-4140-9985-a909f0dd63c0"
+    ],
+    "usersRemoved": [
+      "44c2213b-181e-4c73-8685-d7bd2198747c",
+      "6f3dffe2-bd98-4380-84bf-100b00dfa29d",
+      "8597bff2-a893-4101-888b-6979de6b8e3c"
+    ]
+  },
+  "finishedAt": "2026-10-30T12:28:15.047Z"
+}

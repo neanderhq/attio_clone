@@ -1,0 +1,12 @@
+{
+  "environment": "local-development",
+  "at": "2026-10-30T12:32:58.674Z",
+  "originalWorkspaceCount": 5,
+  "originalUserCount": 5,
+  "originalWorkspacesRetained": true,
+  "originalUsersRetained": true,
+  "newWorkspaces": [],
+  "newUsers": [],
+  "scope": "All focused fixture cleanup uses exact registered user/workspace IDs. Existing suites cleaned their registered fixture scopes in finally. No unrelated workspace selected for SQL changes.",
+  "status": "PASS"
+}

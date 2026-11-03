@@ -1,0 +1,92 @@
+[
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-crm-api.ts",
+    "exitCode": 1,
+    "checkedPaths": [
+      "scripts/check-crm-api.ts"
+    ],
+    "startedAt": "2026-10-30T12:22:27.126596+00:00",
+    "output": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n409 !== 404\n\n    at main (/Users/abhinavrastogi/neander-projects/attio_clone_staging/scripts/check-crm-api.ts:57:10)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 409,\n  expected: 404,\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n",
+    "environment": "local-development-route"
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-record-edits.ts",
+    "exitCode": 0,
+    "checkedPaths": [
+      "scripts/check-record-edits.ts"
+    ],
+    "startedAt": "2026-10-30T12:22:37.705516+00:00",
+    "output": "Record edit checks passed: stale concurrent writes, canonical duplicate races, validation, links, history, workspace isolation, and Viewer denial.\n",
+    "environment": "local-development-route"
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-productivity.ts",
+    "exitCode": 0,
+    "checkedPaths": [
+      "scripts/check-productivity.ts"
+    ],
+    "startedAt": "2026-10-30T12:22:48.357087+00:00",
+    "output": "Productivity checks passed: assignment notifications, self suppression, read privacy, stale task writes, completion, Viewer denial, and workspace isolation.\n",
+    "environment": "local-development-route"
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-reports-api.ts",
+    "exitCode": 0,
+    "checkedPaths": [
+      "scripts/check-reports-api.ts"
+    ],
+    "startedAt": "2026-10-30T12:22:58.953744+00:00",
+    "output": "Reports: transition history and reopening, lost reason, currency separation, timezone month boundaries, workspace access, and drilldown reconciliation passed.\n",
+    "environment": "local-development-route"
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-lists-api.ts",
+    "exitCode": 0,
+    "checkedPaths": [
+      "scripts/check-lists-api.ts"
+    ],
+    "startedAt": "2026-10-30T12:23:09.461893+00:00",
+    "output": "Lists: private/shared access, grants, viewer denial, workspace isolation, unique entries, independent stages, saved view reload, and record-preserving removal passed.\n",
+    "environment": "local-development-route"
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-custom-fields.ts",
+    "exitCode": 0,
+    "checkedPaths": [
+      "scripts/check-custom-fields.ts"
+    ],
+    "startedAt": "2026-10-30T12:23:20.009125+00:00",
+    "output": "Custom field checks passed: typed values, required creation, uniqueness, archive retention, stale edits, role and workspace boundaries.\n",
+    "environment": "local-development-route"
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-csv-api.ts",
+    "exitCode": 0,
+    "checkedPaths": [
+      "scripts/check-csv-api.ts"
+    ],
+    "startedAt": "2026-10-30T12:23:30.767155+00:00",
+    "output": "CSV checks passed: mapping, malformed and invalid rows, duplicate identities, formula safety, retries, workspace isolation, and Viewer denial.\n",
+    "environment": "local-development-route"
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx scripts/check-record-lifecycle.ts",
+    "exitCode": 0,
+    "checkedPaths": [
+      "scripts/check-record-lifecycle.ts"
+    ],
+    "startedAt": "2026-10-30T12:23:41.290465+00:00",
+    "output": "Record lifecycle checks passed: merges, survivor-deal protection, late note/task previews, concurrent Company deletion and Person writes, lists, access, restore, audit, stage history and redirects.\n",
+    "environment": "local-development-route"
+  },
+  {
+    "command": "mise exec -- node --env-file=.env.local --require /tmp/ledger-local-guard.cjs --import tsx --test shared/record-views.test.ts",
+    "exitCode": 0,
+    "checkedPaths": [
+      "shared/record-views.test.ts"
+    ],
+    "startedAt": "2026-10-30T12:23:52.679693+00:00",
+    "output": "\u2714 search matches authorized loaded relationship and contact fields, ignoring case and whitespace (0.513375ms)\n\u2714 filters retain only matching fields or deal stages (0.063667ms)\n\u2714 numeric sorts compare numbers and do not mutate source records (0.066292ms)\n\u2139 tests 3\n\u2139 suites 0\n\u2139 pass 3\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 90.480708\n",
+    "environment": "local-unit"
+  }
+]
