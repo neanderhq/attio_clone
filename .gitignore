@@ -10,3 +10,9 @@
 **/__pycache__
 **/.pytest_cache
 **/*.tsbuildinfo
+
+# Cloudflare build output and local secrets
+.open-next/
+.wrangler/
+.dev.vars
+.dev.vars.*

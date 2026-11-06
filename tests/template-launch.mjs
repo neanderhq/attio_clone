@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+const origin = process.env.POC_URL || 'http://localhost:18787';
+const url = origin + '/api/template-launch';
+const unauth = await fetch(url, {method:'POST', body:'{}'});
+assert.equal(unauth.status, 403);
+const projectId=randomUUID();
+const launch=()=>fetch(url,{method:'POST', headers:{'content-type':'application/json',authorization:`Bearer ${process.env.POC_LAUNCH_SECRET}`},body:JSON.stringify({projectId}),signal:AbortSignal.timeout(15000)});
+const [a,b]=await Promise.all([launch(),launch()]);
+assert.equal(a.status,200,await a.clone().text());assert.equal(b.status,200);
+const one=await a.json(),two=await b.json();
+assert.equal(one.workspaceId,two.workspaceId);
+const redeemed=await fetch(one.url,{redirect:'manual'});assert.equal(redeemed.status,303);assert.ok(redeemed.headers.get('set-cookie'));
+const profile=await fetch(origin+'/api/auth',{headers:{cookie:redeemed.headers.get('set-cookie').split(';')[0]}});assert.equal(profile.status,200,await profile.clone().text());
+const replay=await fetch(one.url,{redirect:'manual'});assert.equal(replay.status,401);
+console.log('PASS: unauthorized launch denied, concurrent launch idempotent, session established, ticket replay denied');
