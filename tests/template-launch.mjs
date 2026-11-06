@@ -10,6 +10,7 @@ const [a,b]=await Promise.all([launch(),launch()]);
 assert.equal(a.status,200,await a.clone().text());assert.equal(b.status,200);
 const one=await a.json(),two=await b.json();
 assert.equal(one.workspaceId,two.workspaceId);
+assert.equal(one.expiresInSeconds,120,'launch ticket must allow two minutes');
 const redeemed=await fetch(one.url,{redirect:'manual'});assert.equal(redeemed.status,303);assert.ok(redeemed.headers.get('set-cookie'));
 const profile=await fetch(origin+'/api/auth',{headers:{cookie:redeemed.headers.get('set-cookie').split(';')[0]}});assert.equal(profile.status,200,await profile.clone().text());
 const replay=await fetch(one.url,{redirect:'manual'});assert.equal(replay.status,401);

@@ -6,6 +6,6 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": {"directory": ".open-next/assets", "binding": "ASSETS"},
   "services": [{"binding": "WORKER_SELF_REFERENCE", "service": "neander-poc-attio"}],
-  "vars": {"DATABASE_DRIVER": "neon"},
+  "vars": {"DATABASE_DRIVER": "neon", "POC_PROJECT_DATABASES": "true"},
   "observability": {"enabled": true}
 }

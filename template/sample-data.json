@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "workspaceName": "My Attio workspace",
+  "company": {
+    "name": "Northstar Studio (demo)",
+    "description": "Fictional design practice"
+  },
+  "person": {
+    "name": "Maya Reed (demo)",
+    "email": "maya@example.test"
+  },
+  "deal": {
+    "name": "Autumn partnership (demo)",
+    "stage": "Qualified",
+    "owner": "Alex (demo)",
+    "valueCents": 1250000
+  },
+  "note": "Fictional example. Discovery call completed.",
+  "task": "Send sample proposal"
+}
