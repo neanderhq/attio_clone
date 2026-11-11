@@ -1,0 +1,16 @@
+contract_version: 1
+id: attio
+title: Customer CRM
+description: A CRM with companies, contacts, deal pipelines, notes and tasks. Create an account to explore a private workspace populated with fictional examples.
+category: Business & Productivity
+best_for: Sales teams, agencies and small businesses
+features: [Companies and contacts, Deal pipelines, Notes and tasks, Workspace access]
+included: [CRM application, PostgreSQL migrations, Fictional starter data]
+thumbnail: .neander/thumbnail.png
+commands:
+  install: [pnpm, install, --frozen-lockfile]
+  check: [pnpm, run, check]
+  test: [pnpm, run, test]
+  verify: [pnpm, run, test:template]
+seed:
+  command: [pnpm, run, template:seed]

@@ -136,3 +136,14 @@ export const crmListViews = pgTable('crm_list_views', {
   kind: varchar('kind', { length: 10 }).notNull(),
   config: jsonb('config').$type<{ filterStage: string; sort: string; columns: string[] }>().notNull(),
 }, t => [uniqueIndex('crm_list_view_name_unique').on(t.listId, t.name)]);
+
+// Installing a template enables fictional data only for newly created workspaces.
+export const templateSettings = pgTable('crm_template_settings', {
+  id: varchar('id', { length: 80 }).primaryKey(),
+  enabled: boolean('enabled').notNull().default(true),
+});
+export const workspaceSeeds = pgTable('crm_workspace_seeds', {
+  workspaceId: uuid('workspace_id').notNull().references(() => workspaces.id, { onDelete: 'cascade' }),
+  version: varchar('version', { length: 80 }).notNull(),
+  appliedAt: timestamp('applied_at', { withTimezone: true }).defaultNow().notNull(),
+}, t => [primaryKey({ columns: [t.workspaceId, t.version] })]);

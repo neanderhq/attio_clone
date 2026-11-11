@@ -56,3 +56,12 @@ Rows that predate the workspace migration remain stored with a null workspace ID
 This is a bounded P0 core: linked records, stage history from this migration onward, current reports, plain-text notes, assigned and versioned tasks, in-app assignment notifications, local sign-in, workspaces, three roles, company/deal lists, list-only stage and note, private creator grants, saved table/board view settings, the bounded custom fields above, reversible record deletion and reviewed same-type merge, and synchronous Companies/People CSV transfer. Reports do not include list entries or private lists. A Viewer remains read-only even with an Editor list grant. Private lists are visible only to their creator and explicitly granted workspace members. An Admin has no private-list override or list-access audit trail yet; creator access recovery requires a later audited admin workflow. Lists currently have fixed entry fields and two default views; there is no list deletion or grant revocation UI. Reports are current-state summaries rather than historical pipeline snapshots or forecasts. It is not a production-ready CRM yet. It does not include account recovery, email verification, invitations to unregistered people, custom fields in saved views, CSV transfer for deals or tasks, large asynchronous imports, advanced reporting, automation, AI or connected integrations. Plan account recovery and operational safeguards before production use. `pnpm seed` requires an explicit workspace ID and is for fictional data only. If a public fictional demo is needed, use a dedicated workspace and demo account; do not make the private CRM API anonymous again.
 
 The production recipe is `.neander/compose.yaml`: Publish provisions Neon `DATABASE_URL` and applies committed Drizzle migrations before rollout. Local PostgreSQL checks do not establish managed Neon connectivity. See `docs/deployment-contract.md`.
+
+## Neander template library
+
+This repository provides the **Customer CRM** template. Its shared CI verifies the
+production image and publishes completed releases on `main`. Template
+initialization enables fictional examples for newly created private workspaces;
+users create their own account through the normal app flow. There is no shared
+demo password. See [the template integration guide](docs/template-integration.md)
+for seed behavior, verification and organization setup.

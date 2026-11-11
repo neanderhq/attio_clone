@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { eq, sql } from 'drizzle-orm';
 import { AccessError, currentUser, newSession, passwordHash, sameOrigin, sessionCookie, signOut, validPassword, workspaceAccess } from '../../../server/auth';
 import { getDb } from '../../../server/db';
+import { seedNewWorkspace } from '../../../server/demo-seed';
 import { loginAttempts, memberships, users, workspaces } from '../../../server/schema';
 export const dynamic = 'force-dynamic';
 const json = (data: object, status = 200) => NextResponse.json(data, { status, headers: { 'Cache-Control': 'no-store' } });
@@ -23,6 +24,7 @@ export async function POST(request: Request) { try {
       const [u] = await tx.insert(users).values({ email, passwordHash: password }).returning();
       const [w] = await tx.insert(workspaces).values({ name }).returning();
       await tx.insert(memberships).values({ userId: u.id, workspaceId: w.id, role: 'Admin' });
+      await seedNewWorkspace(tx, w.id, u.id);
       return u;
     });
     const token = await newSession(user.id); const response = json({ ok: true }, 201); response.headers.set('Set-Cookie', sessionCookie(request, token)); return response;
@@ -40,7 +42,7 @@ export async function POST(request: Request) { try {
     const token = await newSession(rows[0].id); const response = json({ ok: true }); response.headers.set('Set-Cookie', sessionCookie(request, token)); return response;
   }
   if (b.action === 'logout') { await signOut(request); const response = json({ ok: true }); response.headers.set('Set-Cookie', sessionCookie(request, '', true)); return response; }
-  if (b.action === 'createWorkspace') { const user = await currentUser(request), name = nameOf(b.name); const workspace = await db.transaction(async tx => { const [w] = await tx.insert(workspaces).values({ name }).returning(); await tx.insert(memberships).values({ userId: user.id, workspaceId: w.id, role: 'Admin' }); return w; }); return json({ workspace }, 201); }
+  if (b.action === 'createWorkspace') { const user = await currentUser(request), name = nameOf(b.name); const workspace = await db.transaction(async tx => { const [w] = await tx.insert(workspaces).values({ name }).returning(); await tx.insert(memberships).values({ userId: user.id, workspaceId: w.id, role: 'Admin' }); await seedNewWorkspace(tx, w.id, user.id); return w; }); return json({ workspace }, 201); }
   if (b.action === 'setMember') { const access = await workspaceAccess(request); if (access.role !== 'Admin') throw new AccessError('Only admins can manage members.', 403); const email = emailOf(b.email); if (b.role !== 'Admin' && b.role !== 'Member' && b.role !== 'Viewer') throw new AccessError('Choose a valid role.', 400); const target = await db.select({ id: users.id }).from(users).where(eq(users.email, email)).limit(1); if (!target.length) throw new AccessError('That person must create an account first.', 404); if (target[0].id === access.user.id && b.role !== 'Admin') throw new AccessError('Ask another admin to change your role.', 400); await db.insert(memberships).values({ workspaceId: access.workspaceId, userId: target[0].id, role: b.role }).onConflictDoUpdate({ target: [memberships.workspaceId, memberships.userId], set: { role: b.role } }); return json({ ok: true }); }
   throw new AccessError('Invalid action.', 400);
 } catch (e) { return fail(e); } }
