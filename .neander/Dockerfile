@@ -5,10 +5,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
-# QEMU can crash V8's optimizing amd64 JIT on ARM builders. Native CI keeps normal Node.
-ARG BUILDARCH
-ARG TARGETARCH
-RUN if [ "$BUILDARCH" != "$TARGETARCH" ]; then node --no-opt node_modules/next/dist/bin/next build && node .neander/prepare-standalone.mjs; else pnpm build; fi
+RUN pnpm build
 
 FROM node:24-bookworm-slim
 WORKDIR /app

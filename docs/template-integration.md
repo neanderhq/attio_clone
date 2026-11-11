@@ -65,12 +65,6 @@ database. Keep generated verification reports outside committed source.
 `.neander/thumbnail.png` is a browser screenshot of the real seeded Deals board.
 Refresh it from the app when the product UI or sample scenario changes.
 
-On an ARM workstation, the Linux/amd64 image runs under QEMU. The Docker build
-runs Next with `node --no-opt` only when `BUILDARCH` differs from `TARGETARCH` to
-avoid a QEMU/V8 optimizing-JIT crash while retaining WebAssembly for Next.
-The local smoke process uses `--jitless` only for its emulated containers. The published runtime image has no
-`NODE_OPTIONS` override, and native amd64 GitHub CI uses the normal Node runtime.
-
 ## Publication setup
 
 PRs verify without uploading releases. After onboarding access is applied, a
