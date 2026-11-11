@@ -54,7 +54,8 @@ try {
   assert.equal((await call(crmPatch, 'PATCH', { type: 'task', id: 1, done: true }, viewer.cookie, owner.workspaceId)).response.status, 403);
   assert.equal((await call(crmDelete, 'DELETE', { type: 'task', id: 1 }, viewer.cookie, owner.workspaceId)).response.status, 403);
   assert.equal((await call(authPost, 'POST', { action: 'setMember', email: emails[0], role: 'Viewer' }, viewer.cookie, owner.workspaceId)).response.status, 403);
-  assert.equal((await call(crmPost, 'POST', { type: 'person', name: 'Bad link', companyId: company.data.id }, viewer.cookie, viewer.workspaceId)).response.status, 404);
+  assert.equal((await call(crmPost, 'POST', { type: 'person', name: 'Bad link', companyId: company.data.id }, viewer.cookie, viewer.workspaceId)).response.status, 409);
+  assert.equal((await call(crmGet, 'GET', undefined, viewer.cookie, viewer.workspaceId)).data.people.length, 0);
   const memberGrant = await call(authPost, 'POST', { action: 'setMember', email: emails[1], role: 'Member' }, owner.cookie, owner.workspaceId);
   assert.equal(memberGrant.response.status, 200);
   const memberWrite = await call(crmPost, 'POST', { type: 'person', name: 'Member contact', companyId: company.data.id }, viewer.cookie, owner.workspaceId);
@@ -72,7 +73,8 @@ try {
   assert.equal((await call(crmDelete, 'DELETE', { type: 'task', id: task.data.id, version: task.data.version + 1 }, owner.cookie, owner.workspaceId)).response.status, 200);
   const privateCompany = await call(crmPost, 'POST', { type: 'company', name: 'Other private company' }, viewer.cookie, viewer.workspaceId);
   assert.equal(privateCompany.response.status, 201);
-  assert.equal((await call(crmPost, 'POST', { type: 'person', name: 'Cross workspace link', companyId: privateCompany.data.id }, owner.cookie, owner.workspaceId)).response.status, 404);
+  assert.equal((await call(crmPost, 'POST', { type: 'person', name: 'Cross workspace link', companyId: privateCompany.data.id }, owner.cookie, owner.workspaceId)).response.status, 409);
+  assert.equal((await call(crmGet, 'GET', undefined, owner.cookie, owner.workspaceId)).data.people.length, 1);
   const noOrigin = await crmPost(new Request(`${origin}/api/crm`, { method: 'POST', headers: { cookie: owner.cookie, 'x-workspace-id': owner.workspaceId }, body: JSON.stringify({ type: 'company', name: 'No origin' }) }));
   assert.equal(noOrigin.status, 403);
   console.log('Anonymous denial, sign-in, workspace isolation, Admin/Member/Viewer roles, and link isolation passed.');

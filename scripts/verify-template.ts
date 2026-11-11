@@ -38,7 +38,7 @@ async function main() {
     const ready = async () => {
       const deadline = Date.now() + 60_000;
       while (Date.now() < deadline) {
-        try { const response = await fetch(new URL('/api/health', origin), { signal: AbortSignal.timeout(2000) }); if (response.ok) return; await response.body?.cancel(); } catch {}
+        try { const response = await fetch(new URL('/api/health', origin), { signal: AbortSignal.timeout(2000), headers: { connection: 'close' } }); const ok = response.ok; await response.body?.cancel(); if (ok) return; } catch {}
         await new Promise(resolve => setTimeout(resolve, 250));
       }
       throw new Error('Built image did not become ready within 60 seconds.');
