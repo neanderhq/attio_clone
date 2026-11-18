@@ -34,7 +34,7 @@ export default function CsvSection({ type, workspaceId, canWrite, onImported }: 
       const response = await fetch(`/api/csv?type=${type}`, { headers: { 'x-workspace-id': workspaceId }, cache: 'no-store' });
       if (!response.ok) { const data = await response.json(); throw new Error(data.error || 'Export failed.'); }
       const blob = await response.blob(), url = URL.createObjectURL(blob), link = document.createElement('a');
-      link.href = url; link.download = `ledger-${type}.csv`; link.click(); URL.revokeObjectURL(url);
+      link.href = url; link.download = `folio-${type}.csv`; link.click(); URL.revokeObjectURL(url);
     } catch (cause) { setError(cause instanceof Error ? cause.message : 'Export failed.'); }
     finally { setBusy(false); }
   }

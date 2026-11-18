@@ -33,7 +33,7 @@ export async function GET(request: Request) { try {
   if (rows.length > CSV_MAX_ROWS) throw new CsvError(`Export exceeds ${CSV_MAX_ROWS} records.`, 409);
   const headers = type === 'companies' ? ['domain', 'name', 'description'] : ['email', 'name', 'companyDomain'];
   const csv = serializeCsv([headers, ...rows.map(row => headers.map(field => (row as Record<string, string | null>)[field]))]);
-  return new Response(csv, { headers: { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': `attachment; filename="ledger-${type}.csv"`, 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' } });
+  return new Response(csv, { headers: { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': `attachment; filename="folio-${type}.csv"`, 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' } });
 } catch (error) { return fail(error); } }
 
 export async function POST(request: Request) { try {
