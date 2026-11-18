@@ -1,5 +1,12 @@
 # Neander template integration
 
+Current release process: this MIT-licensed application runs app checks and builds
+in its own CI. Neander maintainers manually verify and publish template releases
+from private CI; contributors need no private workflow or publishing credentials.
+The workflow pins and publication runs below describe the original onboarding.
+See the repository README for current local setup and contributor instructions.
+
+
 The library entry is **Customer CRM**, ID `attio`. It uses the normal Next.js +
 PostgreSQL publishing recipe in `.neander/compose.yaml`. The template manifest
 adds catalog metadata, a real app screenshot, and install/check/test/seed/smoke
