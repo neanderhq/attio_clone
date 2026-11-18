@@ -1,4 +1,4 @@
-# Ledger CRM business-check catalogue
+# Folio business-check catalogue
 
 **Purpose:** agree what supported business logic should do **before execution**. This is a bounded catalogue, not a claim of complete CRM coverage, a screenshot-parity assessment, or an execution report.
 

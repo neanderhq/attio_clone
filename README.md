@@ -1,10 +1,12 @@
-# Ledger CRM
+# Folio
 
 A workspace CRM for companies, contacts, deals and the work around them.
 
-**Neander library:** Customer CRM · **Category:** Sales & CRM
+**Product inspiration:** Attio-inspired relationship management, with its own Folio branding.
 
-![Ledger CRM with fictional sample data](.neander/thumbnail.png)
+**Neander library:** Folio · **Category:** Sales & CRM
+
+![Folio with fictional sample data](.neander/thumbnail.png)
 
 ## What you can build
 
@@ -16,7 +18,7 @@ A workspace CRM for companies, contacts, deals and the work around them.
 
 ## How this fits into Neander
 
-This is the open-source app behind Neander’s **Customer CRM** starter. You can
+This is the open-source app behind Neander’s **Folio** starter. You can
 run and modify it on its own without a Neander account, or use it as a starting
 point in Neander.
 
@@ -42,8 +44,8 @@ PostgreSQL service. Python 3.12 with PyYAML is needed for this repository’s Py
 ### 1. Install the app
 
 ```sh
-git clone https://github.com/neanderhq/attio_clone.git
-cd attio_clone
+git clone https://github.com/neanderhq/folio.git
+cd folio
 pnpm install --frozen-lockfile
 cp .env.example .env.local
 ```
@@ -51,7 +53,7 @@ cp .env.example .env.local
 ### 2. Start local PostgreSQL
 
 ```sh
-PGPORT=55433 docker compose -p ledger-crm-dev -f compose.dev.yaml up -d --wait
+PGPORT=55433 docker compose -p folio-dev -f compose.dev.yaml up -d --wait
 ```
 
 The example database URL uses port `55433`. The Compose project name keeps
